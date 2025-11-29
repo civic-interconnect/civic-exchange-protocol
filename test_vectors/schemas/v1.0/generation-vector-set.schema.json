@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/refs/heads/main/test_vectors/schemas/v1.0/generation-vector-set.schema.json",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test_vectors/schemas/v1.0/generation-vector-set.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "SNFEI Generation Test Vector Set",
   "description": "Schema for a file containing a set of end-to-end SNFEI generation test vectors.",

@@ -1,0 +1,8 @@
+{
+  "relationshipId": "REL-CA-001",
+  "relationshipType": "PARENT_CHILD",
+  "parentEntityId": "US-CA-MUNI-0144",
+  "childEntityId": "US-CA-SD-0001",
+  "effectiveDate": "2010-07-01",
+  "notes": "School district operates within the municipal boundaries"
+}

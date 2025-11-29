@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/refs/heads/main/test_vectors/schemas/v1.0/generation-vector-set.schema.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test_vectors/schemas/v1.0/generation-vector-set.schema.json",
   "vectorSetId": "snfei-generation-full",
   "specVersion": "1.0.0",
   "vectorVersion": "2024.1",
@@ -88,7 +88,7 @@
         "country_code": "US",
         "address": null,
         "registration_date": null,
-        "jurisdiction": "US/NY"
+        "jurisdiction": "us/ny"
       },
       "intermediate": {
         "after_localization": "metropolitan transportation authority",

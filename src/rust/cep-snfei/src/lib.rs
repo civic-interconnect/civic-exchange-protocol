@@ -37,7 +37,7 @@
 //! );
 //!
 //! // With jurisdiction-specific localization
-//! let localized = apply_localization("MTA", "US/NY");
+//! let localized = apply_localization("MTA", "us/ny");
 //! assert_eq!(localized, "metropolitan transportation authority");
 //! ```
 

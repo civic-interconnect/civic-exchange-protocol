@@ -1,10 +1,10 @@
 # CEP Localization: California Configuration
 # California state agencies and local government patterns.
 #
-# Inheritance: US (inherits all federal agency expansions)
+# Inheritance: us (inherits all federal agency expansions)
 
-jurisdiction: US/CA
-parent: US
+jurisdiction: us/ca
+parent: us
 
 abbreviations:
   # State Agencies

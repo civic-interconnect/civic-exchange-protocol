@@ -36,7 +36,7 @@ Usage:
 
     # With jurisdiction-specific localization
     from civic_exchange_protocol.core_linker import apply_localization
-    localized = apply_localization("MTA", "US/NY")
+    localized = apply_localization("MTA", "us/ny")
     # -> "metropolitan transportation authority"
 """
 

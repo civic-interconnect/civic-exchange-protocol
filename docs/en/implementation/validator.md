@@ -10,34 +10,34 @@ against one of the official schemas.
 The validator checks your JSON against one of the official Civic Exchange Protocol schemas:
 
 - **Entity Schema**  
-  https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.entity.schema.json
+  [https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.entity.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.entity.schema.json)
 
 - **Relationship Schema**  
-  https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.relationship.schema.json
+  [https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.relationship.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.relationship.schema.json)
 
 - **Exchange Schema**  
-  https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.exchange.schema.json
+  [https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.exchange.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.exchange.schema.json)
 
 - **Identifier Scheme Vocabulary**  
-  https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.entity.identifier-scheme.schema.json
+  [https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.entity.identifier-scheme.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.entity.identifier-scheme.schema.json)
 
 - **Relationship Type Vocabulary**  
-  https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.relationship-type.schema.json
+  [https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.relationship-type.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.relationship-type.schema.json)
 
 - **Exchange Role Vocabulary**  
-  https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.exchange-role.schema.json
+  [https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.exchange-role.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.exchange-role.schema.json)
 
 - **Party Role Vocabulary**  
-  https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.party-role.schema.json
+  [https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.party-role.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.party-role.schema.json)
 
 - **Source System Vocabulary**  
-  https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.source-system.schema.json
+  [https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.source-system.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.source-system.schema.json)
 
 - **Value Type Vocabulary**  
-  https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.value-type.schema.json
+  [https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.value-type.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.value-type.schema.json)
 
 - **Resolution Method Vocabulary**  
-  https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.resolution-method.schema.json
+  [https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.resolution-method.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.resolution-method.schema.json)
 
 ---
 

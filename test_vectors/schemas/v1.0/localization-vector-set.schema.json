@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/refs/heads/main/test_vectors/schemas/v1.0/localization-vector-set.schema.json",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test_vectors/schemas/v1.0/localization-vector-set.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Localization Test Vector Set",
   "description": "Schema for a file containing a set of localization test vectors.",
@@ -67,7 +67,7 @@
               },
               "jurisdiction": {
                 "type": "string",
-                "description": "The jurisdiction context (e.g., US, US/CA, CA/ON)."
+                "description": "The jurisdiction context (e.g., US, us/ca, ca/on)."
               }
             },
             "additionalProperties": false

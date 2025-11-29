@@ -1,10 +1,10 @@
 # CEP Localization: New York Configuration
 # New York state agencies and NYC-specific patterns.
 #
-# Inheritance: US (inherits all federal agency expansions)
+# Inheritance: us (inherits all federal agency expansions)
 
-jurisdiction: US/NY
-parent: US
+jurisdiction: us/ny
+parent: us
 
 abbreviations:
   # NYC Agencies

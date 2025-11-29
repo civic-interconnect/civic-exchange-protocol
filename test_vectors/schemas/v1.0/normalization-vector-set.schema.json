@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/refs/heads/main/test_vectors/schemas/v1.0/normalization-vector-set.schema.json",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test_vectors/schemas/v1.0/normalization-vector-set.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Normalization Test Vector Set",
   "description": "Schema for a file containing a set of normalization test vectors, based on the input example.",

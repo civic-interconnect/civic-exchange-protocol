@@ -1,0 +1,15 @@
+{
+  "exchangeId": "EX-2024-1011",
+  "exchangeType": "GRANT",
+  "grantorEntityId": "US-FED-ED-001",
+  "granteeEntityId": "US-CA-SD-0001",
+  "grantAmount": 1250000.00,
+  "currency": "USD",
+  "awardDate": "2024-05-15",
+  "programCode": "ED-TITLEI",
+  "description": "Title I funding allocation to improve academic achievement.",
+  "attestation": {
+    "attestedBy": "Maria Lopez, Federal Grants Specialist",
+    "attestationTimestamp": "2024-05-15T14:02:10.491823Z"
+  }
+}

@@ -116,31 +116,31 @@ canonical form before universal normalization.
 ```
 /localization/
     base.yaml           # Default/fallback rules
-    US/
+    us/
         base.yaml       # US-wide rules
-        CA.yaml         # California-specific
-        NY.yaml         # New York-specific
-    CA/
+        ca.yaml         # California-specific
+        ny.yaml         # New York-specific
+    ca/
         base.yaml       # Canada-wide rules
-        ON.yaml         # Ontario-specific
-        QC.yaml         # Quebec-specific
+        on.yaml         # Ontario-specific
+        qc.yaml         # Quebec-specific
 ```
 
 ### 3.2 Jurisdiction Rules
 
 | Jurisdiction | Local Rule   | Example    |
 | ------------ | ------------ | -----------|
-| US/NY        | Expand NY agency acronyms | MTA → Metropolitan Transportation Authority |
-| US/CA        | Expand CA agency acronyms | CalTrans → California Department of Transportation |
-| CA/ON        | Expand Ontario agencies   | TTC → Toronto Transit Commission |
-| CA/QC        | French/English variants   | Limitée → Limitee  |
+| us/ny        | Expand NY agency acronyms | MTA → Metropolitan Transportation Authority |
+| us/ca        | Expand CA agency acronyms | CalTrans → California Department of Transportation |
+| ca/on        | Expand Ontario agencies   | TTC → Toronto Transit Commission |
+| ca/qc        | French/English variants   | Limitée → Limitee  |
 
 ### 3.3 Localization Config Structure
 
 ```yaml
-# US/NY.yaml
-jurisdiction: US/NY
-parent: US
+# us/ny.yaml
+jurisdiction: us/ny
+parent: us
 
 abbreviations:
     mta: metropolitan transportation authority

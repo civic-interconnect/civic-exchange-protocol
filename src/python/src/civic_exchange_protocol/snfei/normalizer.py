@@ -9,17 +9,17 @@ The architecture follows the Category Theory foundation:
 - SNFEI Hash: Final SHA-256 computation
 
 Directory Structure:
-    /core-linker/
+    /snfei/
         normalizer.py      # Universal normalization (this file)
-        snfei.py          # SNFEI hash generation
-        address.py        # Address normalization
+        generator.py       # SNFEI hash generation
+        localization.py    # Localization functor implementation
     /localization/
-        US/               # US state-specific rules
-            CA.yaml
-            NY.yaml
-        CA/               # Canada province-specific rules
-            ON.yaml
-            QC.yaml
+        us/               # US state-specific rules
+            ca.yaml
+            ny.yaml
+        ca/               # Canada province-specific rules
+            on.yaml
+            qc.yaml
         base.yaml         # Fallback rules
 
 Mathematical Foundation:

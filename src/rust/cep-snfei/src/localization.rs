@@ -137,7 +137,7 @@ lazy_static! {
         m.insert("us", us_base.clone());
 
         m.insert("us/ca", LocalizationConfig {
-            jurisdiction: "US/CA".to_string(),
+            jurisdiction: "us/ca".to_string(),
             parent: Some("US".to_string()),
             abbreviations: map_from_pairs(&[
                 ("caltrans", "california department of transportation"),
@@ -161,7 +161,7 @@ lazy_static! {
         });
 
         m.insert("us/ny", LocalizationConfig {
-            jurisdiction: "US/NY".to_string(),
+            jurisdiction: "us/ny".to_string(),
             parent: Some("US".to_string()),
             abbreviations: map_from_pairs(&[
                 ("mta", "metropolitan transportation authority"),
@@ -198,7 +198,7 @@ lazy_static! {
         m.insert("ca", ca_base.clone());
 
         m.insert("ca/on", LocalizationConfig {
-            jurisdiction: "CA/ON".to_string(),
+            jurisdiction: "ca/on".to_string(),
             parent: Some("CA".to_string()),
             abbreviations: map_from_pairs(&[
                 ("ttc", "toronto transit commission"),
@@ -210,7 +210,7 @@ lazy_static! {
         });
 
         m.insert("ca/qc", LocalizationConfig {
-            jurisdiction: "CA/QC".to_string(),
+            jurisdiction: "ca/qc".to_string(),
             parent: Some("CA".to_string()),
             abbreviations: map_from_pairs(&[
                 ("stm", "societe de transport de montreal"),

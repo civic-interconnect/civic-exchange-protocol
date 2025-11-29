@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0.0",
+  "verifiableId": "cep-relationship:usdoe:TITLE1_2025_SPRINGFIELD123",
+
+  "relationshipTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#grant-award",
+
+  "bilateralParties": {
+    "partyA": {
+      "entityId": "cep-entity:sam-uei:EDFEDERAL0001",
+      "roleUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#grantor"
+    },
+    "partyB": {
+      "entityId": "cep-entity:sam-uei:J6H4FB3N5YK7",
+      "roleUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#grantee"
+    }
+  },
+  "multilateralMembers": null,
+  "parentRelationshipId": null,
+
+  "effectiveTimestamp": "2025-07-01T00:00:00.000000Z",
+  "expirationTimestamp": "2026-06-30T23:59:59.000000Z",
+
+  "status": {
+    "statusCode": "ACTIVE",
+    "statusEffectiveTimestamp": "2025-07-01T00:00:00.000000Z"
+  },
+
+  "financialTerms": {
+    "totalValue": 500000.0,
+    "obligatedValue": 300000.0,
+    "currencyCode": "USD"
+  },
+
+  "termsAttributes": {
+    "grant_program": "Title I, Part A",
+    "assistance_listing": "84.010",
+    "fiscal_year": "2025",
+    "funding_level": "federal"
+  },
+
+  "jurisdictionIso": "US",
+
+  "sourceReferences": [
+    {
+      "sourceSystemUri": "https://sources.civic-interconnect.org/usaspending",
+      "sourceRecordId": "CONT_AWD_987654",
+      "sourceUrl": "https://www.usaspending.gov/award/CONT_AWD_987654"
+    }
+  ],
+
+  "attestation": {
+    "attestorId": "cep-entity:sam-uei:EDFEDERAL0001",
+    "attestationTimestamp": "2025-11-28T15:35:10.000001Z",
+    "proofType": "Ed25519Signature2020",
+    "proofValue": "BASE64_SIGNATURE_VALUE_RELATIONSHIP",
+    "verificationMethodUri": "https://keys.civic-interconnect.org/attestors/edfederal-node-1#primary-key",
+    "proofPurpose": "assertionMethod",
+    "anchorUri": null
+  },
+
+  "previousRecordHash": null,
+  "revisionNumber": 1
+}

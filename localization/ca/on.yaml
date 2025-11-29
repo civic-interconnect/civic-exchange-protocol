@@ -3,7 +3,7 @@
 #
 # Inheritance: CA (inherits all federal agency expansions)
 
-jurisdiction: CA/ON
+jurisdiction: ca/on
 parent: CA
 
 abbreviations:

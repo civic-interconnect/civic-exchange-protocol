@@ -44,7 +44,7 @@ class LocalizationRule:
 class LocalizationConfig:
     """Configuration for a specific jurisdiction."""
 
-    jurisdiction: str  # e.g., "US/CA", "CA/ON"
+    jurisdiction: str  # e.g., "us/ca", "ca/on"
     parent: str | None  # Parent jurisdiction for inheritance
 
     # Transformation maps
@@ -151,7 +151,7 @@ US_BASE_CONFIG = LocalizationConfig(
 )
 
 US_CA_CONFIG = LocalizationConfig(
-    jurisdiction="US/CA",
+    jurisdiction="us/ca",
     parent="US",
     abbreviations={
         "caltrans": "california department of transportation",
@@ -174,7 +174,7 @@ US_CA_CONFIG = LocalizationConfig(
 )
 
 US_NY_CONFIG = LocalizationConfig(
-    jurisdiction="US/NY",
+    jurisdiction="us/ny",
     parent="US",
     abbreviations={
         "mta": "metropolitan transportation authority",
@@ -210,7 +210,7 @@ CA_BASE_CONFIG = LocalizationConfig(
 )
 
 CA_ON_CONFIG = LocalizationConfig(
-    jurisdiction="CA/ON",
+    jurisdiction="ca/on",
     parent="CA",
     abbreviations={
         "ttc": "toronto transit commission",
@@ -221,7 +221,7 @@ CA_ON_CONFIG = LocalizationConfig(
 )
 
 CA_QC_CONFIG = LocalizationConfig(
-    jurisdiction="CA/QC",
+    jurisdiction="ca/qc",
     parent="CA",
     abbreviations={
         "stm": "societe de transport de montreal",
@@ -331,18 +331,18 @@ class LocalizationRegistry:
 
         Expected paths:
             - {config_dir}/{country}/base.yaml for country-level (e.g., US, CA)
-            - {config_dir}/{country}/{region}.yaml for region-level (e.g., US/CA, CA/ON)
+            - {config_dir}/{country}/{region}.yaml for region-level (e.g., us/ca, ca/on)
         """
         if not self.config_dir:
             return None
 
         # Determine the YAML file path
         if "/" in jurisdiction:
-            # Region-level: US/CA -> US/CA.yaml
+            # Region-level: us/ca -> us/ca.yaml
             parts = jurisdiction.split("/")
             yaml_path = self.config_dir / parts[0] / f"{parts[1]}.yaml"
         else:
-            # Country-level: US -> US/base.yaml
+            # Country-level: US -> us/base.yaml
             yaml_path = self.config_dir / jurisdiction / "base.yaml"
 
         if not yaml_path.exists():
@@ -445,7 +445,7 @@ def apply_localization(name: str, jurisdiction: str) -> str:
 
     Args:
         name: Raw entity name.
-        jurisdiction: Jurisdiction code (e.g., "US/CA").
+        jurisdiction: Jurisdiction code (e.g., "us/ca").
 
     Returns:
         Name with jurisdiction-specific transforms applied.

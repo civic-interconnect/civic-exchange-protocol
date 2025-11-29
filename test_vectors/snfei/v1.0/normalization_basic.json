@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/refs/heads/main/test_vectors/schemas/v1.0/normalization-vector-set.schema.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test_vectors/schemas/v1.0/normalization-vector-set.schema.json",
   "vectorSetId": "snfei-normalization-basic",
   "specVersion": "1.0.0",
   "vectorVersion": "2024.1",

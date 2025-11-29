@@ -1,0 +1,15 @@
+{
+  "exchangeId": "EX-2024-0001",
+  "exchangeType": "CONTRACT_FEE",
+  "buyerEntityId": "US-IL-MUNI-0012",
+  "sellerEntityId": "US-IL-BIZ-4499",
+  "contractAmount": 45200.00,
+  "currency": "USD",
+  "startDate": "2024-01-01",
+  "endDate": "2024-06-30",
+  "description": "Park district landscaping maintenance contract",
+  "attestation": {
+    "attestedBy": "Jane Smith, Procurement Officer",
+    "attestationTimestamp": "2024-01-01T09:05:41.238142Z"
+  }
+}
