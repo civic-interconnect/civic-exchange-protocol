@@ -1894,6 +1894,60 @@ To run: uvicorn cep_entity_service:app --reload</p>
 <div class="doc doc-object doc-function">
 
 
+<h5 id="civic_exchange_protocol.cli.cli.snfei" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">snfei</span>
+
+
+<a href="#civic_exchange_protocol.cli.cli.snfei" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">snfei</span><span class="p">(</span>
+    <span class="n">legal_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Argument</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Raw legal name&#39;</span>
+    <span class="p">),</span>
+    <span class="n">country_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span>
+        <span class="s1">&#39;US&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;ISO country code&#39;</span>
+    <span class="p">),</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Generate an SNFEI for an entity name and country.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/python/src/civic_exchange_protocol/cli/cli.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">snfei</span><span class="p">(</span>
+    <span class="n">legal_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Argument</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Raw legal name&quot;</span><span class="p">),</span>
+    <span class="n">country_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span><span class="s2">&quot;US&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;ISO country code&quot;</span><span class="p">),</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate an SNFEI for an entity name and country.&quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">generate_snfei_with_confidence</span><span class="p">(</span>
+        <span class="n">legal_name</span><span class="o">=</span><span class="n">legal_name</span><span class="p">,</span>
+        <span class="n">country_code</span><span class="o">=</span><span class="n">country_code</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SNFEI: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">snfei</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tier: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">tier</span><span class="si">}</span><span class="s2">, confidence: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">confidence_score</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
 <h5 id="civic_exchange_protocol.cli.cli.validate" class="doc doc-heading">
             <span class="doc doc-object-name doc-function-name">validate</span>
 
@@ -1904,18 +1958,18 @@ To run: uvicorn cep_entity_service:app --reload</p>
 
     <div class="doc doc-contents ">
 
-        <p>Validate exchange protocol data.</p>
+        <p>Validate exchange protocol data (placeholder).</p>
 
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/python/src/civic_exchange_protocol/cli/cli.py</code></summary>
-              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">validate</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate exchange protocol data.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Validator coming soon.&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate exchange protocol data (placeholder).&quot;&quot;&quot;</span>
+    <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Validator coming soon.&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1940,17 +1994,17 @@ To run: uvicorn cep_entity_service:app --reload</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/python/src/civic_exchange_protocol/cli/cli.py</code></summary>
-              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">version</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Show package version.&quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">civic_exchange_protocol</span><span class="w"> </span><span class="kn">import</span> <span class="n">__version__</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="n">__version__</span><span class="p">)</span>
+    <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="n">__version__</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -27565,7 +27619,7 @@ N = Normalizing Functor (universal normalization)</p>
 )</p>
 <h4 id="civic_exchange_protocol.snfei--with-jurisdiction-specific-localization">With jurisdiction-specific localization<a class="headerlink" href="#civic_exchange_protocol.snfei--with-jurisdiction-specific-localization" title="Permanent link">&para;</a></h4>
 <p>from civic_exchange_protocol.core_linker import apply_localization
-localized = apply_localization("MTA", "US/NY")</p>
+localized = apply_localization("MTA", "us/ny")</p>
 <h4 id="civic_exchange_protocol.snfei---metropolitan-transportation-authority">-&gt; "metropolitan transportation authority"<a class="headerlink" href="#civic_exchange_protocol.snfei---metropolitan-transportation-authority" title="Permanent link">&para;</a></h4>
 </details>
 
@@ -27928,7 +27982,7 @@ to handle optional fields identically.</p>
 <span class="k">class</span><span class="w"> </span><span class="nc">LocalizationConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for a specific jurisdiction.&quot;&quot;&quot;</span>
 
-    <span class="n">jurisdiction</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># e.g., &quot;US/CA&quot;, &quot;CA/ON&quot;</span>
+    <span class="n">jurisdiction</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># e.g., &quot;us/ca&quot;, &quot;ca/on&quot;</span>
     <span class="n">parent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>  <span class="c1"># Parent jurisdiction for inheritance</span>
 
     <span class="c1"># Transformation maps</span>
@@ -28365,18 +28419,18 @@ to handle optional fields identically.</p>
 
 <span class="sd">        Expected paths:</span>
 <span class="sd">            - {config_dir}/{country}/base.yaml for country-level (e.g., US, CA)</span>
-<span class="sd">            - {config_dir}/{country}/{region}.yaml for region-level (e.g., US/CA, CA/ON)</span>
+<span class="sd">            - {config_dir}/{country}/{region}.yaml for region-level (e.g., us/ca, ca/on)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 
         <span class="c1"># Determine the YAML file path</span>
         <span class="k">if</span> <span class="s2">&quot;/&quot;</span> <span class="ow">in</span> <span class="n">jurisdiction</span><span class="p">:</span>
-            <span class="c1"># Region-level: US/CA -&gt; US/CA.yaml</span>
+            <span class="c1"># Region-level: us/ca -&gt; us/ca.yaml</span>
             <span class="n">parts</span> <span class="o">=</span> <span class="n">jurisdiction</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
             <span class="n">yaml_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">/</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">.yaml&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># Country-level: US -&gt; US/base.yaml</span>
+            <span class="c1"># Country-level: US -&gt; us/base.yaml</span>
             <span class="n">yaml_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">/</span> <span class="n">jurisdiction</span> <span class="o">/</span> <span class="s2">&quot;base.yaml&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">yaml_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
@@ -29321,7 +29375,7 @@ Merges child config with parent config for inheritance.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Jurisdiction code (e.g., "US/CA").</p>
+                <p>Jurisdiction code (e.g., "us/ca").</p>
               </div>
             </td>
             <td>
@@ -29377,7 +29431,7 @@ Merges child config with parent config for inheritance.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        name: Raw entity name.</span>
-<span class="sd">        jurisdiction: Jurisdiction code (e.g., &quot;US/CA&quot;).</span>
+<span class="sd">        jurisdiction: Jurisdiction code (e.g., &quot;us/ca&quot;).</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Name with jurisdiction-specific transforms applied.</span>
@@ -32578,7 +32632,7 @@ intermediate form that the universal normalizer can process:</p>
 <span class="k">class</span><span class="w"> </span><span class="nc">LocalizationConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for a specific jurisdiction.&quot;&quot;&quot;</span>
 
-    <span class="n">jurisdiction</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># e.g., &quot;US/CA&quot;, &quot;CA/ON&quot;</span>
+    <span class="n">jurisdiction</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># e.g., &quot;us/ca&quot;, &quot;ca/on&quot;</span>
     <span class="n">parent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>  <span class="c1"># Parent jurisdiction for inheritance</span>
 
     <span class="c1"># Transformation maps</span>
@@ -33015,18 +33069,18 @@ intermediate form that the universal normalizer can process:</p>
 
 <span class="sd">        Expected paths:</span>
 <span class="sd">            - {config_dir}/{country}/base.yaml for country-level (e.g., US, CA)</span>
-<span class="sd">            - {config_dir}/{country}/{region}.yaml for region-level (e.g., US/CA, CA/ON)</span>
+<span class="sd">            - {config_dir}/{country}/{region}.yaml for region-level (e.g., us/ca, ca/on)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 
         <span class="c1"># Determine the YAML file path</span>
         <span class="k">if</span> <span class="s2">&quot;/&quot;</span> <span class="ow">in</span> <span class="n">jurisdiction</span><span class="p">:</span>
-            <span class="c1"># Region-level: US/CA -&gt; US/CA.yaml</span>
+            <span class="c1"># Region-level: us/ca -&gt; us/ca.yaml</span>
             <span class="n">parts</span> <span class="o">=</span> <span class="n">jurisdiction</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
             <span class="n">yaml_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">/</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">.yaml&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># Country-level: US -&gt; US/base.yaml</span>
+            <span class="c1"># Country-level: US -&gt; us/base.yaml</span>
             <span class="n">yaml_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">/</span> <span class="n">jurisdiction</span> <span class="o">/</span> <span class="s2">&quot;base.yaml&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">yaml_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
@@ -33559,7 +33613,7 @@ Merges child config with parent config for inheritance.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Jurisdiction code (e.g., "US/CA").</p>
+                <p>Jurisdiction code (e.g., "us/ca").</p>
               </div>
             </td>
             <td>
@@ -33615,7 +33669,7 @@ Merges child config with parent config for inheritance.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        name: Raw entity name.</span>
-<span class="sd">        jurisdiction: Jurisdiction code (e.g., &quot;US/CA&quot;).</span>
+<span class="sd">        jurisdiction: Jurisdiction code (e.g., &quot;us/ca&quot;).</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Name with jurisdiction-specific transforms applied.</span>
@@ -33690,17 +33744,17 @@ entity attributes into hash-ready canonical form for SNFEI generation.</p>
 
 <details class="directory-structure" open>
   <summary>Directory Structure</summary>
-  <p>/core-linker/
+  <p>/snfei/
     normalizer.py      # Universal normalization (this file)
-    snfei.py          # SNFEI hash generation
-    address.py        # Address normalization
+    generator.py       # SNFEI hash generation
+    localization.py    # Localization functor implementation
 /localization/
-    US/               # US state-specific rules
-        CA.yaml
-        NY.yaml
-    CA/               # Canada province-specific rules
-        ON.yaml
-        QC.yaml
+    us/               # US state-specific rules
+        ca.yaml
+        ny.yaml
+    ca/               # Canada province-specific rules
+        on.yaml
+        qc.yaml
     base.yaml         # Fallback rules</p>
 </details>
 
