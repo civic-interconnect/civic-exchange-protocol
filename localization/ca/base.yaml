@@ -1,0 +1,58 @@
+# CEP Localization: Canada Base Configuration
+# Canada-wide rules including federal agencies.
+#
+# Inheritance: BASE
+
+jurisdiction: ca
+parent: null
+
+# Federal agency abbreviations
+abbreviations:
+  # Law Enforcement / Security
+  rcmp: royal canadian mounted police
+  csis: canadian security intelligence service
+  cbsa: canada border services agency
+  
+  # Finance / Tax
+  cra: canada revenue agency
+  osfi: office of the superintendent of financial institutions
+  fintrac: financial transactions and reports analysis centre of canada
+  
+  # Health
+  phac: public health agency of canada
+  cihr: canadian institutes of health research
+  
+  # Immigration / Citizenship
+  ircc: immigration refugees and citizenship canada
+  
+  # Environment / Resources
+  eccc: environment and climate change canada
+  nrcan: natural resources canada
+  dfo: department of fisheries and oceans
+  
+  # Transport / Infrastructure
+  tc: transport canada
+  via: via rail canada
+  
+  # Science / Research
+  nrc: national research council canada
+  csa: canadian space agency
+  
+  # Crown Corporations
+  cbc: canadian broadcasting corporation
+  cpc: canada post corporation
+  edc: export development canada
+  bdc: business development bank of canada
+
+agency_names: {}
+
+# Canadian legal entity types
+entity_types:
+  ltée: limitee
+  ltee: limitee
+  inc: incorporated
+  incorporée: incorporated
+  enr: enregistree
+
+rules: []
+stop_words: []

@@ -1,0 +1,20 @@
+[package]
+name = "cep-snfei"
+version = "0.1.0"
+edition = "2024"
+description = "SNFEI generation and entity normalization for the Civic Exchange Protocol"
+license = "Apache-2.0"
+repository = "https://github.com/civic-interconnect/civic-exchange-protocol"
+keywords = ["civic", "transparency", "snfei", "entity-resolution"]
+categories = ["data-structures", "algorithms"]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+regex = "1.10"
+lazy_static = "1.4"
+unicode-normalization = "0.1"
+
+[dev-dependencies]
+pretty_assertions = "1.4"

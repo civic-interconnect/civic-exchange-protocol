@@ -5,6 +5,7 @@ members = [
     "src/rust/cep-entity",
     "src/rust/cep-exchange",
     "src/rust/cep-relationship",
+    "src/rust/cep-snfei",
 ]
 
 [workspace.package]
@@ -19,3 +20,6 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 sha2 = "0.10"
 thiserror = "1.0"
+regex = "1.10"
+lazy_static = "1.4"
+unicode-normalization = "0.1"

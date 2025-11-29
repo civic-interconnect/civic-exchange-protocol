@@ -1,0 +1,49 @@
+# CEP Localization: New York Configuration
+# New York state agencies and NYC-specific patterns.
+#
+# Inheritance: US (inherits all federal agency expansions)
+
+jurisdiction: US/NY
+parent: US
+
+abbreviations:
+  # NYC Agencies
+  mta: metropolitan transportation authority
+  nycha: new york city housing authority
+  nypd: new york police department
+  fdny: fire department of the city of new york
+  doe: new york city department of education
+  nycdot: new york city department of transportation
+  dep: department of environmental protection
+  dsny: department of sanitation of new york
+  hpd: department of housing preservation and development
+  dob: department of buildings
+  
+  # State Agencies
+  suny: state university of new york
+  cuny: city university of new york
+  nysdot: new york state department of transportation
+  nysed: new york state education department
+  dec: department of environmental conservation
+  dmv: department of motor vehicles
+  dfs: department of financial services
+  dol: department of labor
+  
+  # Transit
+  lirr: long island rail road
+  mnr: metro north railroad
+  path: port authority trans hudson
+  
+  # Authorities
+  nypa: new york power authority
+  dasny: dormitory authority of the state of new york
+  esdc: empire state development corporation
+
+agency_names:
+  port authority: port authority of new york and new jersey
+  thruway: new york state thruway authority
+  triborough: triborough bridge and tunnel authority
+
+entity_types: {}
+rules: []
+stop_words: []

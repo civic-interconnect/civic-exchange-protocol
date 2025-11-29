@@ -1,6 +1,6 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.entity.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Canonical CEP Entity Record",
   "description": "Defines the cryptographic schema for a verified civic entity. This is the foundational primitive—all relationships and exchanges reference attested entities. CEP Entities are designed to interoperate with existing open civic standards (Popolo, Open Civic Data, Open Contracting, Schema.org, XBRL, W3C PROV, HSDS, FIBO) by carrying external identifiers and type URIs rather than redefining those models.",
   "type": "object",

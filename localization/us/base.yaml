@@ -1,0 +1,75 @@
+# CEP Localization: United States Base Configuration
+# US-wide rules including federal agencies.
+#
+# Inheritance: BASE
+
+jurisdiction: US
+parent: BASE
+
+# Federal agency abbreviations
+abbreviations:
+  # Cabinet Departments
+  doj: department of justice
+  dod: department of defense
+  hhs: department of health and human services
+  hud: department of housing and urban development
+  doe: department of energy
+  ed: department of education
+  dot: department of transportation
+  dhs: department of homeland security
+  usda: united states department of agriculture
+  doi: department of the interior
+  doc: department of commerce
+  dol: department of labor
+  dos: department of state
+  treasury: department of the treasury
+
+  # Independent Agencies
+  epa: environmental protection agency
+  fda: food and drug administration
+  fcc: federal communications commission
+  ftc: federal trade commission
+  sec: securities and exchange commission
+  irs: internal revenue service
+  ssa: social security administration
+  va: department of veterans affairs
+  nasa: national aeronautics and space administration
+  fbi: federal bureau of investigation
+  cia: central intelligence agency
+  nsa: national security agency
+  fema: federal emergency management agency
+  gsa: general services administration
+  opm: office of personnel management
+  sba: small business administration
+  usps: united states postal service
+
+  # Financial Regulators
+  fdic: federal deposit insurance corporation
+  cfpb: consumer financial protection bureau
+  ncua: national credit union administration
+  occ: office of the comptroller of the currency
+
+  # Healthcare
+  cms: centers for medicare and medicaid services
+  cdc: centers for disease control and prevention
+  nih: national institutes of health
+
+  # Science/Research
+  nsf: national science foundation
+  noaa: national oceanic and atmospheric administration
+  usgs: united states geological survey
+
+# Agency names that need special handling (multi-word patterns)
+agency_names: {}
+
+# Entity type standardization
+entity_types:
+  "501c3": five oh one c three
+  "501(c)(3)": five oh one c three
+  "501c4": five oh one c four
+  "501(c)(4)": five oh one c four
+  "k-12": kindergarten through twelfth grade
+  "k12": kindergarten through twelfth grade
+
+rules: []
+stop_words: []

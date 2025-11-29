@@ -14,22 +14,20 @@ intermediate form that the universal normalizer can process:
 Directory Structure:
     /localization/
         base.yaml           # Default/fallback rules
-        US/
+        us/
             base.yaml       # US-wide rules
-            CA.yaml         # California-specific
-            NY.yaml         # New York-specific
-        CA/
+            ca.yaml         # California-specific
+            ny.yaml         # New York-specific
+        ca/
             base.yaml       # Canada-wide rules
-            ON.yaml         # Ontario-specific
-            QC.yaml         # Quebec-specific
+            on.yaml         # Ontario-specific
+            qc.yaml         # Quebec-specific
 """
 
 from dataclasses import dataclass, field
-import os
 from pathlib import Path
 
-# Note: PyYAML would be imported here in production
-# import yaml
+import yaml
 
 
 @dataclass
@@ -123,6 +121,7 @@ US_BASE_CONFIG = LocalizationConfig(
         "doj": "department of justice",
         "dod": "department of defense",
         "hhs": "department of health and human services",
+        "hud": "department of housing and urban development",
         "doe": "department of energy",
         "ed": "department of education",
         "dot": "department of transportation",
@@ -255,12 +254,12 @@ CA_QC_CONFIG = LocalizationConfig(
 # =============================================================================
 
 BUILT_IN_CONFIGS: dict[str, LocalizationConfig] = {
-    "US": US_BASE_CONFIG,
-    "US/CA": US_CA_CONFIG,
-    "US/NY": US_NY_CONFIG,
-    "CA": CA_BASE_CONFIG,
-    "CA/ON": CA_ON_CONFIG,
-    "CA/QC": CA_QC_CONFIG,
+    "us": US_BASE_CONFIG,
+    "us/ca": US_CA_CONFIG,
+    "us/ny": US_NY_CONFIG,
+    "ca": CA_BASE_CONFIG,
+    "ca/on": CA_ON_CONFIG,
+    "ca/qc": CA_QC_CONFIG,
 }
 
 
@@ -281,49 +280,106 @@ class LocalizationRegistry:
         """Get localization config for a jurisdiction.
 
         Falls back through parent jurisdictions if specific config not found.
+        Merges child config with parent config for inheritance.
 
         Args:
-            jurisdiction: Jurisdiction code (e.g., "US/CA", "CA/ON").
+            jurisdiction: Jurisdiction code (e.g., "us/ca", "ca/on").
+                         Case-insensitive - will be normalized to lowercase.
 
         Returns:
-            LocalizationConfig for the jurisdiction.
+            LocalizationConfig for the jurisdiction (merged with parent).
         """
-        # Check cache
-        if jurisdiction in self._cache:
-            return self._cache[jurisdiction]
+        # Normalize to lowercase
+        jurisdiction = jurisdiction.lower()
 
-        # Try to load from YAML
-        if self.config_dir:
+        # Check if we have a merged config cached
+        cache_key = f"_merged_{jurisdiction}"
+        if cache_key in self._cache:
+            return self._cache[cache_key]
+
+        # Get the base config for this jurisdiction
+        if jurisdiction in self._cache:
+            config = self._cache[jurisdiction]
+        elif self.config_dir:
             config = self._load_yaml(jurisdiction)
             if config:
                 self._cache[jurisdiction] = config
-                return config
+            else:
+                config = None
+        else:
+            config = None
 
-        # Fall back to parent
-        if "/" in jurisdiction:
-            parent = jurisdiction.rsplit("/", 1)[0]
-            return self.get_config(parent)
+        # If no config found, fall back to parent
+        if config is None:
+            if "/" in jurisdiction:
+                parent = jurisdiction.rsplit("/", 1)[0]
+                return self.get_config(parent)
+            # Return empty config as last resort
+            return LocalizationConfig(jurisdiction=jurisdiction, parent=None)
 
-        # Return empty config as last resort
-        return LocalizationConfig(jurisdiction=jurisdiction, parent=None)
+        # If config has a parent, merge with parent config
+        if config.parent:
+            parent_config = self.get_config(config.parent)
+            merged = self.merge_configs(config, parent_config)
+            self._cache[cache_key] = merged
+            return merged
+
+        return config
 
     def _load_yaml(self, jurisdiction: str) -> LocalizationConfig | None:
         """Load config from YAML file.
 
-        Expected path: config_dir/{jurisdiction}.yaml
-        e.g., config_dir/US/CA.yaml
+        Expected paths:
+            - {config_dir}/{country}/base.yaml for country-level (e.g., US, CA)
+            - {config_dir}/{country}/{region}.yaml for region-level (e.g., US/CA, CA/ON)
         """
         if not self.config_dir:
             return None
 
-        # Try exact path
-        yaml_path = self.config_dir / f"{jurisdiction.replace('/', os.sep)}.yaml"
+        # Determine the YAML file path
+        if "/" in jurisdiction:
+            # Region-level: US/CA -> US/CA.yaml
+            parts = jurisdiction.split("/")
+            yaml_path = self.config_dir / parts[0] / f"{parts[1]}.yaml"
+        else:
+            # Country-level: US -> US/base.yaml
+            yaml_path = self.config_dir / jurisdiction / "base.yaml"
+
         if not yaml_path.exists():
             return None
 
-        # Would parse YAML here
-        # For now, return None (not implemented without PyYAML)
-        return None
+        try:
+            with yaml_path.open("r", encoding="utf-8") as f:
+                data = yaml.safe_load(f)
+
+            if not data:
+                return None
+
+            # Parse rules if present
+            rules = []
+            for rule_data in data.get("rules", []):
+                rules.append(
+                    LocalizationRule(
+                        pattern=rule_data.get("pattern", ""),
+                        replacement=rule_data.get("replacement", ""),
+                        is_regex=rule_data.get("is_regex", False),
+                        context=rule_data.get("context"),
+                    )
+                )
+
+            return LocalizationConfig(
+                jurisdiction=data.get("jurisdiction", jurisdiction),
+                parent=data.get("parent"),
+                abbreviations=data.get("abbreviations", {}),
+                agency_names=data.get("agency_names", {}),
+                entity_types=data.get("entity_types", {}),
+                rules=rules,
+                stop_words=set(data.get("stop_words", [])),
+            )
+        except Exception as e:
+            # Log error but don't crash
+            print(f"Warning: Failed to load localization YAML {yaml_path}: {e}")
+            return None
 
     def merge_configs(
         self, child: LocalizationConfig, parent: LocalizationConfig
@@ -349,8 +405,32 @@ class LocalizationRegistry:
         )
 
 
-# Global registry instance
-_registry = LocalizationRegistry()
+# Global registry instance - auto-detect localization directory
+def _find_localization_dir() -> Path | None:
+    """Find the localization directory relative to the package or repo root."""
+    # Try relative to this file first
+    pkg_dir = Path(__file__).parent.parent.parent.parent.parent
+    candidates = [
+        pkg_dir / "localization",  # repo root
+        Path(__file__).parent.parent / "localization",  # package relative
+    ]
+
+    # Also search upward from current file
+    current = Path(__file__).parent
+    for _ in range(10):
+        if (current / "localization").is_dir():
+            return current / "localization"
+        current = current.parent
+
+    for candidate in candidates:
+        if candidate.is_dir():
+            return candidate
+
+    return None
+
+
+_localization_dir = _find_localization_dir()
+_registry = LocalizationRegistry(config_dir=_localization_dir)
 
 
 def get_localization_config(jurisdiction: str) -> LocalizationConfig:

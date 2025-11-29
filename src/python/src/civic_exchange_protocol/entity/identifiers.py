@@ -9,11 +9,11 @@ CEP supports multiple identifier schemes organized into tiers:
 """
 
 from dataclasses import dataclass
-import hashlib
 import json
 from typing import Optional
 
 from civic_exchange_protocol.core import Canonicalize, insert_if_present
+from civic_exchange_protocol.snfei import Snfei
 
 
 @dataclass(frozen=True)
@@ -71,41 +71,6 @@ class Lei:
 
     def as_str(self) -> str:
         """Return the LEI as a string."""
-        return self.value
-
-
-@dataclass(frozen=True)
-class Snfei:
-    """Sub-National Federated Entity Identifier (64-character hex hash)."""
-
-    value: str
-
-    def __post_init__(self) -> None:
-        """Validate the SNFEI format after initialization."""
-        if not self._is_valid(self.value):
-            raise ValueError(f"Invalid SNFEI: {self.value}")
-
-    @staticmethod
-    def _is_valid(value: str) -> bool:
-        return len(value) == 64 and all(c in "0123456789abcdef" for c in value.lower())
-
-    @classmethod
-    def from_hash(cls, hash_value: str) -> Optional["Snfei"]:
-        """Create an SNFEI from a pre-computed hash."""
-        try:
-            return cls(hash_value.lower())
-        except ValueError:
-            return None
-
-    @classmethod
-    def generate(cls, normalized_name: str, jurisdiction_iso: str) -> "Snfei":
-        """Generate an SNFEI from a normalized name and jurisdiction."""
-        input_str = f"{normalized_name}|{jurisdiction_iso}"
-        hash_value = hashlib.sha256(input_str.encode("utf-8")).hexdigest()
-        return cls(hash_value)
-
-    def as_str(self) -> str:
-        """Return the SNFEI as a string."""
         return self.value
 
 

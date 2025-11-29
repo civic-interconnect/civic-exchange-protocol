@@ -1,7 +1,7 @@
 {
-  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test-vectors/schemas/normalization-vector-set.schema.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/refs/heads/main/test_vectors/schemas/v1.0/normalization-vector-set.schema.json",
   "vectorSetId": "snfei-normalization-edge-cases",
-  "specVersion": "1.1.0",
+  "specVersion": "1.0.0",
   "vectorVersion": "2024.1",
   "description": "Edge case normalization test vectors - Unicode, empty strings, unusual inputs",
   "generatedAt": "2025-11-28",
@@ -113,7 +113,7 @@
         "legal_name": "Smith–Jones—Partners"
       },
       "expected": {
-        "normalized": "smithjonespartners"
+        "normalized": "smith jones partners"
       }
     },
     {
@@ -180,7 +180,7 @@
         "legal_name": "Health/Education Services"
       },
       "expected": {
-        "normalized": "healtheducation services"
+        "normalized": "health education services"
       }
     },
     {

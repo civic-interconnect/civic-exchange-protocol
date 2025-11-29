@@ -6,12 +6,12 @@ deterministic entity identifiers (SNFEIs) from heterogeneous source data.
 Architecture:
     ┌──────────────┐     ┌────────────────┐     ┌─────────────┐
     │  Raw Entity  │     │  Intermediate  │     │  Canonical  │
-    │    Data      │───▶│    Canonical   │───▶ │   Entity    │
+    │    Data      │───> │    Canonical   │───> │   Entity    │
     │              │  L  │                │  N  │             │
     └──────────────┘     └────────────────┘     └─────────────┘
                                                         │
                                                         │ SHA-256
-                                                        ▼
+                                                        V
                                                 ┌──────────────┐
                                                 │    SNFEI     │
                                                 │  (64-char)   │

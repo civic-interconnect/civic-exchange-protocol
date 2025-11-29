@@ -5,14 +5,14 @@ edition = "2024"
 license = "Apache-2.0"
 description = "Entity records for the Civic Exchange Protocol (CEP)"
 repository = "https://github.com/civic-interconnect/civic-exchange-protocol"
-keywords = ["civic", "interconnect", "contract", "government", "entity"]
+keywords = ["civic", "interconnect", "contract", "government", "identity"]
 categories = ["data-structures"]
 
 [dependencies]
 cep-core = { path = "../cep-core" }
+cep-snfei = { path = "../cep-snfei" }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-sha2 = "0.10"
 
 [dev-dependencies]
 pretty_assertions = "1.4"

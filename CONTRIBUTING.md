@@ -39,15 +39,6 @@ uv sync --extra dev --extra docs --upgrade
 uv run pre-commit install
 ```
 
-In Git Bash / bash / zsh, test rust until no errors and all tests pass:
-
-```shell
-rustc --version
-cargo test -- --nocapture
-cargo fix --lib -p cep-relationship #as needed
-cargo test -- --nocapture
-```
-
 ## 4. Validate Changes
 
 Run standard local checks.
@@ -61,6 +52,16 @@ uv run pyright
 uv run pytest
 uvx pre-commit autoupdate
 uvx pre-commit run --all-files
+```
+
+In Windows, Open root in File Explorer and then open a PowerShell terminal if needed.
+Test rust logic until there are no errors and all tests pass.
+
+```shell
+rustc --version
+cargo test -- --nocapture
+cargo fix --lib -p cep-relationship # fix crates as needed
+cargo test -- --nocapture
 ```
 
 ## 5. Building Package and/or Docs

@@ -1,0 +1,54 @@
+# CEP Localization: California Configuration
+# California state agencies and local government patterns.
+#
+# Inheritance: US (inherits all federal agency expansions)
+
+jurisdiction: US/CA
+parent: US
+
+abbreviations:
+  # State Agencies
+  caltrans: california department of transportation
+  calpers: california public employees retirement system
+  calstrs: california state teachers retirement system
+  cdcr: california department of corrections and rehabilitation
+  chp: california highway patrol
+  caltax: california department of tax and fee administration
+  calfire: california department of forestry and fire protection
+  calepa: california environmental protection agency
+  caloes: california office of emergency services
+  
+  # Education
+  uc: university of california
+  csu: california state university
+  ccc: california community colleges
+  lausd: los angeles unified school district
+  sfusd: san francisco unified school district
+  sdusd: san diego unified school district
+  ousd: oakland unified school district
+  
+  # Utilities/Transit
+  bart: bay area rapid transit
+  ladwp: los angeles department of water and power
+  sdge: san diego gas and electric
+  pge: pacific gas and electric
+  muni: san francisco municipal transportation agency
+  metro: los angeles county metropolitan transportation authority
+  
+  # Other State Agencies
+  dmv: department of motor vehicles
+  edd: employment development department
+  ftb: franchise tax board
+  boe: board of equalization
+  dlse: division of labor standards enforcement
+  dir: department of industrial relations
+  hcd: department of housing and community development
+
+agency_names:
+  port of la: port of los angeles
+  port of long beach: port of long beach
+  la county: los angeles county
+
+entity_types: {}
+rules: []
+stop_words: []

@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test-vectors/schemas/localization-vector-set.schema.json",
-  "title": "Localization Test Vector Set",
-  "description": "Schema for a file containing a set of localization test vectors.",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/refs/heads/main/test_vectors/schemas/v1.0/normalization-vector-set.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Normalization Test Vector Set",
+  "description": "Schema for a file containing a set of normalization test vectors, based on the input example.",
   "type": "object",
   "properties": {
     "$schema": {
@@ -12,11 +12,11 @@
     },
     "vectorSetId": {
       "type": "string",
-      "description": "A unique identifier for this set of test vectors (e.g., snfei-localization-us)."
+      "description": "A unique identifier for this set of test vectors."
     },
     "specVersion": {
       "type": "string",
-      "description": "The version of the specification the vectors are testing."
+      "description": "The version of the specification (e.g., Civic Exchange Protocol) the vectors are testing."
     },
     "vectorVersion": {
       "type": "string",
@@ -33,7 +33,7 @@
     },
     "vectors": {
       "type": "array",
-      "description": "An array of individual localization test cases.",
+      "description": "An array of individual normalization test cases.",
       "items": {
         "type": "object",
         "required": [
@@ -46,7 +46,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique identifier for the specific test case (e.g., loc_us_001)."
+            "description": "Unique identifier for the specific test case (e.g., norm_edge_001)."
           },
           "description": {
             "type": "string",
@@ -54,35 +54,25 @@
           },
           "function": {
             "type": "string",
-            "description": "The name of the localization function being tested (always 'apply_localization')."
+            "description": "The name of the normalization function being tested (e.g., normalize_legal_name)."
           },
           "input": {
             "type": "object",
-            "description": "The input data for the localization function.",
-            "required": ["name", "jurisdiction"],
-            "properties": {
-              "name": {
-                "type": "string",
-                "description": "The name or acronym to be localized."
-              },
-              "jurisdiction": {
-                "type": "string",
-                "description": "The jurisdiction context (e.g., US, US/CA, CA/ON)."
-              }
-            },
-            "additionalProperties": false
+            "description": "The input data for the normalization function. Keys are dynamic (e.g., legal_name, address, date_str).",
+            "additionalProperties": {
+              "type": ["string", "number", "boolean", "null"]
+            }
           },
           "expected": {
             "type": "object",
-            "description": "The expected output from the localization function.",
-            "required": ["localized"],
+            "description": "The expected output from the normalization function.",
+            "required": ["normalized"],
             "properties": {
-              "localized": {
-                "type": "string",
-                "description": "The expected localized value."
+              "normalized": {
+                "type": ["string", "null"],
+                "description": "The expected normalized value."
               }
-            },
-            "additionalProperties": false
+            }
           },
           "notes": {
             "type": "string",

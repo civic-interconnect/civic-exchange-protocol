@@ -44,6 +44,10 @@ class Snfei:
         """Return abbreviated representation of SNFEI."""
         return f"Snfei('{self.value[:8]}...{self.value[-8:]}')"
 
+    def as_str(self) -> str:
+        """Return the hash value (for API compatibility)."""
+        return self.value
+
     def short(self, length: int = 12) -> str:
         """Return a shortened version for display."""
         return self.value[:length]

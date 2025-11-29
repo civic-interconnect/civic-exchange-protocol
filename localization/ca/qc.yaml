@@ -1,0 +1,92 @@
+# CEP Localization: Quebec Configuration
+# Quebec provincial agencies with French/English standardization.
+#
+# Inheritance: ca (inherits all federal agency expansions)
+
+jurisdiction: ca/qc
+parent: ca
+
+abbreviations:
+  # Transit
+  stm: societe de transport de montreal
+  rtc: reseau de transport de la capitale
+  stl: societe de transport de laval
+  exo: exo reseau de transport metropolitain
+  
+  # Provincial Agencies
+  sq: surete du quebec
+  ramq: regie de assurance maladie du quebec
+  saq: societe des alcools du quebec
+  saaq: societe de assurance automobile du quebec
+  revenu quebec: revenu quebec
+  
+  # Energy / Utilities
+  hydro-quebec: hydro quebec
+  hq: hydro quebec
+  
+  # Finance / Investment
+  cdpq: caisse de depot et placement du quebec
+  investissement quebec: investissement quebec
+  
+  # Education
+  cegep: college enseignement general et professionnel
+  uqam: universite du quebec a montreal
+  ulaval: universite laval
+  mcgill: mcgill university
+  concordia: concordia university
+  
+  # Development / Housing
+  shq: societe habitation du quebec
+
+agency_names:
+  ville de montreal: city of montreal
+  ville de quebec: city of quebec
+
+# French to standard form
+entity_types:
+  limitée: limitee
+  incorporée: incorporated
+  société: societe
+  compagnie: company
+  enregistrée: enregistree
+
+# French accent removal rules
+rules:
+  - pattern: "é"
+    replacement: "e"
+    is_regex: false
+  - pattern: "è"
+    replacement: "e"
+    is_regex: false
+  - pattern: "ê"
+    replacement: "e"
+    is_regex: false
+  - pattern: "ë"
+    replacement: "e"
+    is_regex: false
+  - pattern: "à"
+    replacement: "a"
+    is_regex: false
+  - pattern: "â"
+    replacement: "a"
+    is_regex: false
+  - pattern: "ô"
+    replacement: "o"
+    is_regex: false
+  - pattern: "î"
+    replacement: "i"
+    is_regex: false
+  - pattern: "ï"
+    replacement: "i"
+    is_regex: false
+  - pattern: "û"
+    replacement: "u"
+    is_regex: false
+  - pattern: "ù"
+    replacement: "u"
+    is_regex: false
+  - pattern: "ç"
+    replacement: "c"
+    is_regex: false
+
+stop_words: []

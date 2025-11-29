@@ -1,0 +1,49 @@
+# CEP Localization: Ontario Configuration
+# Ontario provincial agencies and local government patterns.
+#
+# Inheritance: CA (inherits all federal agency expansions)
+
+jurisdiction: CA/ON
+parent: CA
+
+abbreviations:
+  # Transit
+  ttc: toronto transit commission
+  go: go transit
+  metrolinx: metrolinx
+  yrt: york region transit
+  miway: mississauga transit
+  oct: ottawa carleton transpo
+  
+  # Provincial Agencies
+  wsib: workplace safety and insurance board
+  ohip: ontario health insurance plan
+  lcbo: liquor control board of ontario
+  opp: ontario provincial police
+  omb: ontario municipal board
+  lpat: local planning appeal tribunal
+  oeb: ontario energy board
+  ieso: independent electricity system operator
+  ola: ontario legislative assembly
+  
+  # Education
+  tdsb: toronto district school board
+  tcdsb: toronto catholic district school board
+  pdsb: peel district school board
+  yrdsb: york region district school board
+  ocdsb: ottawa carleton district school board
+  
+  # Healthcare
+  lhin: local health integration network
+  oh: ontario health
+  
+  # Housing/Development
+  cmhc: canada mortgage and housing corporation
+  tarion: tarion warranty corporation
+
+agency_names:
+  ontario hydro: hydro one
+
+entity_types: {}
+rules: []
+stop_words: []

@@ -1,7 +1,7 @@
 {
-  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test-vectors/schemas/normalization-vector-set.schema.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/refs/heads/main/test_vectors/schemas/v1.0/normalization-vector-set.schema.json",
   "vectorSetId": "snfei-normalization-basic",
-  "specVersion": "1.1.0",
+  "specVersion": "1.0.0",
   "vectorVersion": "2024.1",
   "description": "Basic legal name normalization test vectors",
   "generatedAt": "2025-11-28",
@@ -91,7 +91,7 @@
         "legal_name": "Winston-Salem School District"
       },
       "expected": {
-        "normalized": "winstonsalem school district"
+        "normalized": "winston salem school district"
       }
     },
     {

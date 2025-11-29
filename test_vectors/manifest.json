@@ -1,6 +1,6 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://civicinterconnect.org/schemas/test-vectors/manifest.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "CEP Test Vector Manifest",
   "description": "Index of all test vector files for cross-implementation verification",
   "manifestVersion": "1.0.0",
@@ -10,24 +10,15 @@
       "description": "SNFEI generation and normalization test vectors",
       "versions": {
         "v1.0": {
-          "status": "deprecated",
-          "specVersion": "1.0.0",
-          "description": "Original SNFEI spec (UPPERCASE, suffix contraction)",
-          "files": [
-            "snfei_test_vectors.json"
-          ],
-          "deprecationNote": "Superseded by v1.1 - do not use for new implementations"
-        },
-        "v1.1": {
           "status": "current",
-          "specVersion": "1.1.0",
+          "specVersion": "1.0.0",
           "description": "Normalizing Functor architecture (lowercase, suffix expansion, address/date support)",
           "files": [
-            "snfei/v1.1/normalization_basic.json",
-            "snfei/v1.1/normalization_edge_cases.json",
-            "snfei/v1.1/localization_us.json",
-            "snfei/v1.1/localization_ca.json",
-            "snfei/v1.1/generation_full.json"
+            "snfei/v1.0/normalization_basic.json",
+            "snfei/v1.0/normalization_edge_cases.json",
+            "snfei/v1.0/localization_us.json",
+            "snfei/v1.0/localization_ca.json",
+            "snfei/v1.0/generation_full.json"
           ]
         }
       }

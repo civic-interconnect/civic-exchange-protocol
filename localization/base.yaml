@@ -1,0 +1,22 @@
+# CEP Localization: Global Base Configuration
+# This file contains fallback rules used when no jurisdiction-specific config exists.
+#
+# Inheritance: None (this is the root)
+
+jurisdiction: BASE
+parent: null
+
+# Common international abbreviations
+abbreviations: {}
+
+# Common agency patterns (empty - jurisdictions define their own)
+agency_names: {}
+
+# Common entity type standardization
+entity_types: {}
+
+# No rules at base level
+rules: []
+
+# Common stop words (removed during normalization)
+stop_words: []

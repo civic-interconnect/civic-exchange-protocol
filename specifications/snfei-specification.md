@@ -20,18 +20,18 @@ systems despite formatting variations.
 SNFEI generation follows a Category Theory-inspired architecture with two functors:
 
 ```
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│  Raw Entity     │     │  Intermediate   │     │    Canonical    │
-│    Data         │────▶│    Canonical    │────▶│     Entity      │
-│                 │  L  │                 │  N  │                 │
-└─────────────────┘     └─────────────────┘     └─────────────────┘
+┌───────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│  Raw Entity   │     │  Intermediate   │     │    Canonical    │
+│    Data       │────>│    Canonical    │────>│     Entity      │
+│               │  L  │                 │  N  │                 │
+└───────────────┘     └─────────────────┘     └─────────────────┘
                                                         │
                                                         │ SHA-256
-                                                        ▼
-                                                ┌─────────────────┐
-                                                │     SNFEI       │
-                                                │   (64-char)     │
-                                                └─────────────────┘
+                                                        V
+                                                ┌───────────────┐
+                                                │     SNFEI     │
+                                                │   (64-char)   │
+                                                └───────────────┘
 ```
 
 **L = Localization Functor** (jurisdiction-specific transforms)
@@ -128,12 +128,12 @@ canonical form before universal normalization.
 
 ### 3.2 Jurisdiction Rules
 
-| Jurisdiction | Local Rule                | Example                                            |
-| ------------ | ------------------------- | -------------------------------------------------- |
-| US/NY        | Expand NY agency acronyms | MTA → Metropolitan Transportation Authority        |
+| Jurisdiction | Local Rule   | Example    |
+| ------------ | ------------ | -----------|
+| US/NY        | Expand NY agency acronyms | MTA → Metropolitan Transportation Authority |
 | US/CA        | Expand CA agency acronyms | CalTrans → California Department of Transportation |
-| CA/ON        | Expand Ontario agencies   | TTC → Toronto Transit Commission                   |
-| CA/QC        | French/English variants   | Limitée → Limitee                                  |
+| CA/ON        | Expand Ontario agencies   | TTC → Toronto Transit Commission |
+| CA/QC        | French/English variants   | Limitée → Limitee  |
 
 ### 3.3 Localization Config Structure
 
@@ -396,9 +396,31 @@ If normalization rules change in future versions:
 
 ## 9. Reference Implementation
 
-See `/src/rust/cep-entity/src/identifiers.rs` and
-`/src/python/src/civic_exchange_protocol/entity/snfei.py` for
+See `/src/rust/cep-snfei/src/generator.rs` and
+`/src/python/src/civic_exchange_protocol/snfei/generator.py` for
 canonical implementations.
+
+# Generation
+generate_snfei()
+generate_snfei_simple()
+generate_snfei_with_confidence()
+compute_snfei()
+Snfei
+SnfeiResult
+
+# Normalization
+normalize_legal_name()
+normalize_address()
+normalize_registration_date()
+CanonicalInput
+build_canonical_input()
+
+# Localization
+apply_localization()
+get_localization_config()
+LocalizationConfig
+LocalizationRegistry
+LocalizationRule
 
 ### 9.1 Test Vectors
 

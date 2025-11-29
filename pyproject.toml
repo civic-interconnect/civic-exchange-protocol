@@ -32,6 +32,7 @@ dependencies = [
     "fastapi",
     # "pandas",
     "pydantic",
+    "PyYAML",
     # "splink",
     "typer",
 ]
@@ -117,6 +118,7 @@ output = "coverage.xml"
 
 [tool.deptry]
 known_first_party = ["civic_exchange_protocol"]
+package_module_name_map = {PyYAML = "yaml"  }
 
 [tool.deptry.per_rule_ignores]
 DEP002 = [

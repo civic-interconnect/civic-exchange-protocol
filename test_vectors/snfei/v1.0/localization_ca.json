@@ -1,7 +1,7 @@
 {
-  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test-vectors/schemas/localization-vector-set.schema.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/refs/heads/main/test_vectors/schemas/v1.0/localization-vector-set.schema.json",
   "vectorSetId": "snfei-localization-ca",
-  "specVersion": "1.1.0",
+  "specVersion": "1.0.0",
   "vectorVersion": "2024.1",
   "description": "Canada jurisdiction localization test vectors - federal and provincial agency expansions",
   "generatedAt": "2025-11-28",

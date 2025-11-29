@@ -1,7 +1,7 @@
 {
-  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test-vectors/schemas/generation-vector-set.schema.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/refs/heads/main/test_vectors/schemas/v1.0/generation-vector-set.schema.json",
   "vectorSetId": "snfei-generation-full",
-  "specVersion": "1.1.0",
+  "specVersion": "1.0.0",
   "vectorVersion": "2024.1",
   "description": "End-to-end SNFEI generation test vectors with final hash values",
   "generatedAt": "2025-11-28",
@@ -27,7 +27,7 @@
         "canonical_string": "springfield unified school district||US|"
       },
       "expected": {
-        "snfei": "e3b7c9d8f4a2b1e6c5d4a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2"
+        "snfei": "501b245f108bcd9133c15b4228a9d054f90c02febf32beec4294001f5057558b"
       },
       "equivalentInputs": [
         "SPRINGFIELD UNIFIED SCHOOL DISTRICT",
@@ -121,7 +121,7 @@
         "canonical_string": "acme consulting limited liability company|456 north main street|US|2015-06-01"
       },
       "expected": {
-        "snfei": "a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456"
+        "snfei": "8eac55e6b2bd59209147c22ff25852311972b837ed6e8a357a415c3cecc61467"
       }
     },
     {
@@ -142,7 +142,7 @@
         "canonical_string": "toronto community foundation|100 king street west|CA|1981-01-15"
       },
       "expected": {
-        "snfei": "fedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210"
+        "snfei": "60a36df41c62bf8849e16f4d4acb4e78695760940c81994fcc3ce9132b376eec"
       }
     },
     {
@@ -163,7 +163,7 @@
         "canonical_string": "acme corporation||US|"
       },
       "expected": {
-        "snfei": "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+        "snfei": "56ef750e3971c532664dc4d598ce7f0979d47199d4fbef7964920a3bd83af47b"
       },
       "confidence": {
         "tier": 3,
@@ -189,7 +189,7 @@
         "canonical_string": "springfield regional medical center incorporated|500 hospital drive|US|1965-03-20"
       },
       "expected": {
-        "snfei": "abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+        "snfei": "85cff705ac62eece207f5c95ba3fca539f41e84bf20f97bfc04bd8e44fb4714e"
       },
       "confidence": {
         "tier": 3,

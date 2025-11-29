@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test-vectors/schemas/generation-vector-set.schema.json",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/refs/heads/main/test_vectors/schemas/v1.0/generation-vector-set.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "SNFEI Generation Test Vector Set",
   "description": "Schema for a file containing a set of end-to-end SNFEI generation test vectors.",
   "type": "object",
@@ -72,26 +72,43 @@
           "input": {
             "type": "object",
             "description": "The raw input data used for SNFEI generation.",
-            "required": ["legal_name", "country_code", "address", "registration_date"],
+            "required": [
+              "legal_name",
+              "country_code",
+              "address",
+              "registration_date"
+            ],
             "properties": {
               "legal_name": { "type": ["string", "null"] },
               "country_code": { "type": "string" },
               "address": { "type": ["string", "null"] },
               "registration_date": { "type": ["string", "null"] },
-              "jurisdiction": { "type": "string", "description": "Optional: used for localization prior to normalization." }
+              "jurisdiction": {
+                "type": "string",
+                "description": "Optional: used for localization prior to normalization."
+              }
             }
           },
           "intermediate": {
             "type": "object",
             "description": "The results of the normalization steps and the canonical string.",
-            "required": ["legal_name_normalized", "address_normalized", "country_code", "registration_date", "canonical_string"],
+            "required": [
+              "legal_name_normalized",
+              "address_normalized",
+              "country_code",
+              "registration_date",
+              "canonical_string"
+            ],
             "properties": {
               "legal_name_normalized": { "type": "string" },
               "address_normalized": { "type": "string" },
               "country_code": { "type": "string" },
               "registration_date": { "type": "string" },
               "canonical_string": { "type": "string" },
-              "after_localization": { "type": "string", "description": "Optional: The name after the localization step, before final normalization." }
+              "after_localization": {
+                "type": "string",
+                "description": "Optional: The name after the localization step, before final normalization."
+              }
             }
           },
           "expected": {

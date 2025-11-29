@@ -6,6 +6,7 @@
 [![CI Status](https://github.com/civic-interconnect/civic-exchange-protocol/actions/workflows/ci-python.yml/badge.svg)](https://github.com/civic-interconnect/civic-exchange-protocol/actions/workflows/ci-python.yml)
 [![Docs](https://img.shields.io/badge/docs-mkdocs--material-blue)](https://civic-interconnect.github.io/civic-exchange-protocol/)
 [![Security Policy](https://img.shields.io/badge/security-policy-orange)](SECURITY.md)
+[![Link Check](https://github.com/civic-interconnect/civic-exchange-protocol/actions/workflows/weekly_link_checker.yml/badge.svg)](https://github.com/civic-interconnect/civic-exchange-protocol/actions/workflows/weekly_link_checker.yml)
 
 > Interoperable data standards for describing entities, relationships, and value exchanges across civic systems.
 
