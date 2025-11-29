@@ -1,0 +1,2077 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Civic Exchange Protocol site documentation.">
+      
+      
+        <meta name="author" content="civic-interconnect">
+      
+      
+        <link rel="canonical" href="https://civic-interconnect.github.io/civic-exchange-protocol/latest/en/concepts/category-theory-foundation/">
+      
+      
+        <link rel="prev" href="../../quick-start/">
+      
+      
+        <link rel="next" href="../related-domains/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Category Theory Foundation - civic-exchange-protocol</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#category-theory-foundation-for-cep" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="civic-exchange-protocol" class="md-header__button md-logo" aria-label="civic-exchange-protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            civic-exchange-protocol
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Category Theory Foundation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/civic-interconnect/civic-exchange-protocol" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="civic-exchange-protocol" class="md-nav__button md-logo" aria-label="civic-exchange-protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    civic-exchange-protocol
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/civic-interconnect/civic-exchange-protocol" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Category Theory Foundation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Category Theory Foundation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-category-civic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The Category Civic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. The Category Civic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#morphisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Morphisms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identity-morphism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity Morphism
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Composition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#associativity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Associativity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-verifiable-id-as-a-universal-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The Verifiable ID as a Universal Property
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. The Verifiable ID as a Universal Property">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-problem-multiple-representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem: Multiple Representations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-diagram-to-commute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Diagram to Commute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-limit-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Limit Construction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-universal-property-guarantee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Universal Property Guarantee
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-functors-the-bridge-to-external-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Functors: The Bridge to External Standards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Functors: The Bridge to External Standards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-xbrl-functor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The XBRL Functor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-w3c-prov-functor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The W3C PROV Functor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-amendment-chain-as-a-categorical-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. The Amendment Chain as a Categorical Construction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. The Amendment Chain as a Categorical Construction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-category-of-revisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Category of Revisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hash-chains-as-functors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hash Chains as Functors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-slice-category-for-jurisdictional-scoping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. The Slice Category for Jurisdictional Scoping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. The Slice Category for Jurisdictional Scoping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jurisdictional-restriction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jurisdictional Restriction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-inclusion-functor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Inclusion Functor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-verification-the-proof-subcategory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Verification: The Proof Subcategory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Verification: The Proof Subcategory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defining Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-subcategory-of-verified-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Subcategory of Verified Records
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-summary-why-category-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Summary: Why Category Theory?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Summary: Why Category Theory?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-core-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Core Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-diagrammatic-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: Diagrammatic Notation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix: Diagrammatic Notation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Composition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-limit-diagram-for-verifiable-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Limit Diagram for Verifiable ID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-amendment-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Amendment Chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../related-domains/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Related Domains
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interoperability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interoperability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/evolution-policy-and-versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evolution Policy and Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/vocabulary-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vocabulary Governance Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/objectives-and-vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objectives and Mandates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Implementation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../implementation/implementation-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../implementation/validator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/reference-standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/reference-projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-category-civic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The Category Civic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. The Category Civic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#morphisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Morphisms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identity-morphism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity Morphism
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Composition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#associativity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Associativity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-verifiable-id-as-a-universal-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The Verifiable ID as a Universal Property
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. The Verifiable ID as a Universal Property">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-problem-multiple-representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem: Multiple Representations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-diagram-to-commute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Diagram to Commute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-limit-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Limit Construction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-universal-property-guarantee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Universal Property Guarantee
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-functors-the-bridge-to-external-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Functors: The Bridge to External Standards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Functors: The Bridge to External Standards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-xbrl-functor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The XBRL Functor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-w3c-prov-functor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The W3C PROV Functor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-amendment-chain-as-a-categorical-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. The Amendment Chain as a Categorical Construction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. The Amendment Chain as a Categorical Construction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-category-of-revisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Category of Revisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hash-chains-as-functors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hash Chains as Functors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-slice-category-for-jurisdictional-scoping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. The Slice Category for Jurisdictional Scoping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. The Slice Category for Jurisdictional Scoping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jurisdictional-restriction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jurisdictional Restriction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-inclusion-functor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Inclusion Functor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-verification-the-proof-subcategory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Verification: The Proof Subcategory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Verification: The Proof Subcategory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defining Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-subcategory-of-verified-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Subcategory of Verified Records
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-summary-why-category-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Summary: Why Category Theory?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Summary: Why Category Theory?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-core-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Core Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-diagrammatic-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: Diagrammatic Notation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix: Diagrammatic Notation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Composition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-limit-diagram-for-verifiable-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Limit Diagram for Verifiable ID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-amendment-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Amendment Chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="category-theory-foundation-for-cep">Category Theory Foundation for CEP<a class="headerlink" href="#category-theory-foundation-for-cep" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>This document provides a formal categorical semantics for the Civic Exchange Protocol (CEP).
+The goal is to prove that the system's design is mathematically sound, ensuring that compositions of civic relationships and exchanges behave predictably and that the Verifiable ID system constitutes a proper universal construction.</p>
+<h2 id="1-the-category-civic">1. The Category <strong>Civic</strong><a class="headerlink" href="#1-the-category-civic" title="Permanent link">&para;</a></h2>
+<p>We define a category <strong>Civic</strong> as follows:</p>
+<h3 id="objects">Objects<a class="headerlink" href="#objects" title="Permanent link">&para;</a></h3>
+<p>The objects of <strong>Civic</strong> are <strong>attested civic entities</strong>.
+Each object E represents:
+- A verified legal entity (government agency, contractor, nonprofit, individual)
+- With a canonical Verifiable ID
+- At a specific point in time (revision number)</p>
+<p>Formally: <code>Ob(Civic) = { E | E is a valid CEP entity record }</code></p>
+<h3 id="morphisms">Morphisms<a class="headerlink" href="#morphisms" title="Permanent link">&para;</a></h3>
+<p>The morphisms in <strong>Civic</strong> are <strong>relationships and exchanges</strong> between entities.
+A morphism <code>f: A → B</code> represents a directed flow of legal obligation, value, or authority from entity A to entity B.</p>
+<p>There are two kinds of morphisms:</p>
+<ol>
+<li><strong>Relationship morphisms</strong>: Represent the legal basis for interaction</li>
+<li><code>grant: FederalAgency → StateAgency</code></li>
+<li><code>contract: Agency → Contractor</code></li>
+<li>
+<p><code>subcontract: PrimeContractor → Subcontractor</code></p>
+</li>
+<li>
+<p><strong>Exchange morphisms</strong>: Represent actual value flows within relationships</p>
+</li>
+<li><code>disburse: GrantingAgency → Grantee</code></li>
+<li><code>pay: ContractingOffice → Vendor</code></li>
+</ol>
+<h3 id="identity-morphism">Identity Morphism<a class="headerlink" href="#identity-morphism" title="Permanent link">&para;</a></h3>
+<p>For each entity E, the identity morphism <code>id_E: E → E</code> represents the entity's self-attestation—the record where the entity attests to its own existence and status.
+This is the initial entity record with <code>previousRecordHash = null</code>.</p>
+<h3 id="composition">Composition<a class="headerlink" href="#composition" title="Permanent link">&para;</a></h3>
+<p>Given morphisms <code>f: A → B</code> and <code>g: B → C</code>, the composition <code>g ∘ f: A → C</code> represents the <strong>compositional provenance chain</strong>.</p>
+<p><strong>Example</strong>: Federal grant flows through a state to a local school district:</p>
+<div class="highlight"><pre><span></span><code>f: FederalDOE → StateEducationDept    (grant-award relationship)
+g: StateEducationDept → LocalDistrict  (subgrant relationship)
+
+g ∘ f: FederalDOE → LocalDistrict      (derived provenance)
+</code></pre></div>
+<p>This composition is captured in the <code>provenanceChain.fundingChainTag</code> field as <code>FEDERAL&gt;STATE&gt;LOCAL</code>.</p>
+<h3 id="associativity">Associativity<a class="headerlink" href="#associativity" title="Permanent link">&para;</a></h3>
+<p>Composition must be associative: <code>(h ∘ g) ∘ f = h ∘ (g ∘ f)</code></p>
+<p>For provenance chains:
+<div class="highlight"><pre><span></span><code>FED → STATE → COUNTY → CONTRACTOR
+
+((FED → STATE) → COUNTY) → CONTRACTOR = (FED → STATE) → (COUNTY → CONTRACTOR)
+</code></pre></div></p>
+<p>Both yield the same ultimate provenance: funds originating from FED, flowing through STATE and COUNTY, to CONTRACTOR.
+The <code>fundingChainTag</code> is identical regardless of grouping.</p>
+<p><strong>Implementation guarantee</strong>: The <code>parentRelationshipId</code> and <code>parentExchangeId</code> fields create an explicit linked list that ensures associativity.
+You can trace back from any exchange to its ultimate source by following the chain.</p>
+<h2 id="2-the-verifiable-id-as-a-universal-property">2. The Verifiable ID as a Universal Property<a class="headerlink" href="#2-the-verifiable-id-as-a-universal-property" title="Permanent link">&para;</a></h2>
+<h3 id="the-problem-multiple-representations">The Problem: Multiple Representations<a class="headerlink" href="#the-problem-multiple-representations" title="Permanent link">&para;</a></h3>
+<p>A single real-world entity may appear in many source systems with different identifiers:
+- SAM.gov: <code>J6H4FB3N5YK7</code>
+- State campaign finance: <code>VENDOR-2024-0093</code>
+- County procurement: <code>Acme Consulting LLC</code> (no ID, just a name)
+- Federal LEI system: <code>5493001KJTIIGC8Y1R12</code></p>
+<p>Each source system defines its own category of records, call them <strong>SAM</strong>, <strong>StateCF</strong>, <strong>CountyProc</strong>, <strong>LEI</strong>.</p>
+<h3 id="the-diagram-to-commute">The Diagram to Commute<a class="headerlink" href="#the-diagram-to-commute" title="Permanent link">&para;</a></h3>
+<p>We have partial identity mappings (entity resolution functions) between these systems:
+<div class="highlight"><pre><span></span><code>        SAM
+         ↑
+         |  φ_sam
+         |
+      ENTITY  ←---------- LEI
+         |      φ_lei
+         |
+         ↓  φ_county
+    CountyProc
+</code></pre></div></p>
+<p>Each <code>φ_X</code> is a functor from the source category to <strong>Civic</strong> that maps source records to entities.</p>
+<h3 id="the-limit-construction">The Limit Construction<a class="headerlink" href="#the-limit-construction" title="Permanent link">&para;</a></h3>
+<p>The Entity <code>verifiableId</code> acts as the <strong>limit</strong> (specifically, a <strong>product</strong> in the relevant slice category) of the diagram of source identifiers.</p>
+<p><strong>Definition</strong>: For an entity E appearing in source systems S₁, S₂, ..., Sₙ with identifiers id₁, id₂, ..., idₙ respectively, the Verifiable ID is the unique object V equipped with projections:
+<div class="highlight"><pre><span></span><code>π_1: V → S₁   (maps V to id₁)
+π_2: V → S₂   (maps V to id₂)
+...
+π_n: V → Sₙ   (maps V to idₙ)
+</code></pre></div></p>
+<p>Such that for any other object W with maps to all Sᵢ, there exists a unique map <code>u: W → V</code> making all triangles commute.</p>
+<p><strong>In CEP terms</strong>: The <code>identifiers</code> object in entity is exactly this limit, it holds all known identifiers for the entity:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;identifiers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;samUei&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;J6H4FB3N5YK7&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;lei&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5493001KJTIIGC8Y1R12&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;snfei&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a3b2c1d4e5f6...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;additionalSchemes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;schemeUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://state.gov/cf&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VENDOR-2024-0093&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="the-universal-property-guarantee">The Universal Property Guarantee<a class="headerlink" href="#the-universal-property-guarantee" title="Permanent link">&para;</a></h3>
+<p>The <code>verifiableId</code> (<code>entity:{scheme}:{value}</code>) provides the universal property:</p>
+<ol>
+<li>
+<p><strong>Existence</strong>: For any entity in any source system, there exists an entity record with a verifiableId that subsumes all its known identifiers.</p>
+</li>
+<li>
+<p><strong>Uniqueness</strong>: If two entity records claim to represent the same entity (have overlapping source identifiers), they MUST have the same verifiableId—or one is an error requiring resolution.</p>
+</li>
+<li>
+<p><strong>Confidence-Weighted Resolution</strong>: The <code>resolutionConfidence.score</code> field acknowledges that in practice, entity resolution is probabilistic. A score of 1.0 indicates authoritative identity (the entity self-attested or the source is canonical). Lower scores indicate probabilistic matching.</p>
+</li>
+</ol>
+<h2 id="3-functors-the-bridge-to-external-standards">3. Functors: The Bridge to External Standards<a class="headerlink" href="#3-functors-the-bridge-to-external-standards" title="Permanent link">&para;</a></h2>
+<h3 id="the-xbrl-functor">The XBRL Functor<a class="headerlink" href="#the-xbrl-functor" title="Permanent link">&para;</a></h3>
+<p>Define <code>F_xbrl: Civic → XBRL</code> as a functor mapping:
+- entities → XBRL reporting entities
+- exchanges → XBRL fact instances</p>
+<p>This functor must preserve composition: if <code>g ∘ f</code> is a provenance chain in <strong>Civic</strong>, then <code>F(g) ∘ F(f)</code> must be a valid XBRL reporting chain.</p>
+<p><strong>Implementation</strong>: The <code>categorization.gtasAccountCode</code> field in exchange records provides the data needed for this functor to operate—it maps CEP exchanges to Treasury reporting concepts.</p>
+<h3 id="the-w3c-prov-functor">The W3C PROV Functor<a class="headerlink" href="#the-w3c-prov-functor" title="Permanent link">&para;</a></h3>
+<p>Define <code>F_prov: Civic → PROV</code> mapping:
+- entities → <code>prov:Entity</code>
+- relationships → <code>prov:Activity</code> (the act of establishing a relationship)
+- exchanges → <code>prov:Activity</code> (the act of exchanging value)
+- Attestations → <code>prov:Agent</code> + <code>prov:wasAttributedTo</code></p>
+<p>The <code>attestation</code> block in every CEP record provides exactly the data needed for this mapping:
+- <code>attestorId</code> → <code>prov:Agent</code>
+- <code>attestationTimestamp</code> → <code>prov:atTime</code>
+- <code>proofValue</code> → provenance integrity proof</p>
+<h2 id="4-the-amendment-chain-as-a-categorical-construction">4. The Amendment Chain as a Categorical Construction<a class="headerlink" href="#4-the-amendment-chain-as-a-categorical-construction" title="Permanent link">&para;</a></h2>
+<h3 id="the-category-of-revisions">The Category of Revisions<a class="headerlink" href="#the-category-of-revisions" title="Permanent link">&para;</a></h3>
+<p>For a given entity E, define the category <strong>Rev(E)</strong> where:
+- Objects are revisions: E₁, E₂, E₃, ...
+- Morphisms are amendment relationships: <code>amend: Eᵢ → Eᵢ₊₁</code></p>
+<p>This forms a <strong>total order</strong> (a thin category where there's at most one morphism between any two objects).</p>
+<h3 id="hash-chains-as-functors">Hash Chains as Functors<a class="headerlink" href="#hash-chains-as-functors" title="Permanent link">&para;</a></h3>
+<p>The <code>previousRecordHash</code> field defines a functor <code>H: Rev(E) → HashChain</code> where <strong>HashChain</strong> is the category of SHA-256 hash values with "derived-from" morphisms.</p>
+<p><strong>Preservation property</strong>: If <code>Eᵢ →amend Eᵢ₊₁</code>, then <code>H(Eᵢ)</code> is embedded in <code>Eᵢ₊₁.previousRecordHash</code>, creating an immutable audit trail.</p>
+<p>This is the categorical equivalent of a blockchain's hash chain, but without requiring distributed consensus—the attesting node is responsible for chain integrity.</p>
+<h2 id="5-the-slice-category-for-jurisdictional-scoping">5. The Slice Category for Jurisdictional Scoping<a class="headerlink" href="#5-the-slice-category-for-jurisdictional-scoping" title="Permanent link">&para;</a></h2>
+<h3 id="jurisdictional-restriction">Jurisdictional Restriction<a class="headerlink" href="#jurisdictional-restriction" title="Permanent link">&para;</a></h3>
+<p>For a given jurisdiction J (e.g., <code>US-CA</code>), define the <strong>slice category</strong> <code>Civic/J</code> where:
+- Objects are entities with <code>jurisdictionIso</code> compatible with J
+- Morphisms are relationships/exchanges within that jurisdiction</p>
+<p>This allows queries like "show me all contracts in California" to be formalized as working within <code>Civic/US-CA</code> rather than searching all of <strong>Civic</strong>.</p>
+<h3 id="the-inclusion-functor">The Inclusion Functor<a class="headerlink" href="#the-inclusion-functor" title="Permanent link">&para;</a></h3>
+<p>The forgetful functor <code>U: Civic/J → Civic</code> embeds jurisdictional data back into the global category, enabling cross-jurisdictional queries while preserving local structure.</p>
+<h2 id="6-verification-the-proof-subcategory">6. Verification: The Proof Subcategory<a class="headerlink" href="#6-verification-the-proof-subcategory" title="Permanent link">&para;</a></h2>
+<h3 id="defining-verification">Defining Verification<a class="headerlink" href="#defining-verification" title="Permanent link">&para;</a></h3>
+<p>A <strong>verified</strong> object or morphism is one where:
+1. The <code>attestation.proofValue</code> is cryptographically valid
+2. The <code>attestation.verificationMethodUri</code> resolves to a valid public key
+3. If <code>anchorUri</code> is provided, the anchor can be independently verified</p>
+<h3 id="the-subcategory-of-verified-records">The Subcategory of Verified Records<a class="headerlink" href="#the-subcategory-of-verified-records" title="Permanent link">&para;</a></h3>
+<p>Define <strong>Civic_verified</strong> ⊂ <strong>Civic</strong> as the full subcategory of verified records.</p>
+<p>The inclusion <code>I: Civic_verified → Civic</code> is faithful (injective on morphisms), meaning verification status is preserved under composition.</p>
+<p><strong>Practical implication</strong>: If both <code>f: A → B</code> and <code>g: B → C</code> are verified, then <code>g ∘ f: A → C</code> can be marked as having verified provenance—the entire chain is trustworthy.</p>
+<h2 id="7-summary-why-category-theory">7. Summary: Why Category Theory?<a class="headerlink" href="#7-summary-why-category-theory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Categorical Concept</th>
+<th>CEP Implementation</th>
+<th>Benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Objects</td>
+<td>entities</td>
+<td>Formalized identity</td>
+</tr>
+<tr>
+<td>Morphisms</td>
+<td>relationships, exchanges</td>
+<td>Typed, directed flows</td>
+</tr>
+<tr>
+<td>Composition</td>
+<td><code>parentRelationshipId</code>, <code>fundingChainTag</code></td>
+<td>Provenance tracing</td>
+</tr>
+<tr>
+<td>Identity</td>
+<td>Self-attestation (revision 1)</td>
+<td>Entity lifecycle start</td>
+</tr>
+<tr>
+<td>Limit/Universal Property</td>
+<td>Verifiable ID + <code>identifiers</code></td>
+<td>Canonical identity resolution</td>
+</tr>
+<tr>
+<td>Functors</td>
+<td>XBRL, PROV mappings</td>
+<td>Interoperability</td>
+</tr>
+<tr>
+<td>Slice categories</td>
+<td>Jurisdictional scoping</td>
+<td>Efficient local queries</td>
+</tr>
+<tr>
+<td>Hash chain functor</td>
+<td><code>previousRecordHash</code></td>
+<td>Immutable audit trail</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-core-theorem">The Core Theorem<a class="headerlink" href="#the-core-theorem" title="Permanent link">&para;</a></h3>
+<p><strong>Theorem</strong>: The CEP system, as defined by the entity, relationship, and exchange schemas with their attestation and hash chain requirements, forms a well-defined category <strong>Civic</strong> with:
+1. A universal property for entity identity (the Verifiable ID limit)
+2. Associative composition for provenance chains
+3. Faithful functors to external standards (XBRL, PROV)
+4. A verified subcategory preserving cryptographic integrity</p>
+<p><strong>Corollary</strong>: Any implementation that correctly generates canonical strings and validates attestations will produce records that compose correctly in the categorical sense—provenance chains will be traceable, amendments will be auditable, and cross-system identity will be resolvable.</p>
+<hr />
+<h2 id="appendix-diagrammatic-notation">Appendix: Diagrammatic Notation<a class="headerlink" href="#appendix-diagrammatic-notation" title="Permanent link">&para;</a></h2>
+<h3 id="basic-composition">Basic Composition<a class="headerlink" href="#basic-composition" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>    grant           subgrant
+FED -----→ STATE ----------→ LOCAL
+
+         composed to:
+
+         federal-to-local
+FED ------------------------→ LOCAL
+</code></pre></div>
+<h3 id="the-limit-diagram-for-verifiable-id">The Limit Diagram for Verifiable ID<a class="headerlink" href="#the-limit-diagram-for-verifiable-id" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>                  ┌─── SAM.gov record
+                  │
+                  │    π_sam
+                  ↓
+    LEI record ───→ Entity (Verifiable ID) ←─── County record
+                  ↑
+                  │    π_state  
+                  │
+                  └─── State CF record
+</code></pre></div>
+<h3 id="the-amendment-chain">The Amendment Chain<a class="headerlink" href="#the-amendment-chain" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>E₁ ──amend──→ E₂ ──amend──→ E₃ ──amend──→ E₄
+│              │              │              │
+│ hash         │ hash         │ hash         │
+↓              ↓              ↓              ↓
+H₁ ─────────→ H₂ ─────────→ H₃ ─────────→ H₄
+     (H₁ in        (H₂ in        (H₃ in
+      E₂)           E₃)           E₄)
+</code></pre></div>
+<p>This completes the categorical foundation for CEP. The schemas implement these abstract structures concretely, and the test vectors verify that implementations preserve the categorical properties.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Civic Interconnect
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/civic-interconnect/civic-exchange-protocol" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.expand", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv-formats/3.0.1/ajv-formats.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.17.1/ajv2020.bundle.js"></script>
+      
+        <script src="../../../js/validator.js"></script>
+      
+    
+  </body>
+</html>

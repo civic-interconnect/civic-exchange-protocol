@@ -1,0 +1,2177 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Civic Exchange Protocol site documentation.">
+      
+      
+        <meta name="author" content="civic-interconnect">
+      
+      
+        <link rel="canonical" href="https://civic-interconnect.github.io/civic-exchange-protocol/latest/en/concepts/interoperability/">
+      
+      
+        <link rel="prev" href="../related-domains/">
+      
+      
+        <link rel="next" href="../../governance/evolution-policy-and-versioning/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Interoperability - civic-exchange-protocol</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#interoperability" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="civic-exchange-protocol" class="md-header__button md-logo" aria-label="civic-exchange-protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            civic-exchange-protocol
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Interoperability
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/civic-interconnect/civic-exchange-protocol" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="civic-exchange-protocol" class="md-nav__button md-logo" aria-label="civic-exchange-protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    civic-exchange-protocol
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/civic-interconnect/civic-exchange-protocol" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../category-theory-foundation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Category Theory Foundation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../related-domains/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Related Domains
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interoperability
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interoperability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cep-concept-mapping-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CEP Concept Mapping Table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cep-concept-mapping-table-by-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CEP Concept Mapping Table (by Schema)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vocabulary-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vocabulary Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/evolution-policy-and-versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evolution Policy and Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/vocabulary-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vocabulary Governance Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/objectives-and-vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objectives and Mandates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Implementation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../implementation/implementation-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../implementation/validator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/reference-standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/reference-projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cep-concept-mapping-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CEP Concept Mapping Table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cep-concept-mapping-table-by-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CEP Concept Mapping Table (by Schema)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vocabulary-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vocabulary Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="interoperability">Interoperability<a class="headerlink" href="#interoperability" title="Permanent link">&para;</a></h1>
+<p>CEP is designed to integrate with: </p>
+<ul>
+<li>Popolo - the entity + political relationships backbone of nearly every open civics project worldwide (OCD, OpenStates, etc.) includes models for Person, Organization, Membership, 
+Post / Role, Area, Event, Motion / Vote, Legislative Activity and works for elected officials, models boards, committees, councils, includes membership graph.</li>
+<li>Open Civic Data</li>
+<li>Open Contracting Data Standard (OCDS) - international standard for public procurement, contracts, tenders, awards, suppliers, implementation and milestone tracking.</li>
+<li>Schema.org - includes Organization, Person, Place, GovernmentOrganization, Grant, MonetaryGrant, 
+Legislation, VoteAction and enables interoperability with Google datasets, machine readability.</li>
+<li>Financial Taxonomies (XBRL) - good for financial reporting, auditing, interoperability with Treasury and state finance systems</li>
+<li>W3C PROV - good for academics and auditors, PROV guides revision chains, attestation blocks, canonical timestamps, and hash-based integrity. CEP attestation maps to PROV wasGeneratedBy, wasAttributedTo, wasDerivedFrom and CEP previousRecordHash maps to PROV wasRevisionOf.</li>
+<li>Open Referral Human Services Data Specification (HSDS) - has Organization, Location, Service, Funding - enables connecting public funding to outcomes</li>
+<li>Financial Industry Business Ontology (FIBO) - map to loan-agreement, grant-award (loosely), subsidiary.</li>
+</ul>
+<h2 id="cep-concept-mapping-table">CEP Concept Mapping Table<a class="headerlink" href="#cep-concept-mapping-table" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>CEP Concept</th>
+<th>CEP Term / Field</th>
+<th>CEP Vocabulary / Schema</th>
+<th>External Standard</th>
+<th>External Concept / Class / Field</th>
+<th>Mapping Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entity (organization)</td>
+<td><code>entityTypeUri = #government-jurisdiction</code></td>
+<td><code>entity-type.json</code></td>
+<td>Popolo</td>
+<td><code>Organization</code></td>
+<td>exactMatch</td>
+<td>Government bodies (legislatures, councils, agencies).</td>
+</tr>
+<tr>
+<td>Entity (organization)</td>
+<td><code>entityTypeUri = #government-jurisdiction</code></td>
+<td><code>entity-type.json</code></td>
+<td>OCD</td>
+<td><code>ocd-jurisdiction</code></td>
+<td>exactMatch</td>
+<td>Use in <code>identifiers.additionalSchemes</code> with OCD jurisdiction IDs.</td>
+</tr>
+<tr>
+<td>Entity (organization)</td>
+<td><code>entityTypeUri = #government-jurisdiction</code></td>
+<td><code>entity-type.json</code></td>
+<td>Schema.org</td>
+<td><code>GovernmentOrganization</code></td>
+<td>exactMatch</td>
+<td>For web/SEO and generic data consumers.</td>
+</tr>
+<tr>
+<td>Entity (organization)</td>
+<td><code>entityTypeUri = #school-district</code></td>
+<td><code>entity-type.json</code></td>
+<td>OCD</td>
+<td><code>ocd-division</code> + <code>ocd-jurisdiction</code> (school districts)</td>
+<td>broadMatch</td>
+<td>Division/jurisdiction pair identifies school districts.</td>
+</tr>
+<tr>
+<td>Entity (organization)</td>
+<td><code>entityTypeUri = #school-district</code></td>
+<td><code>entity-type.json</code></td>
+<td>Schema.org</td>
+<td><code>EducationalOrganization</code> / <code>SchoolDistrict</code> (where available)</td>
+<td>exactMatch</td>
+<td>For education analytics and public-facing data.</td>
+</tr>
+<tr>
+<td>Entity (organization)</td>
+<td><code>entityTypeUri = #nonprofit-organization</code></td>
+<td><code>entity-type.json</code></td>
+<td>Popolo</td>
+<td><code>Organization</code> with classification <code>nonprofit</code></td>
+<td>broadMatch</td>
+<td>Nonprofits providing services, fiscal sponsors, etc.</td>
+</tr>
+<tr>
+<td>Entity (organization)</td>
+<td><code>entityTypeUri = #nonprofit-organization</code></td>
+<td><code>entity-type.json</code></td>
+<td>Schema.org</td>
+<td><code>NGO</code> / <code>Organization</code></td>
+<td>relatedMatch</td>
+<td>Web-compatible representation of nonprofits.</td>
+</tr>
+<tr>
+<td>Entity (organization)</td>
+<td><code>entityTypeUri = #vendor</code></td>
+<td><code>entity-type.json</code></td>
+<td>OCDS</td>
+<td><code>Party</code> with role <code>supplier</code></td>
+<td>exactMatch</td>
+<td>Contractors / vendors in procurement.</td>
+</tr>
+<tr>
+<td>Entity (natural person)</td>
+<td><code>entityTypeUri = #natural-person</code></td>
+<td><code>entity-type.json</code></td>
+<td>Popolo</td>
+<td><code>Person</code></td>
+<td>exactMatch</td>
+<td>Politicians, officials, natural-person donors, etc.</td>
+</tr>
+<tr>
+<td>Entity (natural person)</td>
+<td><code>entityTypeUri = #elected-official</code></td>
+<td><code>entity-type.json</code></td>
+<td>Popolo</td>
+<td><code>Person</code> + <code>Membership</code> in <code>Organization</code></td>
+<td>exactMatch</td>
+<td>Derived from Popolo membership in a legislature / council.</td>
+</tr>
+<tr>
+<td>Entity (natural person)</td>
+<td><code>entityTypeUri = #natural-person</code> / <code>#elected-official</code></td>
+<td><code>entity-type.json</code></td>
+<td>Schema.org</td>
+<td><code>Person</code></td>
+<td>exactMatch</td>
+<td>Generic consumer-friendly alignment.</td>
+</tr>
+<tr>
+<td>Entity (division)</td>
+<td><code>identifiers.additionalSchemes</code></td>
+<td><code>cep.entity.schema.json</code></td>
+<td>OCD</td>
+<td><code>ocd-division/...</code></td>
+<td>exactMatch</td>
+<td>Political geography for school districts, counties, states, etc.</td>
+</tr>
+<tr>
+<td>Entity (jurisdiction)</td>
+<td><code>identifiers.additionalSchemes</code></td>
+<td><code>cep.entity.schema.json</code></td>
+<td>OCD</td>
+<td><code>ocd-jurisdiction/...</code></td>
+<td>exactMatch</td>
+<td>Governing bodies over divisions.</td>
+</tr>
+<tr>
+<td>Entity (organization)</td>
+<td><code>identifiers.additionalSchemes</code></td>
+<td><code>cep.entity.schema.json</code></td>
+<td>OCD</td>
+<td><code>ocd-organization/...</code></td>
+<td>exactMatch</td>
+<td>Committees, councils, agencies, boards.</td>
+</tr>
+<tr>
+<td>Entity (person)</td>
+<td><code>identifiers.additionalSchemes</code></td>
+<td><code>cep.entity.schema.json</code></td>
+<td>OCD</td>
+<td><code>ocd-person/...</code></td>
+<td>exactMatch</td>
+<td>People in OCD-compatible civic graphs.</td>
+</tr>
+<tr>
+<td>Entity (financial)</td>
+<td><code>identifiers.lei</code></td>
+<td><code>cep.entity.schema.json</code></td>
+<td>LEI</td>
+<td>ISO 17442 Legal Entity Identifier</td>
+<td>exactMatch</td>
+<td>Global financial identity for entities in financial transactions.</td>
+</tr>
+<tr>
+<td>Entity (federal)</td>
+<td><code>identifiers.samUei</code></td>
+<td><code>cep.entity.schema.json</code></td>
+<td>UEI</td>
+<td>SAM.gov Unique Entity Identifier</td>
+<td>exactMatch</td>
+<td>U.S. federal financial identity for entities.</td>
+</tr>
+<tr>
+<td>Entity (SNFEI)</td>
+<td><code>identifiers.snfei</code></td>
+<td><code>cep.entity.schema.json</code></td>
+<td>(none, new)</td>
+<td>Hash-based Sub-National Federated Entity Identifier</td>
+<td>newConcept</td>
+<td>Bridges UEI/LEI to local civic entities; open-source identifier.</td>
+</tr>
+<tr>
+<td>Relationship (contract)</td>
+<td><code>relationshipTypeUri = #prime-contract</code></td>
+<td><code>relationship-type.json</code></td>
+<td>OCDS</td>
+<td><code>Contract</code></td>
+<td>exactMatch</td>
+<td>Prime contract between government and supplier.</td>
+</tr>
+<tr>
+<td>Relationship (contract)</td>
+<td><code>relationshipTypeUri = #prime-contract</code></td>
+<td><code>relationship-type.json</code></td>
+<td>USAspending</td>
+<td><code>contract</code> (glossary)</td>
+<td>exactMatch</td>
+<td>Alignment with USASpending contract awards.</td>
+</tr>
+<tr>
+<td>Relationship (subcontract)</td>
+<td><code>relationshipTypeUri = #subcontract</code></td>
+<td><code>relationship-type.json</code></td>
+<td>OCDS</td>
+<td><code>Contract</code> linked via <code>relatedProcesses</code></td>
+<td>broadMatch</td>
+<td>Subcontracts under a prime contract.</td>
+</tr>
+<tr>
+<td>Relationship (grant)</td>
+<td><code>relationshipTypeUri = #grant-award</code></td>
+<td><code>relationship-type.json</code></td>
+<td>USAspending</td>
+<td><code>grant</code> (glossary)</td>
+<td>exactMatch</td>
+<td>Federal grants / assistance awards.</td>
+</tr>
+<tr>
+<td>Relationship (subgrant)</td>
+<td><code>relationshipTypeUri = #subgrant</code></td>
+<td><code>relationship-type.json</code></td>
+<td>OCDS</td>
+<td><code>Award</code> + <code>Implementation.transactions</code> for subawards</td>
+<td>broadMatch</td>
+<td>Pass-through grants from state to local entities.</td>
+</tr>
+<tr>
+<td>Relationship (coop agrmt)</td>
+<td><code>relationshipTypeUri = #cooperative-agreement</code></td>
+<td><code>relationship-type.json</code></td>
+<td>USAspending</td>
+<td><code>cooperative agreement</code></td>
+<td>exactMatch</td>
+<td>Cooperative federal assistance relationships.</td>
+</tr>
+<tr>
+<td>Relationship (interagency)</td>
+<td><code>relationshipTypeUri = #interagency-agreement</code></td>
+<td><code>relationship-type.json</code></td>
+<td>OCDS</td>
+<td><code>Contract</code> or <code>Agreement</code> between government parties</td>
+<td>relatedMatch</td>
+<td>Transfer agreements between agencies.</td>
+</tr>
+<tr>
+<td>Relationship (MOU)</td>
+<td><code>relationshipTypeUri = #memorandum-of-understanding</code></td>
+<td><code>relationship-type.json</code></td>
+<td>Popolo</td>
+<td><code>Membership</code> / <code>Organization</code> with informal cooperation</td>
+<td>relatedMatch</td>
+<td>Non-binding but structured relationships.</td>
+</tr>
+<tr>
+<td>Relationship (fiscal spon)</td>
+<td><code>relationshipTypeUri = #fiscal-sponsorship</code></td>
+<td><code>relationship-type.json</code></td>
+<td>HSDS</td>
+<td><code>Funding</code> / <code>Service</code> provider/host relationship</td>
+<td>relatedMatch</td>
+<td>Connects projects to 501(c)(3) entities.</td>
+</tr>
+<tr>
+<td>Relationship (board)</td>
+<td><code>relationshipTypeUri = #board-membership</code></td>
+<td><code>relationship-type.json</code></td>
+<td>Popolo</td>
+<td><code>Membership</code> (person ↔ organization, role = board member)</td>
+<td>exactMatch</td>
+<td>Governance relationships.</td>
+</tr>
+<tr>
+<td>Relationship (employment)</td>
+<td><code>relationshipTypeUri = #employment</code></td>
+<td><code>relationship-type.json</code></td>
+<td>Popolo</td>
+<td><code>Membership</code> or <code>Post</code> with classification <code>employment</code></td>
+<td>exactMatch</td>
+<td>Staff roles in agencies, schools, vendors.</td>
+</tr>
+<tr>
+<td>Relationship (consulting)</td>
+<td><code>relationshipTypeUri = #consulting-engagement</code></td>
+<td><code>relationship-type.json</code></td>
+<td>Popolo</td>
+<td><code>Membership</code> with classification <code>consultant</code></td>
+<td>relatedMatch</td>
+<td>Non-employee professional services.</td>
+</tr>
+<tr>
+<td>Relationship (subsidiary)</td>
+<td><code>relationshipTypeUri = #subsidiary</code></td>
+<td><code>relationship-type.json</code></td>
+<td>Schema.org</td>
+<td><code>subOrganization</code></td>
+<td>relatedMatch</td>
+<td>Corporate ownership within civic vendor trees.</td>
+</tr>
+<tr>
+<td>Relationship (joint ven.)</td>
+<td><code>relationshipTypeUri = #joint-venture</code></td>
+<td><code>relationship-type.json</code></td>
+<td>FIBO</td>
+<td>Joint venture relationship</td>
+<td>relatedMatch</td>
+<td>Optional mapping for advanced financial/corporate semantics.</td>
+</tr>
+<tr>
+<td>Relationship (reg. reg.)</td>
+<td><code>relationshipTypeUri = #regulatory-registration</code></td>
+<td><code>relationship-type.json</code></td>
+<td>Schema.org</td>
+<td><code>GovernmentOrganization</code> + <code>registration</code>-related properties</td>
+<td>relatedMatch</td>
+<td>Entities registered with regulatory bodies.</td>
+</tr>
+<tr>
+<td>Relationship (loan)</td>
+<td><code>relationshipTypeUri = #loan-agreement</code></td>
+<td><code>relationship-type.json</code></td>
+<td>FIBO</td>
+<td>Loan contract</td>
+<td>exactMatch</td>
+<td>For loans, bond-like instruments, and revolving credit.</td>
+</tr>
+<tr>
+<td>Relationship (bill-ties)</td>
+<td><code>sourceReferences</code> on Relationship</td>
+<td><code>cep.relationship.schema.json</code></td>
+<td>OCD</td>
+<td><code>Bill</code> object</td>
+<td>relatedMatch</td>
+<td>Relationship authorized or shaped by a bill.</td>
+</tr>
+<tr>
+<td>Relationship (vote-ties)</td>
+<td><code>sourceReferences</code> on Relationship</td>
+<td><code>cep.relationship.schema.json</code></td>
+<td>OCD</td>
+<td><code>Vote</code> object</td>
+<td>relatedMatch</td>
+<td>Relationship activated/approved by a vote.</td>
+</tr>
+<tr>
+<td>Relationship (event-ties)</td>
+<td><code>sourceReferences</code> on Relationship</td>
+<td><code>cep.relationship.schema.json</code></td>
+<td>OCD</td>
+<td><code>Event</code> object</td>
+<td>relatedMatch</td>
+<td>Relationship linked to hearings, meetings, signings.</td>
+</tr>
+<tr>
+<td>Exchange (grant)</td>
+<td><code>exchangeTypeUri = #grant-disbursement</code></td>
+<td><code>exchange-type.json</code></td>
+<td>OCDS</td>
+<td><code>Implementation.transactions</code> of type grant disbursement</td>
+<td>exactMatch</td>
+<td>Payment of grant funds under a grant-award relationship.</td>
+</tr>
+<tr>
+<td>Exchange (contract fee)</td>
+<td><code>exchangeTypeUri = #contract-fee-payment</code></td>
+<td><code>exchange-type.json</code></td>
+<td>OCDS</td>
+<td><code>Implementation.transactions</code> of type payment</td>
+<td>exactMatch</td>
+<td>Invoice payments under contracts.</td>
+</tr>
+<tr>
+<td>Exchange (subaward)</td>
+<td><code>exchangeTypeUri = #subgrant-disbursement</code></td>
+<td><code>exchange-type.json</code></td>
+<td>USAspending</td>
+<td>Subaward transactions</td>
+<td>exactMatch</td>
+<td>Pass-through disbursements to subrecipients.</td>
+</tr>
+<tr>
+<td>Exchange (donation)</td>
+<td><code>exchangeTypeUri = #campaign-contribution</code></td>
+<td><code>exchange-type.json</code></td>
+<td>Popolo / DIME</td>
+<td>Contribution records mapped to <code>Person</code> / <code>Organization</code> donors/recipients</td>
+<td>relatedMatch</td>
+<td>Campaign finance contributions tied into CEP graph.</td>
+</tr>
+<tr>
+<td>Exchange (in-kind)</td>
+<td><code>value.valueTypeUri = #in-kind</code></td>
+<td><code>value-type.json</code></td>
+<td>Schema.org</td>
+<td><code>Offer</code> / <code>Grant</code> with non-monetary value</td>
+<td>relatedMatch</td>
+<td>Non-monetary goods/services tracked in CEP.</td>
+</tr>
+<tr>
+<td>Exchange (service-hours)</td>
+<td><code>value.valueTypeUri = #service-hours</code></td>
+<td><code>value-type.json</code></td>
+<td>HSDS</td>
+<td><code>Service</code> + time-based contributions</td>
+<td>relatedMatch</td>
+<td>Volunteer or staff time as value.</td>
+</tr>
+<tr>
+<td>Exchange (categorization)</td>
+<td><code>categorization.naicsCode</code></td>
+<td><code>cep.exchange.schema.json</code></td>
+<td>NAICS</td>
+<td>NAICS industry codes</td>
+<td>exactMatch</td>
+<td>Standard economic activity classification for exchanges.</td>
+</tr>
+<tr>
+<td>Exchange (categorization)</td>
+<td><code>categorization.cfdaNumber</code></td>
+<td><code>cep.exchange.schema.json</code></td>
+<td>CFDA / Assistance</td>
+<td>CFDA / Assistance Listing number</td>
+<td>exactMatch</td>
+<td>Links exchanges to federal assistance programs.</td>
+</tr>
+<tr>
+<td>Exchange (categorization)</td>
+<td><code>categorization.gtasAccountCode</code></td>
+<td><code>cep.exchange.schema.json</code></td>
+<td>GTAS</td>
+<td>Treasury Account Symbol</td>
+<td>exactMatch</td>
+<td>Aligns exchanges to Treasury reporting accounts.</td>
+</tr>
+<tr>
+<td>Exchange (source)</td>
+<td><code>sourceReferences</code> on Exchange</td>
+<td><code>cep.exchange.schema.json</code></td>
+<td>OCDS</td>
+<td><code>Release</code>, <code>Award</code>, <code>Contract</code>, <code>Implementation.transactions</code></td>
+<td>relatedMatch</td>
+<td>Exchange derived from procurement data.</td>
+</tr>
+<tr>
+<td>Exchange (bill/vote)</td>
+<td><code>sourceReferences</code> on Exchange</td>
+<td><code>cep.exchange.schema.json</code></td>
+<td>OCD</td>
+<td><code>Bill</code>, <code>Vote</code>, <code>Event</code></td>
+<td>relatedMatch</td>
+<td>Funding events tied to legislative activity.</td>
+</tr>
+<tr>
+<td>Value (monetary)</td>
+<td><code>value.valueTypeUri = #monetary</code></td>
+<td><code>value-type.json</code></td>
+<td>XBRL</td>
+<td>Monetary item types (e.g., <code>monetaryItemType</code>)</td>
+<td>exactMatch</td>
+<td>Monetary amounts aligned with financial reporting taxonomies.</td>
+</tr>
+<tr>
+<td>Value (monetary)</td>
+<td><code>value.amount</code>, <code>value.currencyCode</code></td>
+<td><code>cep.exchange.schema.json</code></td>
+<td>XBRL</td>
+<td><code>xbrli:monetaryItemType</code>, ISO 4217</td>
+<td>exactMatch</td>
+<td>Strictly typed monetary values.</td>
+</tr>
+<tr>
+<td>Value (provisioning)</td>
+<td><code>valueTypeUri = #service-hours</code> / <code>#in-kind</code></td>
+<td><code>value-type.json</code></td>
+<td>HSDS</td>
+<td><code>Service</code> value dimensions</td>
+<td>relatedMatch</td>
+<td>For human services and community programs.</td>
+</tr>
+<tr>
+<td>Provenance (entity)</td>
+<td><code>attestation</code> block on Entity</td>
+<td><code>cep.entity.schema.json</code></td>
+<td>W3C PROV</td>
+<td><code>prov:Entity</code>, <code>prov:wasGeneratedBy</code>, <code>prov:wasAttributedTo</code></td>
+<td>exactMatch</td>
+<td>Entity record as a PROV entity with associated agent/activity.</td>
+</tr>
+<tr>
+<td>Provenance (relationship)</td>
+<td><code>attestation</code> block on Relationship</td>
+<td><code>cep.relationship.schema.json</code></td>
+<td>W3C PROV</td>
+<td>Same as above</td>
+<td>exactMatch</td>
+<td>Relationship record provenance in PROV terms.</td>
+</tr>
+<tr>
+<td>Provenance (exchange)</td>
+<td><code>attestation</code> block on Exchange</td>
+<td><code>cep.exchange.schema.json</code></td>
+<td>W3C PROV</td>
+<td>Same as above</td>
+<td>exactMatch</td>
+<td>Exchange record provenance.</td>
+</tr>
+<tr>
+<td>Provenance (revision)</td>
+<td><code>previousRecordHash</code>, <code>revisionNumber</code></td>
+<td>all CEP core schemas</td>
+<td>W3C PROV</td>
+<td><code>prov:wasRevisionOf</code>, <code>prov:qualifiedRevision</code></td>
+<td>exactMatch</td>
+<td>Immutable revision chains expressed via hashes and monotone revisions.</td>
+</tr>
+<tr>
+<td>Provenance (hash)</td>
+<td>Canonical string + SHA-256 hash (SSOT)</td>
+<td>implementation / spec</td>
+<td>W3C PROV</td>
+<td><code>prov:generatedAtTime</code>, <code>prov:wasDerivedFrom</code></td>
+<td>relatedMatch</td>
+<td>Hash as integrity proof supporting PROV-compatible derivation chains.</td>
+</tr>
+<tr>
+<td>IDs (UEI)</td>
+<td><code>identifiers.samUei</code></td>
+<td><code>cep.entity.schema.json</code></td>
+<td>UEI</td>
+<td>SAM.gov UEI</td>
+<td>exactMatch</td>
+<td>Federal identity.</td>
+</tr>
+<tr>
+<td>IDs (LEI)</td>
+<td><code>identifiers.lei</code></td>
+<td><code>cep.entity.schema.json</code></td>
+<td>LEI</td>
+<td>LEI</td>
+<td>exactMatch</td>
+<td>Global financial identity.</td>
+</tr>
+<tr>
+<td>IDs (SNFEI)</td>
+<td><code>identifiers.snfei</code></td>
+<td><code>cep.entity.schema.json</code></td>
+<td>(none, new)</td>
+<td>SNFEI</td>
+<td>newConcept</td>
+<td>Open, recomputable sub-federal ID bridging UEI/LEI and local civic entities.</td>
+</tr>
+<tr>
+<td>IDs (OCD)</td>
+<td><code>identifiers.additionalSchemes</code></td>
+<td><code>cep.entity.schema.json</code></td>
+<td>OCD</td>
+<td><code>ocd-division</code>, <code>ocd-jurisdiction</code>, <code>ocd-organization</code>, <code>ocd-person</code></td>
+<td>exactMatch</td>
+<td>Primary bridge to the Open Civic Data topology.</td>
+</tr>
+<tr>
+<td>IDs (OCDS)</td>
+<td><code>identifiers.additionalSchemes</code> on Entity/Relationship</td>
+<td><code>cep.entity/relationship</code></td>
+<td>OCDS</td>
+<td><code>Parties</code>, <code>Award.id</code>, <code>Contract.id</code></td>
+<td>relatedMatch</td>
+<td>Tie CEP entities/relationships back to OCDS releases.</td>
+</tr>
+<tr>
+<td>IDs (Popolo)</td>
+<td><code>identifiers.additionalSchemes</code></td>
+<td><code>cep.entity.schema.json</code></td>
+<td>Popolo</td>
+<td><code>Person.id</code>, <code>Organization.id</code></td>
+<td>relatedMatch</td>
+<td>Where Popolo IDs exist separately from OCD IDs.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cep-concept-mapping-table-by-schema">CEP Concept Mapping Table (by Schema)<a class="headerlink" href="#cep-concept-mapping-table-by-schema" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>CEP Concept / Field</th>
+<th>External Standard</th>
+<th>External Concept / ID / Class</th>
+<th>Mapping Type</th>
+<th>Suggested <code>externalUri</code> / <code>schemeUri</code> example</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Entity (general civic entity)</strong></td>
+<td>Popolo</td>
+<td><code>Person</code>, <code>Organization</code></td>
+<td>broadMatch</td>
+<td><code>http://www.popoloproject.com/specs/person.html</code>, <code>http://www.popoloproject.com/specs/organization.html</code></td>
+<td>CEP <code>entity</code> covers both persons and orgs; Popolo separates.</td>
+</tr>
+<tr>
+<td><code>entityTypeUri</code> <code>#natural-person</code></td>
+<td>Popolo</td>
+<td><code>Person</code></td>
+<td>exactMatch</td>
+<td><code>http://www.popoloproject.com/specs/person.html</code></td>
+<td>For individuals (candidates, officials, donors).</td>
+</tr>
+<tr>
+<td><code>entityTypeUri</code> <code>#organization</code></td>
+<td>Popolo</td>
+<td><code>Organization</code></td>
+<td>exactMatch</td>
+<td><code>http://www.popoloproject.com/specs/organization.html</code></td>
+<td>Base org type, parent of more specific government / nonprofit types.</td>
+</tr>
+<tr>
+<td><code>entityTypeUri</code> <code>#government-jurisdiction</code></td>
+<td>Popolo/OCD</td>
+<td>Popolo <code>Organization</code> + OCD <code>jurisdiction</code></td>
+<td>relatedMatch</td>
+<td><code>https://opencivicdata.org/id/jurisdiction</code></td>
+<td>A governing body; mix of org and jurisdiction.</td>
+</tr>
+<tr>
+<td><code>identifiers.additionalSchemes</code> (division)</td>
+<td>OCD</td>
+<td><code>ocd-division/*</code></td>
+<td>exactMatch</td>
+<td><code>https://opencivicdata.org/id/division</code></td>
+<td>Store OCD division IDs as <code>schemeUri = "https://opencivicdata.org/id/division"</code>.</td>
+</tr>
+<tr>
+<td><code>identifiers.additionalSchemes</code> (jurisdiction)</td>
+<td>OCD</td>
+<td><code>ocd-jurisdiction/*</code></td>
+<td>exactMatch</td>
+<td><code>https://opencivicdata.org/id/jurisdiction</code></td>
+<td>Store OCD jurisdiction IDs.</td>
+</tr>
+<tr>
+<td><code>identifiers.additionalSchemes</code> (person)</td>
+<td>OCD / Popolo</td>
+<td><code>ocd-person/*</code> (Popolo person)</td>
+<td>exactMatch</td>
+<td><code>https://opencivicdata.org/id/person</code></td>
+<td>Link CEP entity to OCD/Popolo person IDs.</td>
+</tr>
+<tr>
+<td><code>identifiers.additionalSchemes</code> (organization)</td>
+<td>OCD / Popolo</td>
+<td><code>ocd-organization/*</code></td>
+<td>exactMatch</td>
+<td><code>https://opencivicdata.org/id/organization</code></td>
+<td>Link CEP entity to OCD/Popolo org IDs.</td>
+</tr>
+<tr>
+<td><code>identifiers.lei</code></td>
+<td>leif / LEI</td>
+<td><code>LEI</code> (ISO 17442 Legal Entity Identifier)</td>
+<td>exactMatch</td>
+<td><code>https://www.gleif.org/en/about-lei/introducing-the-legal-entity-identifier-lei</code></td>
+<td>Already in schema; key for global finance interoperability.</td>
+</tr>
+<tr>
+<td><code>identifiers.samUei</code></td>
+<td>US Federal</td>
+<td>UEI (SAM.gov Unique Entity Identifier)</td>
+<td>exactMatch</td>
+<td><code>https://www.sam.gov/</code></td>
+<td>Tier 2 identity in our stack.</td>
+</tr>
+<tr>
+<td><code>identifiers.additionalSchemes</code> (OCDS party)</td>
+<td>OCDS</td>
+<td><code>parties.identifier.id</code></td>
+<td>relatedMatch</td>
+<td><code>https://standard.open-contracting.org/1.1/en/schema/reference/#parties</code></td>
+<td>Use for suppliers / buyers in procurement records.</td>
+</tr>
+<tr>
+<td><code>entityTypeUri</code> <code>#supplier</code> / <code>#contractor</code></td>
+<td>OCDS</td>
+<td><code>Organization</code> with role <code>supplier</code> / <code>tenderer</code></td>
+<td>exactMatch</td>
+<td><code>https://standard.open-contracting.org/1.1/en/schema/reference/#parties</code></td>
+<td>Straight mapping for vendors.</td>
+</tr>
+<tr>
+<td><code>entityTypeUri</code> <code>#school-district</code></td>
+<td>Schema.org</td>
+<td><code>SchoolDistrict</code> (subtype of <code>EducationalOrganization</code>)</td>
+<td>relatedMatch</td>
+<td><code>https://schema.org/SchoolDistrict</code></td>
+<td>For education equity analytics.</td>
+</tr>
+<tr>
+<td><code>entityTypeUri</code> <code>#government-agency</code></td>
+<td>Schema.org</td>
+<td><code>GovernmentOrganization</code></td>
+<td>exactMatch</td>
+<td><code>https://schema.org/GovernmentOrganization</code></td>
+<td>For agencies at any level.</td>
+</tr>
+<tr>
+<td><strong>Relationship (legal / functional relationships)</strong></td>
+<td>Popolo</td>
+<td><code>Membership</code>, <code>Post</code></td>
+<td>relatedMatch</td>
+<td><code>http://www.popoloproject.com/specs/membership.html</code></td>
+<td>CEP Relationship is more general; includes contracts, grants, etc.</td>
+</tr>
+<tr>
+<td><code>relationshipTypeUri</code> <code>#board-membership</code></td>
+<td>Popolo</td>
+<td><code>Membership</code></td>
+<td>exactMatch</td>
+<td><code>http://www.popoloproject.com/specs/membership.html</code></td>
+<td>Board membership of a person in an org.</td>
+</tr>
+<tr>
+<td><code>relationshipTypeUri</code> <code>#employment</code></td>
+<td>Popolo</td>
+<td><code>Membership</code> (with <code>post</code> / <code>role</code>)</td>
+<td>broadMatch</td>
+<td><code>http://www.popoloproject.com/specs/membership.html</code></td>
+<td>Employment is a constrained membership.</td>
+</tr>
+<tr>
+<td><code>relationshipTypeUri</code> <code>#consulting-engagement</code></td>
+<td>Popolo</td>
+<td><code>Membership</code> or <code>ContactDetail</code></td>
+<td>relatedMatch</td>
+<td><code>http://www.popoloproject.com/specs/membership.html</code></td>
+<td>Less formal, non-employee service relationship.</td>
+</tr>
+<tr>
+<td><code>relationshipTypeUri</code> <code>#prime-contract</code></td>
+<td>OCDS</td>
+<td><code>Contract</code></td>
+<td>exactMatch</td>
+<td><code>https://standard.open-contracting.org/latest/en/schema/reference/#contract</code></td>
+<td>CEP Relationship for a prime contract matches OCDS Contract.</td>
+</tr>
+<tr>
+<td><code>relationshipTypeUri</code> <code>#subcontract</code></td>
+<td>OCDS</td>
+<td><code>Contract</code> with <code>relatedProcesses</code> / <code>relatedLots</code></td>
+<td>narrowMatch</td>
+<td><code>https://standard.open-contracting.org/latest/en/schema/reference/#contract</code></td>
+<td>Subcontracts are contracts linked to a parent award.</td>
+</tr>
+<tr>
+<td><code>relationshipTypeUri</code> <code>#grant-award</code></td>
+<td>OCDS</td>
+<td><code>Award</code></td>
+<td>relatedMatch</td>
+<td><code>https://standard.open-contracting.org/latest/en/schema/reference/#award</code></td>
+<td>OCDS is procurement-focused; grants are adjacent.</td>
+</tr>
+<tr>
+<td><code>relationshipTypeUri</code> <code>#cooperative-agreement</code></td>
+<td>OCDS</td>
+<td><code>Award</code> or <code>Contract</code> (context-specific)</td>
+<td>relatedMatch</td>
+<td><code>https://standard.open-contracting.org/latest/en/schema/reference/</code></td>
+<td>Map conceptually to awarded agreements.</td>
+</tr>
+<tr>
+<td><code>relationshipTypeUri</code> <code>#loan-agreement</code></td>
+<td>FIBO</td>
+<td><code>LoanAgreement</code></td>
+<td>exactMatch</td>
+<td><code>https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Debt/LoanAgreement</code></td>
+<td>Optional FIBO mapping; useful for financial instruments.</td>
+</tr>
+<tr>
+<td><code>relationshipTypeUri</code> <code>#subsidiary</code></td>
+<td>Schema.org</td>
+<td><code>subOrganization</code></td>
+<td>relatedMatch</td>
+<td><code>https://schema.org/subOrganization</code></td>
+<td>See vocab.mappings.</td>
+</tr>
+<tr>
+<td><code>relationshipTypeUri</code> <code>#joint-venture</code></td>
+<td>Schema.org</td>
+<td><code>Organization</code> with <code>memberOf</code></td>
+<td>relatedMatch</td>
+<td><code>https://schema.org/Organization</code></td>
+<td>Joint ventures as special multi-party orgs.</td>
+</tr>
+<tr>
+<td><code>relationshipTypeUri</code> <code>#regulatory-registration</code></td>
+<td>Schema.org</td>
+<td><code>GovernmentOrganization</code> / <code>Service</code></td>
+<td>relatedMatch</td>
+<td><code>https://schema.org/GovernmentOrganization</code></td>
+<td>Registration with a regulator.</td>
+</tr>
+<tr>
+<td><code>relationshipTypeUri</code> <code>#fiscal-sponsorship</code></td>
+<td>HSDS / Nonprofit</td>
+<td>HSDS <code>Funding</code> or <code>Service</code></td>
+<td>relatedMatch</td>
+<td><code>https://github.com/openreferral/specification</code></td>
+<td>For nonprofit fiscal sponsor relationships.</td>
+</tr>
+<tr>
+<td><strong>Exchange (value transfer events)</strong></td>
+<td>OCDS</td>
+<td><code>Implementation.transactions[]</code></td>
+<td>exactMatch</td>
+<td><code>https://standard.open-contracting.org/latest/en/schema/reference/#implementation</code></td>
+<td>CEP Exchange is very close to OCDS transaction-level data.</td>
+</tr>
+<tr>
+<td><code>exchangeTypeUri</code> <code>#grant-disbursement</code></td>
+<td>Schema.org</td>
+<td><code>MonetaryGrant</code></td>
+<td>exactMatch</td>
+<td><code>https://schema.org/MonetaryGrant</code></td>
+<td>Core pattern for education &amp; campaign finance.</td>
+</tr>
+<tr>
+<td><code>exchangeTypeUri</code> <code>#contract-fee-payment</code></td>
+<td>Schema.org</td>
+<td><code>Payment</code> / <code>Invoice</code></td>
+<td>relatedMatch</td>
+<td><code>https://schema.org/Invoice</code></td>
+<td>Payment for contracted services.</td>
+</tr>
+<tr>
+<td><code>exchangeTypeUri</code> <code>#donation</code> (if defined)</td>
+<td>Schema.org</td>
+<td><code>DonateAction</code></td>
+<td>relatedMatch</td>
+<td><code>https://schema.org/DonateAction</code></td>
+<td>Campaign or charitable donations.</td>
+</tr>
+<tr>
+<td><code>exchangeTypeUri</code> <code>#loan-disbursement</code></td>
+<td>FIBO</td>
+<td><code>LoanPrincipalPayment</code></td>
+<td>relatedMatch</td>
+<td>FIBO debt concepts</td>
+<td>More detailed financial modeling if needed.</td>
+</tr>
+<tr>
+<td><strong>Value &amp; Categorization</strong></td>
+<td>XBRL</td>
+<td>GAAP / GRT financial elements</td>
+<td>exactMatch</td>
+<td>e.g. <code>http://xbrl.us/us-gaap/2024-01-31#RevenueRecognition</code></td>
+<td>Map CEP <code>categorization</code> fields to XBRL when possible.</td>
+</tr>
+<tr>
+<td><code>value.currencyCode</code></td>
+<td>ISO 4217</td>
+<td>Currency codes</td>
+<td>exactMatch</td>
+<td><code>https://www.iso.org/iso-4217-currency-codes.html</code></td>
+<td>Already enforced by regex.</td>
+</tr>
+<tr>
+<td><code>categorization.naicsCode</code></td>
+<td>NAICS</td>
+<td>NAICS activity code</td>
+<td>exactMatch</td>
+<td><code>https://www.census.gov/naics/</code></td>
+<td>Already included in schema.</td>
+</tr>
+<tr>
+<td><code>categorization.cfdaNumber</code></td>
+<td>Assistance List</td>
+<td>CFDA / Assistance Listing number</td>
+<td>exactMatch</td>
+<td><code>https://sam.gov/content/assistance-listing</code></td>
+<td>For federal assistance programs.</td>
+</tr>
+<tr>
+<td><code>categorization.gtasAccountCode</code></td>
+<td>US GTAS</td>
+<td>Treasury Account Symbol (TAS)</td>
+<td>exactMatch</td>
+<td><code>https://fiscal.treasury.gov/gtas/</code></td>
+<td>Connects to federal reporting.</td>
+</tr>
+<tr>
+<td><strong>Provenance &amp; Attestation</strong></td>
+<td>W3C PROV</td>
+<td><code>Entity</code>, <code>Activity</code>, <code>Agent</code>, <code>wasGeneratedBy</code>, <code>wasAttributedTo</code>, etc.</td>
+<td>relatedMatch</td>
+<td><code>https://www.w3.org/TR/prov-o/</code></td>
+<td>CEP is PROV-aligned but more specialized.</td>
+</tr>
+<tr>
+<td><code>attestation.attestorId</code></td>
+<td>W3C PROV</td>
+<td><code>Agent</code> / <code>prov:wasAttributedTo</code></td>
+<td>exactMatch</td>
+<td><code>https://www.w3.org/TR/prov-o/#wasAttributedTo</code></td>
+<td>The attesting node is the Agent.</td>
+</tr>
+<tr>
+<td><code>attestation.attestationTimestamp</code></td>
+<td>W3C PROV</td>
+<td><code>generatedAtTime</code></td>
+<td>exactMatch</td>
+<td><code>https://www.w3.org/TR/prov-o/#generatedAtTime</code></td>
+<td>When the record (Entity) was generated.</td>
+</tr>
+<tr>
+<td><code>previousRecordHash</code></td>
+<td>W3C PROV</td>
+<td><code>wasRevisionOf</code></td>
+<td>exactMatch</td>
+<td><code>https://www.w3.org/TR/prov-o/#wasRevisionOf</code></td>
+<td>Revision chain between CEP records.</td>
+</tr>
+<tr>
+<td><code>provenanceChain.fundingChainTag</code></td>
+<td>W3C PROV</td>
+<td><code>wasDerivedFrom</code> chain</td>
+<td>relatedMatch</td>
+<td><code>https://www.w3.org/TR/prov-o/#wasDerivedFrom</code></td>
+<td>Human-readable representation of a PROV derivation path.</td>
+</tr>
+<tr>
+<td><code>provenanceChain.parentExchangeId</code></td>
+<td>W3C PROV</td>
+<td><code>wasDerivedFrom</code></td>
+<td>exactMatch</td>
+<td><code>https://www.w3.org/TR/prov-o/#wasDerivedFrom</code></td>
+<td>Parent exchange is the immediate predecessor in the flow.</td>
+</tr>
+<tr>
+<td><strong>Events, Bills, Votes</strong></td>
+<td>OCD / Popolo</td>
+<td><code>Bill</code>, <code>VoteEvent</code>, <code>Event</code></td>
+<td>relatedMatch</td>
+<td><code>https://opencivicdata.org/specs/</code></td>
+<td>Linked via <code>sourceReferences</code>.</td>
+</tr>
+<tr>
+<td><code>sourceReferences</code> (bill)</td>
+<td>OCD</td>
+<td><code>ocd-bill/*</code></td>
+<td>exactMatch</td>
+<td><code>https://opencivicdata.org/id/bill</code></td>
+<td>For authorizing legislation.</td>
+</tr>
+<tr>
+<td><code>sourceReferences</code> (vote)</td>
+<td>OCD / Popolo</td>
+<td><code>ocd-vote/*</code> or Popolo <code>VoteEvent</code></td>
+<td>exactMatch</td>
+<td><code>https://opencivicdata.org/id/vote</code></td>
+<td>For authorization votes.</td>
+</tr>
+<tr>
+<td><code>sourceReferences</code> (event)</td>
+<td>OCD / Popolo</td>
+<td><code>Event</code></td>
+<td>exactMatch</td>
+<td><code>https://opencivicdata.org/id/event</code></td>
+<td>Meetings, hearings tied to relationships or exchanges.</td>
+</tr>
+<tr>
+<td><strong>Human Services / Programs (optional)</strong></td>
+<td>HSDS</td>
+<td><code>Service</code>, <code>Organization</code>, <code>Funding</code></td>
+<td>relatedMatch</td>
+<td><code>https://github.com/openreferral/specification</code></td>
+<td>For social services and community programs.</td>
+</tr>
+<tr>
+<td><code>entityTypeUri</code> <code>#service-provider</code></td>
+<td>HSDS</td>
+<td><code>Organization</code></td>
+<td>exactMatch</td>
+<td><code>https://github.com/openreferral/specification</code></td>
+<td>For agencies and nonprofits providing services.</td>
+</tr>
+<tr>
+<td><code>relationshipTypeUri</code> <code>#service-delivery-agreement</code> (future)</td>
+<td>HSDS</td>
+<td><code>Service</code> / <code>Funding</code></td>
+<td>relatedMatch</td>
+<td>HSDS docs</td>
+<td>If added.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vocabulary-notes">Vocabulary Notes<a class="headerlink" href="#vocabulary-notes" title="Permanent link">&para;</a></h2>
+<p>prime-contract</p>
+<ul>
+<li>USAspending contract is a close conceptual match.</li>
+<li>OCDS contract is the canonical public procurement concept, so exactMatch.</li>
+</ul>
+<p>subcontract</p>
+<ul>
+<li>OCDS does not have a first-class subcontract object, but it is conceptually a specialized contract under a main award, so narrowMatch.</li>
+</ul>
+<p>grant-award</p>
+<ul>
+<li>USAspending grant is a direct match to federal grants.</li>
+<li>OCDS award is broader (covers procurements and grants), so relatedMatch.</li>
+<li>Schema.org MonetaryGrant is almost exactly, so exactMatch.</li>
+</ul>
+<p>loan-agreement</p>
+<ul>
+<li>FIBO Contracts and Loans ontologies give similar semantic neighborhood but more general, so relatedMatch.</li>
+</ul>
+<p>subsidiary</p>
+<ul>
+<li>Schema.org subOrganization is close but not strictly legal-definition match, so relatedMatch.</li>
+<li>FIBO Subsidiary is semantically close but in financial-industry framing; so relatedMatch.</li>
+</ul>
+<p>board-membership and employment</p>
+<ul>
+<li>Both are specializations of Popolo Membership (person–organization relationship with roles and time-bounds), so narrowMatch.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Civic Interconnect
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/civic-interconnect/civic-exchange-protocol" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.expand", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv-formats/3.0.1/ajv-formats.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.17.1/ajv2020.bundle.js"></script>
+      
+        <script src="../../../js/validator.js"></script>
+      
+    
+  </body>
+</html>
