@@ -1,0 +1,192 @@
+{
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test-vectors/schemas/localization-vector-set.schema.json",
+  "vectorSetId": "snfei-localization-us",
+  "specVersion": "1.1.0",
+  "vectorVersion": "2024.1",
+  "description": "US jurisdiction localization test vectors - federal and state agency expansions",
+  "generatedAt": "2025-11-28",
+  "vectors": [
+    {
+      "id": "loc_us_001",
+      "description": "Federal agency - DOJ",
+      "function": "apply_localization",
+      "input": {
+        "name": "DOJ",
+        "jurisdiction": "US"
+      },
+      "expected": {
+        "localized": "department of justice"
+      }
+    },
+    {
+      "id": "loc_us_002",
+      "description": "Federal agency - EPA",
+      "function": "apply_localization",
+      "input": {
+        "name": "EPA",
+        "jurisdiction": "US"
+      },
+      "expected": {
+        "localized": "environmental protection agency"
+      }
+    },
+    {
+      "id": "loc_us_003",
+      "description": "Federal agency - HHS",
+      "function": "apply_localization",
+      "input": {
+        "name": "HHS",
+        "jurisdiction": "US"
+      },
+      "expected": {
+        "localized": "health and human services"
+      }
+    },
+    {
+      "id": "loc_us_004",
+      "description": "Federal agency - DOE",
+      "function": "apply_localization",
+      "input": {
+        "name": "DOE",
+        "jurisdiction": "US"
+      },
+      "expected": {
+        "localized": "department of energy"
+      }
+    },
+    {
+      "id": "loc_us_005",
+      "description": "Federal agency - HUD",
+      "function": "apply_localization",
+      "input": {
+        "name": "HUD",
+        "jurisdiction": "US"
+      },
+      "expected": {
+        "localized": "housing and urban development"
+      }
+    },
+    {
+      "id": "loc_us_ca_001",
+      "description": "California agency - CalTrans",
+      "function": "apply_localization",
+      "input": {
+        "name": "CalTrans",
+        "jurisdiction": "US/CA"
+      },
+      "expected": {
+        "localized": "california department of transportation"
+      }
+    },
+    {
+      "id": "loc_us_ca_002",
+      "description": "California agency - CalPERS",
+      "function": "apply_localization",
+      "input": {
+        "name": "CalPERS",
+        "jurisdiction": "US/CA"
+      },
+      "expected": {
+        "localized": "california public employees retirement system"
+      }
+    },
+    {
+      "id": "loc_us_ca_003",
+      "description": "California agency - LAUSD",
+      "function": "apply_localization",
+      "input": {
+        "name": "LAUSD",
+        "jurisdiction": "US/CA"
+      },
+      "expected": {
+        "localized": "los angeles unified school district"
+      }
+    },
+    {
+      "id": "loc_us_ny_001",
+      "description": "New York agency - MTA",
+      "function": "apply_localization",
+      "input": {
+        "name": "MTA",
+        "jurisdiction": "US/NY"
+      },
+      "expected": {
+        "localized": "metropolitan transportation authority"
+      }
+    },
+    {
+      "id": "loc_us_ny_002",
+      "description": "New York agency - NYCHA",
+      "function": "apply_localization",
+      "input": {
+        "name": "NYCHA",
+        "jurisdiction": "US/NY"
+      },
+      "expected": {
+        "localized": "new york city housing authority"
+      }
+    },
+    {
+      "id": "loc_us_ny_003",
+      "description": "New York agency - NYPD",
+      "function": "apply_localization",
+      "input": {
+        "name": "NYPD",
+        "jurisdiction": "US/NY"
+      },
+      "expected": {
+        "localized": "new york police department"
+      }
+    },
+    {
+      "id": "loc_us_ny_004",
+      "description": "New York agency - Port Authority",
+      "function": "apply_localization",
+      "input": {
+        "name": "Port Authority",
+        "jurisdiction": "US/NY"
+      },
+      "expected": {
+        "localized": "port authority of new york and new jersey"
+      }
+    },
+    {
+      "id": "loc_us_fallback_001",
+      "description": "Unknown jurisdiction falls back to US base",
+      "function": "apply_localization",
+      "input": {
+        "name": "EPA",
+        "jurisdiction": "US/XX"
+      },
+      "expected": {
+        "localized": "environmental protection agency"
+      },
+      "notes": "Unknown state code should fall back to US base config"
+    },
+    {
+      "id": "loc_us_passthrough_001",
+      "description": "Unknown acronym passes through unchanged",
+      "function": "apply_localization",
+      "input": {
+        "name": "XYZZY Corp",
+        "jurisdiction": "US"
+      },
+      "expected": {
+        "localized": "xyzzy corp"
+      },
+      "notes": "Names without matching rules pass through (lowercased)"
+    },
+    {
+      "id": "loc_us_mixed_001",
+      "description": "Agency acronym within longer name",
+      "function": "apply_localization",
+      "input": {
+        "name": "The EPA Regional Office",
+        "jurisdiction": "US"
+      },
+      "expected": {
+        "localized": "the environmental protection agency regional office"
+      }
+    }
+  ]
+}

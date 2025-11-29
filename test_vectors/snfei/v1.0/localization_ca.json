@@ -1,0 +1,108 @@
+{
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test-vectors/schemas/localization-vector-set.schema.json",
+  "vectorSetId": "snfei-localization-ca",
+  "specVersion": "1.1.0",
+  "vectorVersion": "2024.1",
+  "description": "Canada jurisdiction localization test vectors - federal and provincial agency expansions",
+  "generatedAt": "2025-11-28",
+  "vectors": [
+    {
+      "id": "loc_ca_001",
+      "description": "Federal agency - RCMP",
+      "function": "apply_localization",
+      "input": {
+        "name": "RCMP",
+        "jurisdiction": "CA"
+      },
+      "expected": {
+        "localized": "royal canadian mounted police"
+      }
+    },
+    {
+      "id": "loc_ca_002",
+      "description": "Federal agency - CRA",
+      "function": "apply_localization",
+      "input": {
+        "name": "CRA",
+        "jurisdiction": "CA"
+      },
+      "expected": {
+        "localized": "canada revenue agency"
+      }
+    },
+    {
+      "id": "loc_ca_on_001",
+      "description": "Ontario agency - TTC",
+      "function": "apply_localization",
+      "input": {
+        "name": "TTC",
+        "jurisdiction": "CA/ON"
+      },
+      "expected": {
+        "localized": "toronto transit commission"
+      }
+    },
+    {
+      "id": "loc_ca_on_002",
+      "description": "Ontario agency - WSIB",
+      "function": "apply_localization",
+      "input": {
+        "name": "WSIB",
+        "jurisdiction": "CA/ON"
+      },
+      "expected": {
+        "localized": "workplace safety and insurance board"
+      }
+    },
+    {
+      "id": "loc_ca_qc_001",
+      "description": "Quebec - French accent removal in name",
+      "function": "apply_localization",
+      "input": {
+        "name": "Société Générale",
+        "jurisdiction": "CA/QC"
+      },
+      "expected": {
+        "localized": "societe generale"
+      }
+    },
+    {
+      "id": "loc_ca_qc_002",
+      "description": "Quebec - Limitée suffix",
+      "function": "apply_localization",
+      "input": {
+        "name": "Acme Limitée",
+        "jurisdiction": "CA/QC"
+      },
+      "expected": {
+        "localized": "acme limitee"
+      }
+    },
+    {
+      "id": "loc_ca_fallback_001",
+      "description": "Ontario inherits federal RCMP",
+      "function": "apply_localization",
+      "input": {
+        "name": "RCMP",
+        "jurisdiction": "CA/ON"
+      },
+      "expected": {
+        "localized": "royal canadian mounted police"
+      },
+      "notes": "Provincial config inherits federal agency expansions"
+    },
+    {
+      "id": "loc_ca_fallback_002",
+      "description": "Unknown province falls back to CA base",
+      "function": "apply_localization",
+      "input": {
+        "name": "CRA",
+        "jurisdiction": "CA/XX"
+      },
+      "expected": {
+        "localized": "canada revenue agency"
+      },
+      "notes": "Unknown province code falls back to CA base config"
+    }
+  ]
+}

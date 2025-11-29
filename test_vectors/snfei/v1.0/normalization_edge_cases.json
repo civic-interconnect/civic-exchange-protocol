@@ -1,0 +1,341 @@
+{
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test-vectors/schemas/normalization-vector-set.schema.json",
+  "vectorSetId": "snfei-normalization-edge-cases",
+  "specVersion": "1.1.0",
+  "vectorVersion": "2024.1",
+  "description": "Edge case normalization test vectors - Unicode, empty strings, unusual inputs",
+  "generatedAt": "2025-11-28",
+  "vectors": [
+    {
+      "id": "norm_edge_001",
+      "description": "Empty string",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": ""
+      },
+      "expected": {
+        "normalized": ""
+      }
+    },
+    {
+      "id": "norm_edge_002",
+      "description": "Only whitespace",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "   "
+      },
+      "expected": {
+        "normalized": ""
+      }
+    },
+    {
+      "id": "norm_edge_003",
+      "description": "Only punctuation",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": ".,;:!?"
+      },
+      "expected": {
+        "normalized": ""
+      }
+    },
+    {
+      "id": "norm_edge_004",
+      "description": "Accented characters - Spanish ñ",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Fundación Año Nuevo"
+      },
+      "expected": {
+        "normalized": "fundacion ano nuevo"
+      }
+    },
+    {
+      "id": "norm_edge_005",
+      "description": "Accented characters - French é è",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Société Générale"
+      },
+      "expected": {
+        "normalized": "societe generale"
+      }
+    },
+    {
+      "id": "norm_edge_006",
+      "description": "Accented characters - German ü ö",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Münchner Rückversicherung"
+      },
+      "expected": {
+        "normalized": "munchner ruckversicherung"
+      }
+    },
+    {
+      "id": "norm_edge_007",
+      "description": "Accented characters - Nordic ø å",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Søren Ålborg Foundation"
+      },
+      "expected": {
+        "normalized": "soren alborg foundation"
+      }
+    },
+    {
+      "id": "norm_edge_008",
+      "description": "Curly quotes",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Springfield Foundation"
+      },
+      "expected": {
+        "normalized": "springfield foundation"
+      }
+    },
+    {
+      "id": "norm_edge_009",
+      "description": "Curly apostrophe",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "O'Brien's Market"
+      },
+      "expected": {
+        "normalized": "obriens market"
+      }
+    },
+    {
+      "id": "norm_edge_010",
+      "description": "En-dash and em-dash",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Smith–Jones—Partners"
+      },
+      "expected": {
+        "normalized": "smithjonespartners"
+      }
+    },
+    {
+      "id": "norm_edge_011",
+      "description": "Numeric only",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "12345"
+      },
+      "expected": {
+        "normalized": "12345"
+      }
+    },
+    {
+      "id": "norm_edge_012",
+      "description": "Mixed numbers and letters",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "District 9 Schools"
+      },
+      "expected": {
+        "normalized": "district 9 schools"
+      }
+    },
+    {
+      "id": "norm_edge_013",
+      "description": "Roman numerals in name",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Pope John Paul II Foundation"
+      },
+      "expected": {
+        "normalized": "pope john paul ii foundation"
+      },
+      "notes": "Roman numerals preserved as-is in v1.1 (name context, not district numbers)"
+    },
+    {
+      "id": "norm_edge_014",
+      "description": "All caps with numbers",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "DISTRICT 12 USD"
+      },
+      "expected": {
+        "normalized": "district 12 unified school district"
+      }
+    },
+    {
+      "id": "norm_edge_015",
+      "description": "Ampersand",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Smith & Jones LLC"
+      },
+      "expected": {
+        "normalized": "smith jones limited liability company"
+      }
+    },
+    {
+      "id": "norm_edge_016",
+      "description": "Forward slash",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Health/Education Services"
+      },
+      "expected": {
+        "normalized": "healtheducation services"
+      }
+    },
+    {
+      "id": "norm_edge_017",
+      "description": "Parentheses",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Springfield (Main) School District"
+      },
+      "expected": {
+        "normalized": "springfield main school district"
+      }
+    },
+    {
+      "id": "norm_edge_018",
+      "description": "Brackets",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Springfield [East] School District"
+      },
+      "expected": {
+        "normalized": "springfield east school district"
+      }
+    },
+    {
+      "id": "norm_edge_019",
+      "description": "Very long name",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "The Extremely Long Named Foundation for the Advancement of Education and Research in the Greater Metropolitan Area of Springfield"
+      },
+      "expected": {
+        "normalized": "extremely long named foundation advancement education research greater metropolitan area springfield"
+      }
+    },
+    {
+      "id": "norm_edge_020",
+      "description": "Single character",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "X"
+      },
+      "expected": {
+        "normalized": "x"
+      }
+    },
+    {
+      "id": "norm_addr_001",
+      "description": "Address normalization - basic",
+      "function": "normalize_address",
+      "input": {
+        "address": "123 Main Street"
+      },
+      "expected": {
+        "normalized": "123 main street"
+      }
+    },
+    {
+      "id": "norm_addr_002",
+      "description": "Address normalization - abbreviations",
+      "function": "normalize_address",
+      "input": {
+        "address": "123 N. Main St."
+      },
+      "expected": {
+        "normalized": "123 north main street"
+      }
+    },
+    {
+      "id": "norm_addr_003",
+      "description": "Address normalization - suite removal",
+      "function": "normalize_address",
+      "input": {
+        "address": "123 Main St, Suite 400"
+      },
+      "expected": {
+        "normalized": "123 main street"
+      }
+    },
+    {
+      "id": "norm_addr_004",
+      "description": "Address normalization - apartment removal",
+      "function": "normalize_address",
+      "input": {
+        "address": "456 Oak Ave, Apt 2B"
+      },
+      "expected": {
+        "normalized": "456 oak avenue"
+      }
+    },
+    {
+      "id": "norm_addr_005",
+      "description": "Address normalization - floor removal",
+      "function": "normalize_address",
+      "input": {
+        "address": "789 Broadway, Floor 12"
+      },
+      "expected": {
+        "normalized": "789 broadway"
+      }
+    },
+    {
+      "id": "norm_date_001",
+      "description": "Date normalization - ISO format",
+      "function": "normalize_registration_date",
+      "input": {
+        "date_str": "2024-03-15"
+      },
+      "expected": {
+        "normalized": "2024-03-15"
+      }
+    },
+    {
+      "id": "norm_date_002",
+      "description": "Date normalization - US format",
+      "function": "normalize_registration_date",
+      "input": {
+        "date_str": "03/15/2024"
+      },
+      "expected": {
+        "normalized": "2024-03-15"
+      }
+    },
+    {
+      "id": "norm_date_003",
+      "description": "Date normalization - US format alt",
+      "function": "normalize_registration_date",
+      "input": {
+        "date_str": "3/15/2024"
+      },
+      "expected": {
+        "normalized": "2024-03-15"
+      }
+    },
+    {
+      "id": "norm_date_004",
+      "description": "Date normalization - year only",
+      "function": "normalize_registration_date",
+      "input": {
+        "date_str": "1985"
+      },
+      "expected": {
+        "normalized": "1985-01-01"
+      }
+    },
+    {
+      "id": "norm_date_005",
+      "description": "Date normalization - empty string",
+      "function": "normalize_registration_date",
+      "input": {
+        "date_str": ""
+      },
+      "expected": {
+        "normalized": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test-vectors/schemas/manifest.schema.json",
+  "title": "CEP Test Vector Manifest Schema",
+  "description": "Schema for the index of all test vector files for cross-implementation verification.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri",
+      "description": "The JSON Schema dialect URI."
+    },
+    "$id": {
+      "type": "string",
+      "format": "uri",
+      "description": "The canonical URI for this manifest file."
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "manifestVersion": {
+      "type": "string",
+      "description": "The version of the manifest schema itself."
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the manifest file was generated (YYYY-MM-DD)."
+    },
+    "vectors": {
+      "type": "array",
+      "description": "A list of test vector categories.",
+      "items": {
+        "$ref": "#/definitions/VectorCategory"
+      }
+    },
+    "implementationNotes": {
+      "type": "object",
+      "description": "Notes for users on how to interpret and use the manifest data.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "$id",
+    "title",
+    "description",
+    "manifestVersion",
+    "generatedAt",
+    "vectors",
+    "implementationNotes"
+  ],
+  "definitions": {
+    "VectorCategory": {
+      "type": "object",
+      "description": "A top-level category of test vectors (e.g., SNFEI, Entity).",
+      "required": [
+        "name",
+        "description",
+        "versions"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The key name of the category (e.g., 'snfei', 'entity')."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the category's purpose."
+        },
+        "versions": {
+          "type": "array",
+          "description": "A list of specification versions for this category.",
+          "items": {
+            "$ref": "#/definitions/VectorVersion"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "VectorVersion": {
+      "type": "object",
+      "description": "A specific version of a test vector set.",
+      "required": [
+        "name",
+        "status",
+        "specVersion",
+        "description",
+        "files"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The version identifier (e.g., 'v1.0', 'v1.1')."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "current",
+            "deprecated",
+            "draft"
+          ],
+          "description": "The current status of this vector set."
+        },
+        "specVersion": {
+          "type": "string",
+          "description": "The version of the underlying CEP specification being tested."
+        },
+        "description": {
+          "type": "string"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri-reference"
+          },
+          "description": "A list of relative paths to the test vector files."
+        },
+        "deprecationNote": {
+          "type": "string",
+          "description": "Optional: A note explaining why the version is deprecated."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

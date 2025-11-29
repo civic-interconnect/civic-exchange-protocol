@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test-vectors/schemas/normalization-vector-set.schema.json",
+  "title": "Normalization Test Vector Set",
+  "description": "Schema for a file containing a set of normalization test vectors, based on the input example.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri",
+      "description": "The JSON Schema URL this document adheres to."
+    },
+    "vectorSetId": {
+      "type": "string",
+      "description": "A unique identifier for this set of test vectors."
+    },
+    "specVersion": {
+      "type": "string",
+      "description": "The version of the specification (e.g., Civic Exchange Protocol) the vectors are testing."
+    },
+    "vectorVersion": {
+      "type": "string",
+      "description": "The version of the test vector set itself."
+    },
+    "description": {
+      "type": "string",
+      "description": "A brief description of the purpose of this test vector set."
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the test vector file was generated (YYYY-MM-DD)."
+    },
+    "vectors": {
+      "type": "array",
+      "description": "An array of individual normalization test cases.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "description",
+          "function",
+          "input",
+          "expected"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the specific test case (e.g., norm_edge_001)."
+          },
+          "description": {
+            "type": "string",
+            "description": "A descriptive name for the test case."
+          },
+          "function": {
+            "type": "string",
+            "description": "The name of the normalization function being tested (e.g., normalize_legal_name)."
+          },
+          "input": {
+            "type": "object",
+            "description": "The input data for the normalization function. Keys are dynamic (e.g., legal_name, address, date_str).",
+            "additionalProperties": {
+              "type": ["string", "number", "boolean", "null"]
+            }
+          },
+          "expected": {
+            "type": "object",
+            "description": "The expected output from the normalization function.",
+            "required": ["normalized"],
+            "properties": {
+              "normalized": {
+                "type": ["string", "null"],
+                "description": "The expected normalized value."
+              }
+            }
+          },
+          "notes": {
+            "type": "string",
+            "description": "Optional notes or rationale for the test case."
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "vectorSetId",
+    "specVersion",
+    "vectorVersion",
+    "description",
+    "generatedAt",
+    "vectors"
+  ],
+  "additionalProperties": false
+}

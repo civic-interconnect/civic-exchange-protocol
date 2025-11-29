@@ -1,0 +1,230 @@
+{
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test-vectors/schemas/normalization-vector-set.schema.json",
+  "vectorSetId": "snfei-normalization-basic",
+  "specVersion": "1.1.0",
+  "vectorVersion": "2024.1",
+  "description": "Basic legal name normalization test vectors",
+  "generatedAt": "2025-11-28",
+  "vectors": [
+    {
+      "id": "norm_basic_001",
+      "description": "Simple uppercase to lowercase",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "SPRINGFIELD SCHOOL DISTRICT"
+      },
+      "expected": {
+        "normalized": "springfield school district"
+      }
+    },
+    {
+      "id": "norm_basic_002",
+      "description": "Mixed case normalization",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Springfield School District"
+      },
+      "expected": {
+        "normalized": "springfield school district"
+      }
+    },
+    {
+      "id": "norm_basic_003",
+      "description": "Whitespace collapse",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Springfield    School   District"
+      },
+      "expected": {
+        "normalized": "springfield school district"
+      }
+    },
+    {
+      "id": "norm_basic_004",
+      "description": "Leading/trailing whitespace",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "  Springfield School District  "
+      },
+      "expected": {
+        "normalized": "springfield school district"
+      }
+    },
+    {
+      "id": "norm_basic_005",
+      "description": "Punctuation removal - commas",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Springfield, School, District"
+      },
+      "expected": {
+        "normalized": "springfield school district"
+      }
+    },
+    {
+      "id": "norm_basic_006",
+      "description": "Punctuation removal - periods",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Springfield Sch. Dist."
+      },
+      "expected": {
+        "normalized": "springfield school district"
+      }
+    },
+    {
+      "id": "norm_basic_007",
+      "description": "Punctuation removal - apostrophes",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "St. Mary's Academy"
+      },
+      "expected": {
+        "normalized": "saint marys academy"
+      }
+    },
+    {
+      "id": "norm_basic_008",
+      "description": "Punctuation removal - hyphens",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Winston-Salem School District"
+      },
+      "expected": {
+        "normalized": "winstonsalem school district"
+      }
+    },
+    {
+      "id": "norm_basic_009",
+      "description": "Hash/number sign removal",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Springfield USD #12"
+      },
+      "expected": {
+        "normalized": "springfield unified school district 12"
+      }
+    },
+    {
+      "id": "norm_basic_010",
+      "description": "Stop word removal - THE",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "The Boston Foundation"
+      },
+      "expected": {
+        "normalized": "boston foundation"
+      }
+    },
+    {
+      "id": "norm_basic_011",
+      "description": "Stop word removal - OF (middle)",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "City of Springfield"
+      },
+      "expected": {
+        "normalized": "city springfield"
+      }
+    },
+    {
+      "id": "norm_basic_012",
+      "description": "Stop word removal - multiple",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "The Department of Education"
+      },
+      "expected": {
+        "normalized": "department education"
+      }
+    },
+    {
+      "id": "norm_basic_013",
+      "description": "Legal suffix expansion - Inc",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Acme Corp Inc"
+      },
+      "expected": {
+        "normalized": "acme corporation incorporated"
+      }
+    },
+    {
+      "id": "norm_basic_014",
+      "description": "Legal suffix expansion - Inc.",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Acme Corp., Inc."
+      },
+      "expected": {
+        "normalized": "acme corporation incorporated"
+      }
+    },
+    {
+      "id": "norm_basic_015",
+      "description": "Legal suffix expansion - LLC",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Smith Consulting LLC"
+      },
+      "expected": {
+        "normalized": "smith consulting limited liability company"
+      }
+    },
+    {
+      "id": "norm_basic_016",
+      "description": "Legal suffix expansion - Ltd",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "British Holdings Ltd"
+      },
+      "expected": {
+        "normalized": "british holdings limited"
+      }
+    },
+    {
+      "id": "norm_basic_017",
+      "description": "Abbreviation expansion - Dept",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Dept of Transportation"
+      },
+      "expected": {
+        "normalized": "department transportation"
+      }
+    },
+    {
+      "id": "norm_basic_018",
+      "description": "Abbreviation expansion - Assn",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "National Education Assn"
+      },
+      "expected": {
+        "normalized": "national education association"
+      }
+    },
+    {
+      "id": "norm_basic_019",
+      "description": "Abbreviation expansion - USD",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Springfield USD"
+      },
+      "expected": {
+        "normalized": "springfield unified school district"
+      }
+    },
+    {
+      "id": "norm_basic_020",
+      "description": "Abbreviation expansion - Sch Dist",
+      "function": "normalize_legal_name",
+      "input": {
+        "legal_name": "Springfield Sch Dist"
+      },
+      "expected": {
+        "normalized": "springfield school district"
+      }
+    }
+  ]
+}

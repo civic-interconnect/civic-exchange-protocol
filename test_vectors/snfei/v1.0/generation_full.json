@@ -1,0 +1,208 @@
+{
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/test-vectors/schemas/generation-vector-set.schema.json",
+  "vectorSetId": "snfei-generation-full",
+  "specVersion": "1.1.0",
+  "vectorVersion": "2024.1",
+  "description": "End-to-end SNFEI generation test vectors with final hash values",
+  "generatedAt": "2025-11-28",
+  "hashAlgorithm": "SHA-256",
+  "hashFormat": "lowercase hex, 64 characters",
+  "canonicalFormat": "legal_name_normalized|address_normalized|country_code|registration_date",
+  "vectors": [
+    {
+      "id": "gen_001",
+      "description": "School district - name and country only",
+      "function": "generate_snfei",
+      "input": {
+        "legal_name": "Springfield Unified School District",
+        "country_code": "US",
+        "address": null,
+        "registration_date": null
+      },
+      "intermediate": {
+        "legal_name_normalized": "springfield unified school district",
+        "address_normalized": "",
+        "country_code": "US",
+        "registration_date": "",
+        "canonical_string": "springfield unified school district||US|"
+      },
+      "expected": {
+        "snfei": "e3b7c9d8f4a2b1e6c5d4a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2"
+      },
+      "equivalentInputs": [
+        "SPRINGFIELD UNIFIED SCHOOL DISTRICT",
+        "springfield usd",
+        "Springfield Unified Sch Dist",
+        "Springfield Unified Sch. Dist."
+      ],
+      "notes": "All equivalent inputs MUST produce the same SNFEI"
+    },
+    {
+      "id": "gen_002",
+      "description": "School district with address",
+      "function": "generate_snfei",
+      "input": {
+        "legal_name": "Springfield Unified School District #12",
+        "country_code": "US",
+        "address": "123 Education Way",
+        "registration_date": null
+      },
+      "intermediate": {
+        "legal_name_normalized": "springfield unified school district 12",
+        "address_normalized": "123 education way",
+        "country_code": "US",
+        "registration_date": "",
+        "canonical_string": "springfield unified school district 12|123 education way|US|"
+      },
+      "expected": {
+        "snfei": "bd4cdf26529bbd8882815249e7bfa21a8b6ace91166fb710fd41142221f37e67"
+      }
+    },
+    {
+      "id": "gen_003",
+      "description": "Nonprofit with address and registration date",
+      "function": "generate_snfei",
+      "input": {
+        "legal_name": "The Boston Community Foundation, Inc.",
+        "country_code": "US",
+        "address": "100 Charitable Lane, Suite 500",
+        "registration_date": "03/15/1990"
+      },
+      "intermediate": {
+        "legal_name_normalized": "boston community foundation incorporated",
+        "address_normalized": "100 charitable lane",
+        "country_code": "US",
+        "registration_date": "1990-03-15",
+        "canonical_string": "boston community foundation incorporated|100 charitable lane|US|1990-03-15"
+      },
+      "expected": {
+        "snfei": "93cbc6c1da35c1018a4f783486aafea1a527f67c5af824244b4a278c4e025f83"
+      }
+    },
+    {
+      "id": "gen_004",
+      "description": "NY agency with localization",
+      "function": "generate_snfei",
+      "input": {
+        "legal_name": "MTA",
+        "country_code": "US",
+        "address": null,
+        "registration_date": null,
+        "jurisdiction": "US/NY"
+      },
+      "intermediate": {
+        "after_localization": "metropolitan transportation authority",
+        "legal_name_normalized": "metropolitan transportation authority",
+        "address_normalized": "",
+        "country_code": "US",
+        "registration_date": "",
+        "canonical_string": "metropolitan transportation authority||US|"
+      },
+      "expected": {
+        "snfei": "b4d3ec4f1ea250933a9c9050e4e8f7c6826ffa560290d9b8e1e79e58ad377944"
+      },
+      "notes": "Requires localization step before normalization"
+    },
+    {
+      "id": "gen_005",
+      "description": "LLC with full address normalization",
+      "function": "generate_snfei",
+      "input": {
+        "legal_name": "Acme Consulting, LLC",
+        "country_code": "US",
+        "address": "456 N. Main St., Suite 200",
+        "registration_date": "2015-06-01"
+      },
+      "intermediate": {
+        "legal_name_normalized": "acme consulting limited liability company",
+        "address_normalized": "456 north main street",
+        "country_code": "US",
+        "registration_date": "2015-06-01",
+        "canonical_string": "acme consulting limited liability company|456 north main street|US|2015-06-01"
+      },
+      "expected": {
+        "snfei": "a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456"
+      }
+    },
+    {
+      "id": "gen_006",
+      "description": "Canadian entity",
+      "function": "generate_snfei",
+      "input": {
+        "legal_name": "Toronto Community Foundation",
+        "country_code": "CA",
+        "address": "100 King St W",
+        "registration_date": "1981-01-15"
+      },
+      "intermediate": {
+        "legal_name_normalized": "toronto community foundation",
+        "address_normalized": "100 king street west",
+        "country_code": "CA",
+        "registration_date": "1981-01-15",
+        "canonical_string": "toronto community foundation|100 king street west|CA|1981-01-15"
+      },
+      "expected": {
+        "snfei": "fedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210"
+      }
+    },
+    {
+      "id": "gen_007",
+      "description": "Minimal input - name and country only",
+      "function": "generate_snfei",
+      "input": {
+        "legal_name": "Acme Corp",
+        "country_code": "US",
+        "address": null,
+        "registration_date": null
+      },
+      "intermediate": {
+        "legal_name_normalized": "acme corporation",
+        "address_normalized": "",
+        "country_code": "US",
+        "registration_date": "",
+        "canonical_string": "acme corporation||US|"
+      },
+      "expected": {
+        "snfei": "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+      },
+      "confidence": {
+        "tier": 3,
+        "score": 0.5,
+        "fields_used": ["legal_name", "country_code"]
+      }
+    },
+    {
+      "id": "gen_008",
+      "description": "Maximum confidence - all fields",
+      "function": "generate_snfei",
+      "input": {
+        "legal_name": "Springfield Regional Medical Center, Inc.",
+        "country_code": "US",
+        "address": "500 Hospital Drive",
+        "registration_date": "1965-03-20"
+      },
+      "intermediate": {
+        "legal_name_normalized": "springfield regional medical center incorporated",
+        "address_normalized": "500 hospital drive",
+        "country_code": "US",
+        "registration_date": "1965-03-20",
+        "canonical_string": "springfield regional medical center incorporated|500 hospital drive|US|1965-03-20"
+      },
+      "expected": {
+        "snfei": "abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+      },
+      "confidence": {
+        "tier": 3,
+        "score": 0.9,
+        "fields_used": ["legal_name", "country_code", "address", "registration_date"]
+      }
+    }
+  ],
+  "crossImplementationNotes": {
+    "encoding": "All strings UTF-8 encoded before hashing",
+    "emptyFields": "Empty/null fields represented as empty string in canonical format",
+    "fieldOrder": "Fields MUST be in order: name|address|country|date",
+    "delimiter": "Pipe character (|) ASCII 124",
+    "caseHandling": "All text lowercase except country_code (uppercase)"
+  }
+}
