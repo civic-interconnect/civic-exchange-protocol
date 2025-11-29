@@ -33,6 +33,7 @@ dependencies = [
     # "pandas",
     "pydantic",
     # "splink",
+    "typer",
 ]
 
 [project.optional-dependencies]
