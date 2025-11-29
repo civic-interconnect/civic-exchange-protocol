@@ -1,0 +1,68 @@
+{
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.vocabulary.schema.json",
+  "vocabularyUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/resolution-method.json",
+  "version": "1.0.0",
+  "title": "CEP Entity Resolution Method Vocabulary",
+  "description": "Controlled vocabulary for methods used to derive or confirm CEP Entity records from source data, referenced by resolutionConfidence.methodUri.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-exchange-protocol/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/resolution-method.json#splink-v4",
+      "code": "splink-v4",
+      "label": "Splink v4 Probabilistic Resolution",
+      "definition": "Entity resolution performed using Splink v4 with a probabilistic Fellegi-Sunter style model and calibrated match thresholds.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/resolution-method.json#probabilistic-method",
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/resolution-method.json#deterministic-rules",
+      "code": "deterministic-rules",
+      "label": "Deterministic Rule-Based Resolution",
+      "definition": "Entity resolution performed using exact or near-exact deterministic rules (for example, matching on UEI or LEI plus exact jurisdiction).",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/resolution-method.json#manual-review",
+      "code": "manual-review",
+      "label": "Manual Review",
+      "definition": "Entity resolution decisions reached through human review and adjudication, often informed by automated candidate generation.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/resolution-method.json#authoritative-registry-link",
+      "code": "authoritative-registry-link",
+      "label": "Authoritative Registry Link",
+      "definition": "Entity resolution performed by matching to an authoritative registry such as a corporate, charity, or governmental entity register.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/resolution-method.json#probabilistic-method",
+      "code": "probabilistic-method",
+      "label": "Probabilistic Resolution Method (Abstract)",
+      "definition": "An abstract parent term for methods that assign match probabilities based on statistical comparison of record fields.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    }
+  ],
+  "mappings": []
+}

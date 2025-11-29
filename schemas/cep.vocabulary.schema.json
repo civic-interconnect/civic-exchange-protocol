@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.vocabulary.schema.json",
+  "title": "CEP Controlled Vocabulary Definition",
+  "description": "Meta-schema for defining controlled vocabularies used by CEP. Vocabularies are versioned independently of the core schemas, enabling faster evolution of domain-specific terms. Each vocabulary can advertise SKOS-style mappings to external standards such as Popolo, Open Civic Data (OCD), Open Contracting Data Standard (OCDS), Schema.org, Open Referral HSDS, XBRL taxonomies, FIBO, W3C PROV, and national regulatory glossaries.",
+  "type": "object",
+
+  "properties": {
+    "vocabularyUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "The canonical URI for this vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json'). This URI forms the base for all termUri values (usually vocabularyUri#code)."
+    },
+
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semantic version of this vocabulary (MAJOR.MINOR.PATCH). MAJOR is incremented for breaking changes, MINOR for additive changes, PATCH for corrections that do not change term semantics."
+    },
+
+    "title": {
+      "type": "string",
+      "maxLength": 128,
+      "description": "Human-readable title for the vocabulary (for example, 'CEP Relationship Type Vocabulary')."
+    },
+
+    "description": {
+      "type": "string",
+      "maxLength": 1024,
+      "description": "High-level description of what this vocabulary covers and how it is intended to be used within CEP and external standards."
+    },
+
+    "governanceUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI to the governance document explaining how terms are added, deprecated, or versioned (for example, a CONTRIBUTING or vocabulary-process document in this repository)."
+    },
+
+    "effectiveDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date this vocabulary version became effective. This date SHOULD reflect when implementations are expected to honor this version for hash-stable canonicalization."
+    },
+
+    "deprecatesVersion": {
+      "type": ["string", "null"],
+      "description": "Previous version this replaces, if any. Null if this is the first published version."
+    },
+
+    "terms": {
+      "type": "array",
+      "description": "The set of controlled terms in this vocabulary. Terms provide stable URIs, codes, labels, and definitions, with optional hierarchy and references to external sources (see also).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "termUri": {
+            "type": "string",
+            "format": "uri",
+            "description": "Full URI for this term (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#prime-contract'). Typically composed as vocabularyUri + '#' + code."
+          },
+          "code": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "maxLength": 64,
+            "description": "Short code for the term (for example, 'prime-contract'). Lowercase, hyphen-separated. Code MUST be unique within this vocabulary version and SHOULD be stable across versions unless the concept itself changes."
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "Human-readable label (for example, 'Prime Contract'). Intended for UI display and documentation."
+          },
+          "definition": {
+            "type": "string",
+            "maxLength": 1024,
+            "description": "Precise definition of what this term means in the CEP context. This SHOULD be stable and unambiguous enough to support legal/compliance and academic use."
+          },
+          "parentTermUri": {
+            "type": ["string", "null"],
+            "format": "uri",
+            "description": "URI of a broader term this specializes (enables hierarchical vocabularies). This aligns with SKOS 'broader' relationships and supports inheritance trees (for example, 'subgrant' specializing 'grant-award')."
+          },
+          "seeAlso": {
+            "type": "array",
+            "description": "Related terms or external references that clarify usage or provenance of this concept (for example, links to FAR definitions, OCDS reference pages, Popolo specs, HSDS docs).",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "deprecated", "experimental"],
+            "default": "active",
+            "description": "Lifecycle status of this term. 'active' terms are recommended for current use, 'experimental' terms are subject to change, and 'deprecated' terms SHOULD be phased out in favor of replacements."
+          },
+          "deprecationNote": {
+            "type": ["string", "null"],
+            "description": "If status is 'deprecated', this SHOULD explain why and, when applicable, specify the replacement termUri or code."
+          },
+          "addedInVersion": {
+            "type": "string",
+            "description": "Vocabulary version in which this term was introduced (for example, '1.0.0'). This enables downstream systems to reason about term availability over time."
+          }
+        },
+        "required": ["termUri", "code", "label", "definition", "status", "addedInVersion"]
+      }
+    },
+
+    "mappings": {
+      "type": "array",
+      "description": "Mappings to external standard vocabularies (for example, XBRL, Schema.org, Open Contracting Data Standard, Popolo, Open Civic Data, HSDS, FIBO, W3C PROV, USAspending). Each mapping links a CEP term to an external concept using SKOS-style match types.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "termUri": {
+            "type": "string",
+            "format": "uri",
+            "description": "The CEP term being mapped. MUST correspond to a termUri defined in this vocabulary's terms array."
+          },
+          "externalUri": {
+            "type": "string",
+            "format": "uri",
+            "description": "The external standard's term URI (for example, a Schema.org type/property, an OCDS reference URI fragment, a FIBO class, an HSDS concept URI, or an official glossary entry)."
+          },
+          "mappingType": {
+            "type": "string",
+            "enum": ["exactMatch", "broadMatch", "narrowMatch", "relatedMatch"],
+            "description": "SKOS-style mapping relationship. 'exactMatch' indicates conceptual equivalence; 'broadMatch' means the external term is broader; 'narrowMatch' means the external term is more specific; 'relatedMatch' covers close but not hierarchical relationships."
+          },
+          "externalStandard": {
+            "type": "string",
+            "description": "Name of the external standard (for example, 'Schema.org', 'OCDS', 'Popolo', 'Open Civic Data', 'HSDS', 'XBRL US GAAP', 'FIBO', 'USAspending', 'FAR'). This is a human-readable label to help implementers route mappings to the correct external schema or API."
+          }
+        },
+        "required": ["termUri", "externalUri", "mappingType", "externalStandard"]
+      }
+    }
+  },
+
+  "required": ["vocabularyUri", "version", "title", "effectiveDate", "terms"]
+}

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.vocabulary.schema.json",
+  "vocabularyUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json",
+  "version": "1.0.0",
+  "title": "CEP Source System Vocabulary",
+  "description": "Controlled vocabulary for systems that originate authoritative relationship and exchange records referenced by CEP sourceReferences[].sourceSystemUri.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-exchange-protocol/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json#usaspending",
+      "code": "usaspending",
+      "label": "USAspending.gov",
+      "definition": "The U.S. government-wide system for tracking federal spending on grants, contracts, loans, and other financial assistance.",
+      "parentTermUri": null,
+      "seeAlso": ["https://www.usaspending.gov/"],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json#fpds",
+      "code": "fpds",
+      "label": "Federal Procurement Data System",
+      "definition": "The federal system for collecting and reporting procurement contract data.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json#us-federal-system",
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json#sam-entity-registration",
+      "code": "sam-entity-registration",
+      "label": "SAM.gov Entity Registration",
+      "definition": "The System for Award Management entity registration module used to assign and maintain UEIs and federal award eligibility.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json#us-federal-system",
+      "seeAlso": ["https://sam.gov/"],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json#grants-gov",
+      "code": "grants-gov",
+      "label": "Grants.gov",
+      "definition": "The central U.S. federal portal for finding and applying for federal grants.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json#us-federal-system",
+      "seeAlso": ["https://www.grants.gov/"],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json#state-erp",
+      "code": "state-erp",
+      "label": "State ERP / Financial System",
+      "definition": "A state-level enterprise resource planning or financial management system used to record obligations, disbursements, and other transactions.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json#local-finance-system",
+      "code": "local-finance-system",
+      "label": "Local Government Finance System",
+      "definition": "An accounting or ERP system operated by a local government, school district, or special district that records budgets, contracts, and payments.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json#campaign-finance-portal",
+      "code": "campaign-finance-portal",
+      "label": "Campaign Finance Portal",
+      "definition": "A public or regulatory system that collects and publishes campaign finance reports for candidates, committees, or ballot measures.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json#education-finance-system",
+      "code": "education-finance-system",
+      "label": "Education Finance System",
+      "definition": "A system used by an education agency or institution to manage grants, tuition, aid, and other education-related funding flows.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json#us-federal-system",
+      "code": "us-federal-system",
+      "label": "U.S. Federal System (Abstract)",
+      "definition": "An abstract parent term for U.S. federal-level systems that originate authoritative financial or entity data.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    }
+  ],
+  "mappings": []
+}

@@ -1,0 +1,242 @@
+# pyproject.toml
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools>=77", "setuptools-scm>=8"]
+
+[project]
+name = "civic-exchange-protocol" # PyPi Package name
+dynamic = ["version"]  # Using setuptools_scm
+description = "Civic Exchange Protocol for Python projects"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+authors = [
+    { name="Civic Interconnect", email="info@civic-interconnect.org" }
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Education",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed",
+]
+keywords = ["civic", "interconnect", "protocol", "government", "provenance"]
+dependencies = [
+    "fastapi",
+    # "pandas",
+    "pydantic",
+    # "splink",
+]
+
+[project.optional-dependencies]
+dev = [  # Add all to deptry ignores
+  "build",
+  "defusedxml",
+  "pre-commit",
+  "pyright",
+  "pytest",
+  "pytest-asyncio",
+  "pytest-cov",
+  "pytest-env",
+  "twine",
+  "validate-pyproject",
+]
+docs = [  # Add all to deptry ignores
+  "mike",
+  "mkdocs",
+  "mkdocs-gen-files",
+  "mkdocs-git-revision-date-localized-plugin",
+  "mkdocs-include-markdown-plugin",
+  "mkdocs-literate-nav",
+  "mkdocs-material",
+  "mkdocs-static-i18n",
+  "mkdocstrings[python]>=0.18",
+  "ruff", # required for mkdocstrings
+]
+
+[project.urls]
+"Documentation" = "https://civic-interconnect.github.io/civic-exchange-protocol/"
+"Homepage" = "https://github.com/civic-interconnect/civic-exchange-protocol"
+"Issues" = "https://github.com/civic-interconnect/civic-exchange-protocol/issues"
+"Source" = "https://github.com/civic-interconnect/civic-exchange-protocol"
+
+[project.scripts]
+cx = "civic_exchange_protocol.cli.cli:app"
+
+[tool.bandit]
+exclude_dirs = ["tests", ".venv"]
+skips = ["B101"]  # B101: assert statements
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.coverage.paths]
+source = [
+  "src/python/src",
+  "*/site-packages/",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "def __repr__",
+  "if self.debug:",
+  "if settings.DEBUG",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if 0:",
+  "if __name__ == .__main__.:",
+  "class .*\\bProtocol\\):",
+  "@(abc\\.)?abstractmethod",
+  "# pragma: no cover",
+]
+fail_under = 60
+precision = 1
+show_missing = true
+skip_covered = false
+
+[tool.coverage.run]
+branch = true
+omit = [
+  "*/tests/*",
+  "*/test_*",
+  "*/__pycache__/*",
+]
+source = ["src/python/src"]
+
+[tool.coverage.xml]
+output = "coverage.xml"
+
+[tool.deptry]
+known_first_party = ["civic_exchange_protocol"]
+
+[tool.deptry.per_rule_ignores]
+DEP002 = [
+  # Dev dependencies
+  "build",
+  "defusedxml",
+  "pre-commit",
+  "pyright",
+  "pytest",
+  "pytest-asyncio",
+  "pytest-cov",
+  "pytest-env",
+  "twine",
+  "validate-pyproject",
+  # Docs dependencies
+  "mike",
+  "mkdocs",
+  "mkdocs-gen-files",
+  "mkdocs-git-revision-date-localized-plugin",
+  "mkdocs-include-markdown-plugin",
+  "mkdocs-literate-nav",
+  "mkdocs-material",
+  "mkdocs-static-i18n",
+  "mkdocstrings",  
+  "ruff",
+  # Main dependencies that might not be directly imported
+  "requests",  # If not actually used in code
+  "rich",      # Used by typer for CLI output
+]
+
+[tool.pyright]
+extraPaths = ["./src/python/src"]
+ignore = ["**/__pycache__", "build", "dist", ".venv"]
+include = ["src/python/src/civic_exchange_protocol", "src/python/tests"]
+pythonVersion = "3.12"
+reportMissingTypeStubs = "warning"
+typeCheckingMode = "basic" # or "strict"
+# reportReturnType = "none"
+
+[tool.pytest]
+addopts = [
+  "-ra",  # show extra test summary info for skipped, failed, etc.
+  "--strict-markers",  # enforce marker usage
+  "--cov=src",  # measure coverage for files in src
+  "--cov-report=term-missing",  # term-missing:skip-covered is typical
+  "--cov-report=xml:coverage.xml",  # output coverage in XML format
+  "--cov-report=html:htmlcov",  # output coverage in HTML format
+  "-v",  # verbose output
+  "--tb=short",  # short traceback format
+]
+minversion = "9.0"
+pythonpath = ["src/python/src"]
+testpaths = ["src/python/tests"]
+
+[tool.ruff]
+exclude = [".venv", ".ruff_cache", "build", "dist", "*.egg-info", ".eggs", "__pycache__"]
+fix = true
+line-length = 100
+preview = false
+target-version = "py312"
+unsafe-fixes = false
+
+[tool.ruff.format]
+docstring-code-format = true
+line-ending = "lf"
+quote-style = "preserve"
+
+[tool.ruff.lint]
+extend-select = [
+  "F",     # Pyflakes rules
+  "W",     # PyCodeStyle warnings
+  "E",     # PyCodeStyle errors
+  "I",     # Sort imports properly
+  "UP",    # Newer Python features
+  "C4",    # Catch incorrect use of comprehensions, dict, list, etc
+  "C408",  # unnecessary comprehension
+  "D",     # Docstring conventions
+  "D401",  # Missing argument descriptions in the docstring
+  "D417",  # First line should be in imperative mood
+  "Q",     # flake8-quotes
+  "S",     # Security issues
+  "C90",   # McCabe complexity
+  "N",     # Naming conventions
+  "B",     # Bugbear
+  "A",     # flake8-annotations
+  "PTH",   # Use pathlib instead of os.path
+  "RET",   # Good return practices
+  "SIM",   # flake8-simplify
+  "TID",   # flake8-tidy-imports for project conventions
+  "TCH",   # flake8-type-checking for type checking imports
+]
+ignore = [
+  "E501",  # line length handled by formatter
+  "D203",  # 1 blank line before class docstring (conflicts with D211)
+  "D213",  # Multi-line docstring summary should start at the second line
+  "S101",  # assert statements (handled by bandit)
+]
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+
+[tool.ruff.lint.per-file-ignores]
+"src/python/src/**/__init__.py" = ["D104", "F401"]  # F401 for re-exports
+"src/python/tests/**/*.py" = ["TID251", "TID252", "S101", "D", "PLR2004"]  # PLR2004 for magic values
+"src/python/src/**/_version.py" = ["ALL"] 
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.setuptools]
+include-package-data = true
+package-dir = {"" = "src/python/src"}
+
+[tool.setuptools.package-data]
+"civic_exchange_protocol" = ["py.typed", "*.yaml"]
+
+[tool.setuptools.packages.find]
+where = ["src/python/src"]
+
+[tool.setuptools_scm]
+fallback_version = "0.0.1"
+local_scheme = "no-local-version"
+version_file = "src/python/src/civic_exchange_protocol/_version.py"
+version_scheme = "guess-next-dev"

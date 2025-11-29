@@ -1,0 +1,101 @@
+{
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.vocabulary.schema.json",
+  "vocabularyUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json",
+  "version": "1.0.0",
+  "title": "CEP Exchange Role Vocabulary",
+  "description": "Controlled vocabulary for the roles that entities play in CEP Exchange records (sourceEntity, recipientEntity, intermediaryEntities).",
+  "governanceUri": "https://github.com/civic-interconnect/civic-exchange-protocol/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#disbursing-agency",
+      "code": "disbursing-agency",
+      "label": "Disbursing Agency",
+      "definition": "A government agency responsible for authorizing and issuing payment in a grant, contract, or other public expenditure.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#pass-through-entity",
+      "code": "pass-through-entity",
+      "label": "Pass-Through Entity",
+      "definition": "An entity that receives funds from an original source and passes them on to one or more subrecipients while retaining oversight responsibilities.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#disbursing-agency",
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#prime-contractor",
+      "code": "prime-contractor",
+      "label": "Prime Contractor",
+      "definition": "A contractor that has a direct contractual relationship with a government entity and primary responsibility for performance.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#subcontractor",
+      "code": "subcontractor",
+      "label": "Subcontractor",
+      "definition": "An entity that has a contractual relationship with a prime contractor or another subcontractor to carry out part of the work under a prime contract.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#prime-contractor",
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#grantee",
+      "code": "grantee",
+      "label": "Grantee",
+      "definition": "An entity that receives funds or other support under a grant, cooperative agreement, or similar assistance instrument.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#subrecipient",
+      "code": "subrecipient",
+      "label": "Subrecipient",
+      "definition": "A non-federal entity that receives a subaward from a pass-through entity to carry out part of a federal program.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#grantee",
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#payer-of-record",
+      "code": "payer-of-record",
+      "label": "Payer of Record",
+      "definition": "The entity recorded as the paying party for the purposes of accounting, reporting, and audit, which may differ from the ultimate source of funds.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#payee-of-record",
+      "code": "payee-of-record",
+      "label": "Payee of Record",
+      "definition": "The entity recorded as the recipient of payment for accounting and reporting purposes, which may be different from the ultimate beneficiary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    }
+  ],
+  "mappings": []
+}

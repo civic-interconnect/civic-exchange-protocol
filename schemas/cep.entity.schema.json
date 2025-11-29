@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.entity.schema.json",
+  "title": "Canonical CEP Entity Record",
+  "description": "Defines the cryptographic schema for a verified civic entity. This is the foundational primitive—all relationships and exchanges reference attested entities. CEP Entities are designed to interoperate with existing open civic standards (Popolo, Open Civic Data, Open Contracting, Schema.org, XBRL, W3C PROV, HSDS, FIBO) by carrying external identifiers and type URIs rather than redefining those models.",
+  "type": "object",
+
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0",
+      "description": "Version of this schema. Implementations MUST reject records with unrecognized versions."
+    },
+
+    "verifiableId": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 64,
+      "description": "The canonical identifier for this entity record within CEP. Format: 'cep-entity:{id-scheme}:{value}' (e.g., 'cep-entity:sam-uei:J6H4FB3N5YK7'). The {id-scheme} segment SHOULD indicate the authoritative scheme used to derive this record (e.g., 'sam-uei', 'lei', 'snfei', 'ocd-organization', 'ocd-person')."
+    },
+
+    "identifiers": {
+      "type": "object",
+      "description": "All known identifiers for this entity across different schemes. At least one identifier is required (a named field or an entry in additionalSchemes). This block is the primary interop surface for UEI, LEI, SNFEI, Open Civic Data (OCD) IDs, Popolo IDs, Open Contracting party identifiers, HSDS IDs, and similar external schemes.",
+      "properties": {
+        "samUei": {
+          "type": "string",
+          "pattern": "^[A-Z0-9]{12}$",
+          "description": "U.S. SAM.gov Unique Entity Identifier (12 alphanumeric characters). Tier 2 identity for U.S. federal assistance and procurement."
+        },
+        "lei": {
+          "type": "string",
+          "pattern": "^[A-Z0-9]{20}$",
+          "description": "Legal Entity Identifier (LEI) per ISO 17442 (20 alphanumeric characters). Tier 1 global identity for financial transactions."
+        },
+        "snfei": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "Sub-National Federated Entity Identifier (SNFEI). SHA-256 hash of normalized name + jurisdiction, providing an open, recomputable bridging identifier for entities that lack UEI or LEI coverage."
+        },
+        "canadianBn": {
+          "type": "string",
+          "pattern": "^[0-9]{9}[A-Z]{2}[0-9]{4}$",
+          "description": "Canadian Business Number with program account (e.g., 123456789RC0001)."
+        },
+        "additionalSchemes": {
+          "type": "array",
+          "description": "Extensible array for identifier schemes that are NOT represented by the named fields in this block (samUei, lei, snfei, canadianBn). This is the primary extension surface for attaching external identifiers such as Open Civic Data (OCD) division/jurisdiction IDs, Popolo person/organization IDs, Open Contracting Data Standard (OCDS) party identifiers, Open Referral HSDS IDs, national business registries, and future identifier schemes without changing the CEP Entity schema. Each entry MUST clearly identify the scheme via a stable URI.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "schemeUri": {
+                "type": "string",
+                "format": "uri",
+                "description": "URI identifying the identifier scheme (for example, 'https://opencivicdata.org/id/organization', 'https://opencivicdata.org/id/person', 'https://opencivicdata.org/id/division', 'https://standard.open-contracting.org/party-id', 'https://specs.civic-interconnect.org/schemes/uk-companies-house'). Implementations SHOULD use schemeUri values defined in the CEP Identifier Scheme Vocabulary."
+              },
+              "value": {
+                "type": "string",
+                "maxLength": 128,
+                "description": "The identifier value in the external scheme (for example, 'ocd-organization/abcd1234-...', 'ocd-person/efgh5678-...', 'ocd-division/country:us/state:mn/county:hennepin')."
+              }
+            },
+            "required": ["schemeUri", "value"]
+          },
+          "$comment": "This array is intended only for \"additional\" schemes not covered by the first-class fields (samUei, lei, snfei, canadianBn). Recommended schemeUri values include: https://opencivicdata.org/id/division for OCD division IDs (ocd-division/*); https://opencivicdata.org/id/jurisdiction for OCD jurisdiction IDs (ocd-jurisdiction/*); https://opencivicdata.org/id/person for OCD/Popolo person IDs (ocd-person/*); https://opencivicdata.org/id/organization for OCD/Popolo organization IDs (ocd-organization/*); Open Contracting party ID schemes; HSDS organization/service identifiers; and national or subnational business registries. The normative, versioned list of schemes is maintained in the CEP Identifier Scheme Vocabulary."
+        }
+      },
+      "minProperties": 1
+    },
+
+    "legalName": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "The official legal name of the entity as registered in its authoritative source (e.g., business registry, tax authority, education department, or government charter). For natural persons, this SHOULD be the full legal name used in public records or campaign filings."
+    },
+
+    "legalNameNormalized": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "The normalized form of the legal name used for SNFEI generation and matching. Implementations SHOULD apply a documented normalization pipeline (lowercasing, punctuation removal, expansion of standard abbreviations) so that SNFEI remains stable across systems."
+    },
+
+    "entityTypeUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI referencing the entity type in the CEP Entity Type Vocabulary (e.g., 'https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/entity-type.json#school-district'). CEP entity types are designed to map to external vocabularies such as Popolo (Person, Organization), Schema.org (GovernmentOrganization, SchoolDistrict, Nonprofit), Open Referral HSDS (Organization, Service Provider), and other domain-specific ontologies via the vocabulary.mappings mechanism."
+    },
+
+    "jurisdictionIso": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}(-[A-Z0-9]{1,3})?$",
+      "description": "ISO 3166-1 alpha-2 country code, optionally with ISO 3166-2 subdivision (e.g., 'US', 'US-CA', 'CA-ON'). This captures the primary legal jurisdiction for the entity. For finer-grained political geography (districts, counties, wards), implementations SHOULD also attach Open Civic Data division IDs via identifiers.additionalSchemes."
+    },
+
+    "status": {
+      "type": "object",
+      "description": "Operational status of the entity in its legal or functional lifecycle.",
+      "properties": {
+        "statusCode": {
+          "type": "string",
+          "enum": ["ACTIVE", "INACTIVE", "SUSPENDED", "DISSOLVED", "MERGED"],
+          "description": "Current operational status of the entity."
+        },
+        "statusEffectiveDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Date (YYYY-MM-DD) when the current status became effective in the authoritative source."
+        },
+        "statusTerminationDate": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "Date when entity ceased operations, if applicable."
+        },
+        "successorEntityId": {
+          "type": ["string", "null"],
+          "description": "Verifiable ID of the successor entity if status is MERGED or DISSOLVED with succession. This field enables corporate control and government reorganization chains and can be aligned with PROV 'wasRevisionOf' and 'wasDerivedFrom' relations at the entity level."
+        }
+      },
+      "required": ["statusCode", "statusEffectiveDate"]
+    },
+
+    "naicsCode": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9]{2,6}$",
+      "description": "North American Industry Classification System code (2-6 digits). Optional for entities outside NAICS scope. When present, it SHOULD correspond to the primary economic activity and can be mapped to XBRL and other financial reporting taxonomies for analytics."
+    },
+
+    "resolutionConfidence": {
+      "type": "object",
+      "description": "Metadata about entity resolution quality when this record was derived from fuzzy matching or record linkage across multiple sources (campaign finance, procurement, grants, education, registries).",
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Probabilistic confidence score (0.0-1.0) from entity resolution. 1.0 indicates an authoritative source match (for example, a direct sync from SAM.gov or LEI), while values less than 1.0 indicate inferred matches from linkage models."
+        },
+        "methodUri": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI identifying the resolution method (e.g., 'https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/resolution-method.json#splink-v4'). Methods may correspond to implementations of Fellegi-Sunter, graph-based linkage, or supervised models."
+        },
+        "sourceRecordCount": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of source records that were resolved to this entity. For example, how many campaign filings, procurement records, or grant files were merged to create this attested entity."
+        }
+      },
+      "required": ["score"]
+    },
+
+    "attestation": {
+      "$ref": "#/$defs/attestationBlock"
+    },
+
+    "previousRecordHash": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "SHA-256 hash of the previous entity record for this entity. Null for initial attestation. Creates an immutable revision chain aligned with W3C PROV 'wasRevisionOf'. All revisions for a given verifiableId MUST form a contiguous hash-linked sequence."
+    },
+
+    "revisionNumber": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Monotonically increasing revision number for this entity. The first attestation is revision 1. Combined with previousRecordHash, this supports deterministic, PROV-aligned history inspection without requiring a blockchain."
+    }
+  },
+
+  "required": [
+    "schemaVersion",
+    "verifiableId",
+    "identifiers",
+    "legalName",
+    "jurisdictionIso",
+    "status",
+    "attestation",
+    "revisionNumber"
+  ],
+
+  "$defs": {
+    "attestationBlock": {
+      "type": "object",
+      "description": "Cryptographic attestation proving record authenticity and integrity. This block is PROV-aligned: the CEP Entity is the PROV Entity, the attestorId is the PROV Agent, and the act of signing is the PROV Activity that 'generated' the record at attestationTimestamp.",
+      "properties": {
+        "attestorId": {
+          "type": "string",
+          "description": "Verifiable ID of the entity or node attesting to this record. This MUST itself be resolvable to a CEP Entity or a recognized trust anchor and corresponds to a PROV Agent."
+        },
+        "attestationTimestamp": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{6}Z$",
+          "description": "ISO 8601 UTC timestamp with mandatory microsecond precision (e.g., '2025-11-28T14:30:00.000000Z'). Implementations MUST canonicalize to six fractional digits (pad or round) and UTC 'Z' to achieve hash parity across systems."
+        },
+        "proofType": {
+          "type": "string",
+          "description": "URI or identifier for the proof algorithm. Extensible for future cryptographic methods (for example, 'Ed25519Signature2020', 'EcdsaSecp256k1Signature2019', 'DataIntegrityProof')."
+        },
+        "proofValue": {
+          "type": "string",
+          "description": "The cryptographic signature or proof value over the canonical string representation of this entity record. Encoding (for example, base64, hex) depends on proofType and MUST be documented by the implementation."
+        },
+        "verificationMethodUri": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI resolving to the public key material or DID document used to verify the proof. This may point to a DID URL, a JSON Web Key Set (JWKS), or a CEP-managed key registry."
+        },
+        "proofPurpose": {
+          "type": "string",
+          "enum": ["assertionMethod", "authentication", "capabilityDelegation"],
+          "default": "assertionMethod",
+          "description": "The purpose of the proof per W3C Verifiable Credentials Data Integrity. For CEP entities, 'assertionMethod' is the default, indicating that the attestor asserts the correctness of this record."
+        },
+        "anchorUri": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "description": "Optional URI to a timestamping authority, notary service, transparency log, or distributed ledger anchor for additional non-repudiation guarantees."
+        }
+      },
+      "required": [
+        "attestorId",
+        "attestationTimestamp",
+        "proofType",
+        "proofValue",
+        "verificationMethodUri"
+      ]
+    }
+  }
+}

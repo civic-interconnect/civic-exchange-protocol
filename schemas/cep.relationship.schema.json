@@ -1,0 +1,245 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.relationship.schema.json",
+  "title": "Canonical CEP Relationship Record",
+  "description": "Defines a verifiable legal or functional relationship between two or more attested entities. Supports bilateral contracts, n-ary memberships, fiscal sponsorships, and hierarchical compositions. CEP Relationships are designed to interoperate with existing open civic standards (Popolo Membership/Post, Open Civic Data organizations and jurisdictions, Open Contracting Data Standard awards/contracts, Schema.org Grant/MonetaryGrant, HSDS funding relationships) via relationshipTypeUri, roleUri, and sourceReferences.",
+  "type": "object",
+
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0",
+      "description": "Version of this schema. Implementations MUST reject records with unrecognized versions."
+    },
+
+    "verifiableId": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128,
+      "description": "The canonical identifier for this relationship record within CEP. Format: 'cep-relationship:{source-system}:{id}' (e.g., 'cep-relationship:usaspending:CONT_AWD_12345'). The {source-system} segment SHOULD indicate the originating system or namespace (e.g., 'usaspending', 'state-mn-procurement', 'popolo', 'ocds')."
+    },
+
+    "relationshipTypeUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI referencing the relationship type in the CEP Relationship Type Vocabulary (e.g., 'https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#prime-contract', '#grant-award', '#board-membership'). Relationship type terms are mapped to external vocabularies such as Popolo (Membership), Open Contracting Data Standard (Award, Contract), Schema.org (MonetaryGrant, subOrganization), HSDS, and FIBO through the vocabulary.mappings mechanism."
+    },
+
+    "bilateralParties": {
+      "type": ["object", "null"],
+      "description": "For two-party relationships with clear directionality (grantor–grantee, buyer–supplier, employer–employee). Use this OR multilateralMembers, not both.",
+      "properties": {
+        "partyA": {
+          "type": "object",
+          "description": "The initiating, granting, or contracting party (e.g., the agency awarding a contract, the grantor, the employer). Semantically aligns with Popolo organization/person plus role, OCDS buyer, or Schema.org GovernmentOrganization.",
+          "properties": {
+            "entityId": {
+              "type": "string",
+              "description": "Verifiable ID of the Party A entity (CEP Entity verifiableId). This entity SHOULD carry external identifiers (e.g., UEI, LEI, OCD IDs) in its identifiers block."
+            },
+            "roleUri": {
+              "type": "string",
+              "format": "uri",
+              "description": "URI specifying Party A's role in this relationship. Implementations SHOULD use a termUri from the CEP Party Role Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#grantor', '#buyer', '#employer', '#regulator')."
+            }
+          },
+          "required": ["entityId", "roleUri"]
+        },
+        "partyB": {
+          "type": "object",
+          "description": "The receiving, performing, or beneficiary party (e.g., the contractor receiving an award, the grantee, the employee). Semantically aligns with Popolo Membership member, OCDS supplier, or Schema.org Organization/Person.",
+          "properties": {
+            "entityId": {
+              "type": "string",
+              "description": "Verifiable ID of the Party B entity (CEP Entity verifiableId)."
+            },
+            "roleUri": {
+              "type": "string",
+              "format": "uri",
+              "description": "URI specifying Party B's role in this relationship. Implementations SHOULD use a termUri from the CEP Party Role Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#grantee', '#supplier', '#employee', '#regulated-entity')."
+            }
+          },
+          "required": ["entityId", "roleUri"]
+        }
+      },
+      "required": ["partyA", "partyB"]
+    },
+
+    "multilateralMembers": {
+      "type": ["array", "null"],
+      "description": "For n-ary relationships (consortia, boards, joint ventures, multi-party MOUs). Members are canonically sorted by entityId for hash stability. Semantically aligns with Popolo Membership graphs and Open Referral HSDS service-provider networks.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entityId": {
+            "type": "string",
+            "description": "Verifiable ID of the member entity (CEP Entity verifiableId)."
+          },
+          "roleUri": {
+            "type": "string",
+            "format": "uri",
+            "description": "URI specifying this member's role in the relationship (for example, '#board-member', '#consortium-member', '#joint-venture-partner', '#fiscal-sponsor'). Implementations SHOULD use a termUri from the CEP Party Role Vocabulary."
+          },
+          "participationShare": {
+            "type": ["number", "null"],
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Fractional participation (0.0-1.0) for ownership or cost-sharing arrangements (for example, equity shares in a joint venture or cost allocation in an interlocal agreement). When applicable, the sum across members SHOULD equal 1.0."
+          }
+        },
+        "required": ["entityId", "roleUri"]
+      },
+      "minItems": 2
+    },
+
+    "parentRelationshipId": {
+      "type": ["string", "null"],
+      "description": "Verifiable ID of the parent relationship. Used for subcontracts, task orders, amendments, subgrants, or derived agreements. Enables compositional provenance tracing of contractual trees and assistance hierarchies, and aligns with W3C PROV 'wasDerivedFrom' at the relationship level."
+    },
+
+    "effectiveTimestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{6}Z$",
+      "description": "ISO 8601 UTC timestamp with microsecond precision when this relationship became legally effective (e.g., award date, contract signature date, board term start). Implementations MUST canonicalize to six fractional digits (pad or round) and UTC 'Z' for hash parity."
+    },
+
+    "expirationTimestamp": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{6}Z$",
+      "description": "ISO 8601 UTC timestamp when this relationship legally expires or is scheduled to end (e.g., contract end date, grant period end, board term end). Null for indefinite relationships."
+    },
+
+    "status": {
+      "type": "object",
+      "description": "Current status of the relationship in its lifecycle.",
+      "properties": {
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "PENDING",
+            "ACTIVE",
+            "SUSPENDED",
+            "COMPLETED",
+            "TERMINATED",
+            "AMENDED"
+          ],
+          "description": "Current status of the relationship (e.g., PENDING approval, ACTIVE, SUSPENDED due to issues, COMPLETED or TERMINATED)."
+        },
+        "statusEffectiveTimestamp": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{6}Z$",
+          "description": "When the current status became effective, in ISO 8601 UTC with microsecond precision. This supports PROV-style event tracking for status changes (e.g., award decisions, terminations, amendments)."
+        }
+      },
+      "required": ["statusCode", "statusEffectiveTimestamp"]
+    },
+
+    "financialTerms": {
+      "type": ["object", "null"],
+      "description": "Financial parameters of the relationship, if applicable. Semantically aligned with Open Contracting Data Standard (OCDS) award/contract values and Schema.org MonetaryAmount/MonetaryGrant.",
+      "properties": {
+        "totalValue": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Total monetary value of the relationship (e.g., contract ceiling, grant award amount, loan principal)."
+        },
+        "obligatedValue": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Currently obligated or committed amount under this relationship. For grants, this may reflect obligated funds within a larger authorization."
+        },
+        "currencyCode": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "default": "USD",
+          "description": "ISO 4217 currency code for the amounts in this relationship."
+        }
+      }
+    },
+
+    "termsAttributes": {
+      "type": "object",
+      "description": "Domain-specific terms as key-value pairs (for example, CFDA/Assistance Listing numbers, program codes, contract types, payment schedules, educational program descriptors). Keys are canonically sorted for hash stability. Implementations SHOULD document keys used in specific domains.",
+      "additionalProperties": {
+        "type": "string",
+        "maxLength": 1024
+      }
+    },
+
+    "jurisdictionIso": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}(-[A-Z0-9]{1,3})?$",
+      "description": "Primary jurisdiction governing this relationship (ISO 3166-1/2), such as the country and optionally subnational region whose law governs the contract, grant, or agreement (e.g., 'US', 'US-MN'). For finer-grained political geography, corresponding Open Civic Data division and jurisdiction IDs SHOULD be attached to the participating entities via their identifiers.additionalSchemes."
+    },
+
+    "sourceReferences": {
+      "type": "array",
+      "description": "References to authoritative source records from which this relationship was derived. This is the primary way to link CEP Relationships to Open Civic Data (bills, votes, events), Popolo records, Open Contracting releases, campaign finance systems, state procurement portals, and other registries.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sourceSystemUri": {
+            "type": "string",
+            "format": "uri",
+            "description": "URI identifying the source system or specification (e.g., 'https://sources.civic-interconnect.org/usaspending', 'https://standard.open-contracting.org', 'https://opencivicdata.org/spec/bill', 'https://opencivicdata.org/spec/vote', 'https://github.com/openreferral/specification')."
+          },
+          "sourceRecordId": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Original record identifier in the source system (e.g., a USASpending award ID, OCD bill or vote ID, OCDS release/award/contract ID, or campaign finance filing ID)."
+          },
+          "sourceUrl": {
+            "type": ["string", "null"],
+            "format": "uri",
+            "description": "Direct URL to the source record, if publicly accessible (e.g., a USASpending award page, state open checkbook entry, legislative bill page, board agenda)."
+          }
+        },
+        "required": ["sourceSystemUri", "sourceRecordId"]
+      }
+    },
+
+    "attestation": {
+      "$ref": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.entity.schema.json#/$defs/attestationBlock"
+    },
+
+    "previousRecordHash": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "SHA-256 hash of the previous record for this relationship. Null for the initial record. Enables amendment chains and PROV-aligned 'wasRevisionOf' semantics for contracts, grants, and agreements over time."
+    },
+
+    "revisionNumber": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Monotonically increasing revision number. First record is revision 1. Combined with previousRecordHash, this forms an immutable, hash-linked history of relationship amendments and status changes without requiring a blockchain."
+    }
+  },
+
+  "required": [
+    "schemaVersion",
+    "verifiableId",
+    "relationshipTypeUri",
+    "effectiveTimestamp",
+    "status",
+    "jurisdictionIso",
+    "attestation",
+    "revisionNumber"
+  ],
+
+  "oneOf": [
+    {
+      "properties": {
+        "bilateralParties": { "type": "object" },
+        "multilateralMembers": { "type": "null" }
+      },
+      "required": ["bilateralParties"]
+    },
+    {
+      "properties": {
+        "bilateralParties": { "type": "null" },
+        "multilateralMembers": { "type": "array" }
+      },
+      "required": ["multilateralMembers"]
+    }
+  ]
+}

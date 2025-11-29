@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.entity.identifier-scheme.schema.json",
+  "title": "CEP Identifier Scheme URI",
+  "description": "Allowed identifier scheme URIs for CEP Entity.identifiers.additionalSchemes[].schemeUri. This is the schema-level view of the Identifier Scheme Vocabulary.",
+  "type": "string",
+  "enum": [
+    "https://opencivicdata.org/id/division",
+    "https://opencivicdata.org/id/jurisdiction",
+    "https://opencivicdata.org/id/person",
+    "https://opencivicdata.org/id/organization",
+    "https://standard.open-contracting.org/party-id",
+    "https://openreferral.org/hsds/organization-id",
+    "https://openreferral.org/hsds/service-id",
+    "https://specs.civic-interconnect.org/schemes/lei",
+    "https://specs.civic-interconnect.org/schemes/sam-uei",
+    "https://specs.civic-interconnect.org/schemes/snfei",
+    "https://specs.civic-interconnect.org/schemes/canadian-bn",
+    "https://specs.civic-interconnect.org/schemes/uk-companies-house"
+  ]
+}

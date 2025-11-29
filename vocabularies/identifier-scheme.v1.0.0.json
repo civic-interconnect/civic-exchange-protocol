@@ -1,0 +1,165 @@
+{
+  "vocabularyUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/identifier-scheme.json",
+  "version": "1.0.0",
+  "title": "CEP Identifier Scheme Vocabulary",
+  "description": "Controlled vocabulary of identifier schemes that should be used in CEP Entity.identifiers.additionalSchemes[].schemeUri. These scheme URIs provide a stable, interoperable way to attach external identifiers (Open Civic Data, Popolo, OCDS, HSDS, national registries, etc.) without changing the CEP core schema.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-exchange-protocol/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+
+  "terms": [
+    {
+      "termUri": "https://opencivicdata.org/id/division",
+      "code": "ocd-division-id",
+      "label": "Open Civic Data Division ID",
+      "definition": "Identifier scheme for Open Civic Data division IDs (ocd-division/*), representing political geographies such as states, counties, districts, and other electoral or administrative areas.",
+      "parentTermUri": null,
+      "seeAlso": [
+        "https://github.com/opencivicdata/ocd-division-ids"
+      ],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://opencivicdata.org/id/jurisdiction",
+      "code": "ocd-jurisdiction-id",
+      "label": "Open Civic Data Jurisdiction ID",
+      "definition": "Identifier scheme for Open Civic Data jurisdiction IDs (ocd-jurisdiction/*), representing governing bodies such as legislatures, councils, and boards that exist within a division.",
+      "parentTermUri": "https://opencivicdata.org/id/division",
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://opencivicdata.org/id/person",
+      "code": "ocd-person-id",
+      "label": "Open Civic Data / Popolo Person ID",
+      "definition": "Identifier scheme for Open Civic Data person IDs (ocd-person/*), typically aligned with Popolo Person objects representing elected officials, appointees, and other public figures.",
+      "parentTermUri": null,
+      "seeAlso": [
+        "https://www.popoloproject.com/specs/person.html"
+      ],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://opencivicdata.org/id/organization",
+      "code": "ocd-organization-id",
+      "label": "Open Civic Data / Popolo Organization ID",
+      "definition": "Identifier scheme for Open Civic Data organization IDs (ocd-organization/*), typically aligned with Popolo Organization objects representing councils, committees, agencies, and other organizations.",
+      "parentTermUri": null,
+      "seeAlso": [
+        "https://www.popoloproject.com/specs/organization.html"
+      ],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://standard.open-contracting.org/party-id",
+      "code": "ocds-party-id",
+      "label": "Open Contracting Data Standard Party Identifier",
+      "definition": "Identifier scheme for Open Contracting Data Standard (OCDS) party identifiers, used to represent buyers, suppliers, procuring entities, and other parties in public contracting data.",
+      "parentTermUri": null,
+      "seeAlso": [
+        "https://standard.open-contracting.org/latest/en/schema/reference/#parties"
+      ],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://openreferral.org/hsds/organization-id",
+      "code": "hsds-organization-id",
+      "label": "HSDS Organization Identifier",
+      "definition": "Identifier scheme for Open Referral Human Services Data Specification (HSDS) Organization IDs, representing organizations that provide, fund, or coordinate human services.",
+      "parentTermUri": null,
+      "seeAlso": [
+        "https://openreferral.org"
+      ],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://openreferral.org/hsds/service-id",
+      "code": "hsds-service-id",
+      "label": "HSDS Service Identifier",
+      "definition": "Identifier scheme for HSDS Service IDs, representing specific services provided to the public (for example, food assistance, housing counseling, after-school programs).",
+      "parentTermUri": null,
+      "seeAlso": [
+        "https://openreferral.org"
+      ],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+
+    {
+      "termUri": "https://specs.civic-interconnect.org/schemes/lei",
+      "code": "lei",
+      "label": "Legal Entity Identifier Scheme",
+      "definition": "Identifier scheme for the Legal Entity Identifier (LEI) per ISO 17442, a 20-character global identifier for parties to financial transactions. This corresponds to the CEP Entity.identifiers.lei field when present.",
+      "parentTermUri": null,
+      "seeAlso": [
+        "https://www.gleif.org/en/about-lei/introducing-the-legal-entity-identifier-lei"
+      ],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://specs.civic-interconnect.org/schemes/sam-uei",
+      "code": "sam-uei",
+      "label": "SAM Unique Entity Identifier Scheme",
+      "definition": "Identifier scheme for the U.S. federal SAM.gov Unique Entity Identifier (UEI), a 12-character ID assigned to entities that receive federal assistance or contracts. This corresponds to the CEP Entity.identifiers.samUei field when present.",
+      "parentTermUri": null,
+      "seeAlso": [
+        "https://sam.gov/content/entity-registration"
+      ],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://specs.civic-interconnect.org/schemes/snfei",
+      "code": "snfei",
+      "label": "Sub-National Federated Entity Identifier Scheme",
+      "definition": "Identifier scheme for the Sub-National Federated Entity Identifier (SNFEI), defined as a SHA-256 hash of normalized name + jurisdiction, providing an open, recomputable bridging identifier for entities lacking UEI or LEI coverage.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://specs.civic-interconnect.org/schemes/canadian-bn",
+      "code": "canadian-bn",
+      "label": "Canadian Business Number Scheme",
+      "definition": "Identifier scheme for the Canadian Business Number (BN) with program account (for example, 123456789RC0001). This corresponds to the CEP Entity.identifiers.canadianBn field when present.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://specs.civic-interconnect.org/schemes/uk-companies-house",
+      "code": "uk-companies-house",
+      "label": "UK Companies House Scheme",
+      "definition": "Identifier scheme for UK Companies House company numbers, providing a bridge between CEP Entity records and the official UK corporate registry.",
+      "parentTermUri": null,
+      "seeAlso": [
+        "https://www.gov.uk/government/organisations/companies-house"
+      ],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    }
+  ],
+
+  "mappings": []
+}

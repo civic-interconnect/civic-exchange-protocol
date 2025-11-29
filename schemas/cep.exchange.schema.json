@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.exchange.schema.json",
+  "title": "Canonical CEP Exchange Record",
+  "description": "Defines a verifiable value exchange (financial, in-kind, or informational) between entities within an established relationship. This is the atomic unit of civic transparency. CEP Exchanges are designed to interoperate with Open Contracting Data Standard (OCDS) transactions, Schema.org MonetaryGrant/Payment, XBRL financial taxonomies, and campaign finance / education finance datasets via exchangeTypeUri, value, categorization, and sourceReferences.",
+  "type": "object",
+
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0",
+      "description": "Version of this schema. Implementations MUST reject records with unrecognized versions."
+    },
+
+    "verifiableId": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128,
+      "description": "The canonical identifier for this exchange record within CEP. Format: 'cep-exchange:{source-system}:{id}' (for example, 'cep-exchange:treasury:PAY_2025_001234'). The {source-system} segment SHOULD indicate the originating system or namespace (for example, 'treasury', 'usaspending', 'state-mn', 'ocds')."
+    },
+
+    "relationshipId": {
+      "type": "string",
+      "description": "Verifiable ID of the CEP Relationship under which this exchange occurs. Links the exchange to its contractual, grant, loan, or other legal basis and aligns with OCDS award/contract identifiers or campaign finance reporting relationships when those are modeled as CEP Relationships."
+    },
+
+    "exchangeTypeUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI referencing the exchange type in the CEP Exchange Type Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-type.json#grant-disbursement'). Exchange types are mapped to external vocabularies such as Schema.org (MonetaryGrant, Payment), OCDS transaction categories, and FIBO financial instruments through the vocabulary.mappings mechanism."
+    },
+
+    "sourceEntity": {
+      "type": "object",
+      "description": "The entity from which value flows (payer, grantor, transferor). For procurement, this typically aligns with OCDS 'buyer'. For grants, this is the grantor or pass-through entity. For campaign finance, this may be the donor or committee.",
+      "properties": {
+        "entityId": {
+          "type": "string",
+          "description": "Verifiable ID of the source entity (CEP Entity verifiableId). This entity SHOULD carry external identifiers such as UEI, LEI, and Open Civic Data IDs in its identifiers block."
+        },
+        "roleUri": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI specifying the source's role in this exchange. Implementations SHOULD use a termUri from the CEP Exchange Role Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#disbursing-agency', '#pass-through-entity', '#prime-contractor', '#donor')."
+        },
+        "accountIdentifier": {
+          "type": ["string", "null"],
+          "maxLength": 64,
+          "description": "Optional account or fund identifier from which value was drawn (for example, a Treasury Account Symbol, internal fund code, or campaign bank account). This can be mapped to GTAS and XBRL elements when available."
+        }
+      },
+      "required": ["entityId"]
+    },
+
+    "recipientEntity": {
+      "type": "object",
+      "description": "The entity to which value flows (payee, grantee, transferee). For procurement this aligns with OCDS 'supplier'; for grants and education finance, the grantee, subrecipient, or school; for campaign finance, the recipient committee or vendor.",
+      "properties": {
+        "entityId": {
+          "type": "string",
+          "description": "Verifiable ID of the recipient entity (CEP Entity verifiableId)."
+        },
+        "roleUri": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI specifying the recipient's role in this exchange. Implementations SHOULD use a termUri from the CEP Exchange Role Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#grantee', '#subrecipient', '#prime-contractor', '#payee-of-record')."
+        },
+        "accountIdentifier": {
+          "type": ["string", "null"],
+          "maxLength": 64,
+          "description": "Optional account identifier to which value was credited (for example, internal cost center, school building account, or bank account reference)."
+        }
+      },
+      "required": ["entityId"]
+    },
+
+    "value": {
+      "type": "object",
+      "description": "The quantified value being exchanged. For monetary flows, this aligns with OCDS 'implementation.transactions.amount', Schema.org MonetaryAmount / MonetaryGrant, and XBRL monetary elements.",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "description": "Numeric value of the exchange. Must be greater than or equal to 0 for standard exchanges; negative values are permitted only for reversals, refunds, chargebacks, or corrections, and SHOULD be coupled with an appropriate exchangeTypeUri or statusCode to indicate reversal semantics."
+        },
+        "currencyCode": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "default": "USD",
+          "description": "ISO 4217 currency code for monetary exchanges (for example, 'USD', 'EUR'). Implementations SHOULD use the same currency as any linked OCDS, XBRL, or GTAS records when present."
+        },
+        "valueTypeUri": {
+          "type": "string",
+          "format": "uri",
+          "default": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/value-type.json#monetary",
+          "description": "URI indicating the nature of value (for example, monetary, in-kind, service-hours, volunteer-time, carbon-credits). Value types are mapped to external vocabularies in the CEP Value Type Vocabulary."
+        },
+        "inKindDescription": {
+          "type": ["string", "null"],
+          "maxLength": 512,
+          "description": "Description for non-monetary exchanges (for example, 'Office equipment - 10 laptops', '200 service hours', 'in-kind advertising'). SHOULD be provided whenever valueTypeUri is non-monetary."
+        }
+      },
+      "required": ["amount"]
+    },
+
+    "occurredTimestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{6}Z$",
+      "description": "ISO 8601 UTC timestamp with microsecond precision when the exchange actually occurred (for example, payment date, disbursement date, posting date). Implementations MUST canonicalize to six fractional digits (pad or round) and UTC 'Z' to achieve hash parity across systems."
+    },
+
+    "status": {
+      "type": "object",
+      "description": "Lifecycle status of the exchange event.",
+      "properties": {
+        "statusCode": {
+          "type": "string",
+          "enum": ["PENDING", "COMPLETED", "REVERSED", "CANCELED", "DISPUTED"],
+          "description": "Current status of the exchange (for example, PENDING authorization, COMPLETED payment, REVERSED due to error, CANCELED, or DISPUTED by a party)."
+        },
+        "statusEffectiveTimestamp": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{6}Z$",
+          "description": "ISO 8601 UTC timestamp with microsecond precision when the current status became effective. This supports PROV-style event tracking for reversals and dispute handling."
+        }
+      },
+      "required": ["statusCode", "statusEffectiveTimestamp"]
+    },
+
+    "provenanceChain": {
+      "type": "object",
+      "description": "Traces the compositional flow of funds or value through the civic graph. Conceptually, this is a Category Theory morphism path and aligns with W3C PROV 'wasDerivedFrom' across exchanges.",
+      "properties": {
+        "fundingChainTag": {
+          "type": "string",
+          "pattern": "^[A-Z_]+([>][A-Z_]+)*$",
+          "description": "Human-readable hierarchical trace of the funding path (for example, 'FEDERAL>STATE>COUNTY>SCHOOL_DISTRICT'). Uses '>' as a composition operator. This tag is a compact summary of the full exchange chain and is not intended to be globally unique.",
+          "examples": [
+            "FEDERAL>STATE>LOCAL",
+            "STATE>MUNICIPALITY>CONTRACTOR",
+            "FOUNDATION>NONPROFIT>SUBGRANTEE"
+          ]
+        },
+        "ultimateSourceEntityId": {
+          "type": ["string", "null"],
+          "description": "Verifiable ID of the original source of funds or value (for example, a federal agency for pass-through grants, a foundation for a grant chain, or an ultimate donor in a layered campaign finance structure)."
+        },
+        "intermediaryEntities": {
+          "type": "array",
+          "description": "Ordered list of entities through which value passed before reaching this exchange. Each intermediary SHOULD correspond to a CEP Entity and may align with OCDS parties or HSDS organizations.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "entityId": {
+                "type": "string",
+                "description": "Verifiable ID of the intermediary entity (CEP Entity verifiableId)."
+              },
+              "roleUri": {
+                "type": "string",
+                "format": "uri",
+                "description": "URI specifying this intermediary's role in the funding chain. Implementations SHOULD use a termUri from the CEP Exchange Role Vocabulary (for example, '#pass-through-entity', '#disbursing-agency')."
+              }
+            },
+            "required": ["entityId"]
+          }
+        },
+        "parentExchangeId": {
+          "type": ["string", "null"],
+          "description": "Verifiable ID of the upstream exchange from which this exchange derives (for example, a subgrant disbursement derived from a parent grant disbursement). This enables fine-grained tracing of disbursement chains and aligns with PROV 'wasDerivedFrom' at the exchange level."
+        }
+      }
+    },
+
+    "categorization": {
+      "type": "object",
+      "description": "Standardized categorization codes for reporting and analysis. This block is the main bridge to domain specific reporting frameworks such as federal assistance listings, NAICS, GTAS, and local chart-of-accounts.",
+      "properties": {
+        "cfdaNumber": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9]{2}\\.[0-9]{3}$",
+          "description": "Catalog of Federal Domestic Assistance (now Assistance Listing) number (for example, '84.010' for Title I). Aligns with federal grant reporting requirements."
+        },
+        "naicsCode": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9]{2,6}$",
+          "description": "NAICS code for the goods or services exchanged. May differ from the entity's primary NAICS when a specific transaction covers a different activity."
+        },
+        "gtasAccountCode": {
+          "type": ["string", "null"],
+          "maxLength": 32,
+          "description": "Government wide Treasury Account Symbol (TAS) or related GTAS account code for federal reporting. Connects CEP Exchanges to GTAS and XBRL based financial statements."
+        },
+        "localCategoryCode": {
+          "type": ["string", "null"],
+          "maxLength": 64,
+          "description": "Jurisdiction specific category code (for example, state object code, local chart of accounts code, program code)."
+        },
+        "localCategoryLabel": {
+          "type": ["string", "null"],
+          "maxLength": 256,
+          "description": "Human readable label for the local category (for example, 'Classroom Technology', 'After-school Tutoring')."
+        }
+      }
+    },
+
+    "sourceReferences": {
+      "type": "array",
+      "description": "References to authoritative source records. This is where CEP Exchanges are linked to OCDS transactions, campaign finance filings, ERP or payroll systems, and other ledgers.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sourceSystemUri": {
+            "type": "string",
+            "format": "uri",
+            "description": "URI identifying the source system or specification (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json#usaspending', 'https://standard.open-contracting.org', 'https://opencivicdata.org/spec/event', 'https://github.com/openreferral/specification')."
+          },
+          "sourceRecordId": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Original record identifier in the source system (for example, OCDS transaction ID, ERP payment ID, campaign finance transaction ID, or accounting ledger reference)."
+          },
+          "sourceUrl": {
+            "type": ["string", "null"],
+            "format": "uri",
+            "description": "Direct URL to the source record, if publicly accessible (for example, a USASpending transaction page, a state open checkbook entry, or a campaign finance portal view)."
+          }
+        },
+        "required": ["sourceSystemUri", "sourceRecordId"]
+      }
+    },
+
+    "attestation": {
+      "$ref": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.entity.schema.json#/$defs/attestationBlock"
+    },
+
+    "previousRecordHash": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "SHA-256 hash of the previous exchange record for this exchange. Null for the initial record. Enables revision chains for corrections or adjustments and supports PROV style 'wasRevisionOf' semantics for transaction history."
+    },
+
+    "revisionNumber": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Monotonically increasing revision number for this exchange. Combined with previousRecordHash, this provides an immutable, hash linked history of transaction level changes without requiring a blockchain."
+    }
+  },
+
+  "required": [
+    "schemaVersion",
+    "verifiableId",
+    "relationshipId",
+    "exchangeTypeUri",
+    "sourceEntity",
+    "recipientEntity",
+    "value",
+    "occurredTimestamp",
+    "status",
+    "attestation",
+    "revisionNumber"
+  ]
+}

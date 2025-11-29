@@ -1,0 +1,19 @@
+[package]
+name = "cep-core"
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+description = "Core primitives for the Civic Exchange Protocol (CEP)"
+repository = "https://github.com/civic-interconnect/civic-exchange-protocol"
+keywords = ["civic", "interconnect", "protocol", "government", "provenance"]
+categories = ["data-structures", "cryptography"]
+
+[dependencies]
+chrono = { version = "0.4", features = ["serde"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+thiserror = "1.0"
+
+[dev-dependencies]
+pretty_assertions = "1.4"

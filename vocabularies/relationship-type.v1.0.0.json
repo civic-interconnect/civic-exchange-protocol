@@ -1,0 +1,239 @@
+{
+  "vocabularyUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json",
+  "version": "1.0.0",
+  "title": "CEP Relationship Type Vocabulary",
+  "description": "Controlled vocabulary for the types of legal and functional relationships between civic entities. Governs the relationshipTypeUri field in CEP Relationship records.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-exchange-protocol/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+
+  "terms": [
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#prime-contract",
+      "code": "prime-contract",
+      "label": "Prime Contract",
+      "definition": "A direct contractual agreement between a government entity and a contractor for the provision of goods or services. The contractor has primary responsibility for performance.",
+      "parentTermUri": null,
+      "seeAlso": ["https://www.acquisition.gov/far/part-2#FAR_2_101"],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#subcontract",
+      "code": "subcontract",
+      "label": "Subcontract",
+      "definition": "A contract entered into by a prime contractor, or subcontractor, for the purpose of obtaining supplies, materials, equipment, or services under a prime contract.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#prime-contract",
+      "seeAlso": ["https://www.acquisition.gov/far/part-44"],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#grant-award",
+      "code": "grant-award",
+      "label": "Grant Award",
+      "definition": "A financial assistance mechanism providing money, property, or services to an eligible entity to carry out an approved project or activity.",
+      "parentTermUri": null,
+      "seeAlso": [
+        "https://www.ecfr.gov/current/title-2/subtitle-A/chapter-II/part-200"
+      ],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#subgrant",
+      "code": "subgrant",
+      "label": "Subgrant / Subaward",
+      "definition": "An award of financial assistance made under a grant by a pass-through entity to a subrecipient.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#grant-award",
+      "seeAlso": [],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#cooperative-agreement",
+      "code": "cooperative-agreement",
+      "label": "Cooperative Agreement",
+      "definition": "A financial assistance instrument where substantial involvement is anticipated between the federal agency and the recipient during performance.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#grant-award",
+      "seeAlso": [],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#interagency-agreement",
+      "code": "interagency-agreement",
+      "label": "Interagency Agreement",
+      "definition": "A formal agreement between two government agencies to transfer funds, property, or services.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#memorandum-of-understanding",
+      "code": "memorandum-of-understanding",
+      "label": "Memorandum of Understanding",
+      "definition": "A non-binding agreement documenting the intentions of two or more parties to cooperate on a matter of mutual interest.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#fiscal-sponsorship",
+      "code": "fiscal-sponsorship",
+      "label": "Fiscal Sponsorship",
+      "definition": "An arrangement where a 501(c)(3) organization provides its legal and tax-exempt status to a project or group that does not have its own.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#board-membership",
+      "code": "board-membership",
+      "label": "Board Membership",
+      "definition": "A governance relationship where an individual serves on the board of directors of an organization.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#employment",
+      "code": "employment",
+      "label": "Employment",
+      "definition": "A formal employment relationship between an entity and an individual, creating tax and benefit obligations.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#consulting-engagement",
+      "code": "consulting-engagement",
+      "label": "Consulting Engagement",
+      "definition": "A professional services arrangement where an individual or firm provides expert advice without an employment relationship.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#subsidiary",
+      "code": "subsidiary",
+      "label": "Subsidiary Relationship",
+      "definition": "A corporate ownership relationship where one entity (parent) owns more than 50% of another entity (subsidiary).",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#joint-venture",
+      "code": "joint-venture",
+      "label": "Joint Venture",
+      "definition": "A business arrangement where two or more parties agree to pool resources for a specific project while maintaining separate identities.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#regulatory-registration",
+      "code": "regulatory-registration",
+      "label": "Regulatory Registration",
+      "definition": "A formal registration of an entity with a regulatory body, establishing oversight and compliance obligations.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#loan-agreement",
+      "code": "loan-agreement",
+      "label": "Loan Agreement",
+      "definition": "A financial relationship where one party provides funds to another with an expectation of repayment, typically with interest.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "addedInVersion": "1.0.0"
+    }
+  ],
+
+  "mappings": [
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#prime-contract",
+      "externalUri": "https://www.usaspending.gov/glossary#contract",
+      "mappingType": "exactMatch",
+      "externalStandard": "USAspending"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#prime-contract",
+      "externalUri": "https://standard.open-contracting.org/latest/en/schema/reference/#contract",
+      "mappingType": "exactMatch",
+      "externalStandard": "OCDS"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#subcontract",
+      "externalUri": "https://standard.open-contracting.org/latest/en/schema/reference/#contract",
+      "mappingType": "narrowMatch",
+      "externalStandard": "OCDS"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#grant-award",
+      "externalUri": "https://www.usaspending.gov/glossary#grant",
+      "mappingType": "exactMatch",
+      "externalStandard": "USAspending"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#grant-award",
+      "externalUri": "https://standard.open-contracting.org/latest/en/schema/reference/#award",
+      "mappingType": "relatedMatch",
+      "externalStandard": "OCDS"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#grant-award",
+      "externalUri": "https://schema.org/MonetaryGrant",
+      "mappingType": "exactMatch",
+      "externalStandard": "Schema.org"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#loan-agreement",
+      "externalUri": "https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/",
+      "mappingType": "relatedMatch",
+      "externalStandard": "FIBO"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#loan-agreement",
+      "externalUri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansGeneral/Loans/",
+      "mappingType": "relatedMatch",
+      "externalStandard": "FIBO"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#subsidiary",
+      "externalUri": "https://schema.org/subOrganization",
+      "mappingType": "relatedMatch",
+      "externalStandard": "Schema.org"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#subsidiary",
+      "externalUri": "https://spec.edmcouncil.org/fibo/ontology/BE/OwnershipAndControl/CorporateControl/Subsidiary",
+      "mappingType": "relatedMatch",
+      "externalStandard": "FIBO"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#board-membership",
+      "externalUri": "https://www.popoloproject.com/specs/membership.html",
+      "mappingType": "narrowMatch",
+      "externalStandard": "Popolo"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/relationship-type.json#employment",
+      "externalUri": "https://www.popoloproject.com/specs/membership.html",
+      "mappingType": "narrowMatch",
+      "externalStandard": "Popolo"
+    }
+  ]
+}

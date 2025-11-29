@@ -1,0 +1,124 @@
+# mkdocs.yml
+# Configuration file for MkDocs (Automated project documentation generator)
+
+site_name: civic-exchange-protocol
+site_url: https://civic-interconnect.github.io/civic-exchange-protocol/
+repo_url: https://github.com/civic-interconnect/civic-exchange-protocol
+site_description: Civic Exchange Protocol site documentation.
+site_author: civic-interconnect
+docs_dir: docs
+site_dir: site
+copyright: Copyright &copy; 2025 Civic Interconnect
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/civic-interconnect/civic-exchange-protocol
+  version:
+    provider: mike
+  languages:
+    - name: English
+      code: en
+      default: true
+    - name: Français
+      code: fr
+    - name: Ελληνικά
+      code: el
+
+theme:
+  name: material
+  features:
+    - navigation.expand
+    - navigation.sections # Group navigation items
+    - navigation.top # Back-to-top button
+    - search.suggest # Search suggestions as you type
+    - search.highlight # Highlight search terms
+    - content.code.copy # Copy button on code blocks
+    - toc.follow # Highlight current section in TOC
+
+  palette:
+    - scheme: default # Light/dark mode toggle
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - search
+  - mike:
+      version_selector: true
+      css_dir: css
+      javascript_dir: js
+      canonical_version: latest
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            show_source: true
+            show_root_heading: true # Include module names
+            show_root_toc_entry: true # Include module in TOC
+            docstring_style: google # Professional docstring format
+            show_signature_annotations: true
+            separate_signature: true    # Makes function signatures easier to read
+  - i18n:
+      languages:
+      - locale: en
+        name: English
+        default: true
+        build: true
+      - locale: fr
+        name: Français
+        build: false
+      - locale: el
+        name: Ελληνικά
+        build: false
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/ajv-formats/3.0.1/ajv-formats.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/ajv/8.17.1/ajv2020.bundle.js
+  - js/validator.js
+
+markdown_extensions:
+  - admonition # Note/Warning/Tip boxes
+  - codehilite # Syntax highlighting
+  - tables # Markdown tables
+  - toc:
+      permalink: true # Clickable headers
+      toc_depth: 3
+  - pymdownx.superfences # Code blocks with syntax highlighting
+  - pymdownx.details # Collapsible sections
+  - pymdownx.inlinehilite # Inline code highlighting
+  - pymdownx.snippets # Include external files
+  - pymdownx.tabbed # Tabbed content
+
+nav:
+  - Home: en/index.md
+  - Quick Start: en/quick-start.md
+
+  - Concepts:
+      - Category Theory Foundation: en/concepts/category-theory-foundation.md
+      - Related Domains: en/concepts/related-domains.md
+      - Interoperability: en/concepts/interoperability.md
+
+  - Governance:
+      - Evolution Policy and Versioning: en/governance/evolution-policy-and-versioning.md
+      - Vocabulary Governance Process: en/governance/vocabulary-process.md
+      - Objectives and Mandates: en/governance/objectives-and-vision.md
+
+  - Implementation:
+      - Guide: en/implementation/implementation-guide.md
+      - Validator: en/implementation/validator.md
+
+  - Reference:
+      - Reference Standards: en/reference/reference-standards.md
+      - Reference Projects: en/reference/reference-projects.md
+
+  - API Reference: en/api.md
+  - CLI Reference: en/cli.md

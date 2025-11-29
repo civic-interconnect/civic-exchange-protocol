@@ -1,0 +1,112 @@
+{
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.vocabulary.schema.json",
+  "vocabularyUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json",
+  "version": "1.0.0",
+  "title": "CEP Party Role Vocabulary",
+  "description": "Controlled vocabulary for roles that parties play within CEP Relationship records (bilateralParties and multilateralMembers).",
+  "governanceUri": "https://github.com/civic-interconnect/civic-exchange-protocol/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#grantor",
+      "code": "grantor",
+      "label": "Grantor",
+      "definition": "A party that awards a grant or cooperative agreement and is responsible for oversight of program performance.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#grantee",
+      "code": "grantee",
+      "label": "Grantee",
+      "definition": "A party that receives a grant, cooperative agreement, or other assistance award.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#beneficiary",
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#beneficiary",
+      "code": "beneficiary",
+      "label": "Beneficiary",
+      "definition": "A party that benefits from a relationship, such as a funded program, service, or project, regardless of whether it is a direct financial recipient.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#employer",
+      "code": "employer",
+      "label": "Employer",
+      "definition": "A party that hires and compensates individuals under an employment relationship, creating tax and benefit obligations.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#employee",
+      "code": "employee",
+      "label": "Employee",
+      "definition": "An individual who performs work in an employment relationship with an employer, typically subject to payroll tax and benefit rules.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#beneficiary",
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#consultant",
+      "code": "consultant",
+      "label": "Consultant",
+      "definition": "A party that provides professional or advisory services under a consulting engagement without an employment relationship.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#board-member",
+      "code": "board-member",
+      "label": "Board Member",
+      "definition": "An individual serving on the board of directors or equivalent governing body of an organization.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#fiscal-sponsor",
+      "code": "fiscal-sponsor",
+      "label": "Fiscal Sponsor",
+      "definition": "An organization that extends its legal and tax-exempt status to a project or initiative that does not have its own.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#sponsored-project",
+      "code": "sponsored-project",
+      "label": "Sponsored Project",
+      "definition": "A project, initiative, or group that operates under a fiscal sponsorship arrangement.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/party-role.json#beneficiary",
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    }
+  ],
+  "mappings": []
+}
