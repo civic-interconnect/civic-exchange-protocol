@@ -931,6 +931,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#civic_exchange_protocol.cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cli
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#civic_exchange_protocol.core" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1057,6 +1068,17 @@
     <span class="md-ellipsis">
       
         api
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#civic_exchange_protocol.cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cli
       
     </span>
   </a>
@@ -1757,6 +1779,157 @@ To run: uvicorn cep_entity_service:app --reload</p>
 
 </div>
 
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-module">
+
+
+
+<h3 id="civic_exchange_protocol.cli" class="doc doc-heading">
+            <span class="doc doc-object-name doc-module-name">cli</span>
+
+
+<a href="#civic_exchange_protocol.cli" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h4 id="civic_exchange_protocol.cli.cli" class="doc doc-heading">
+            <span class="doc doc-object-name doc-module-name">cli</span>
+
+
+<a href="#civic_exchange_protocol.cli.cli" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+        <p>Command-line interface for the Civic Exchange Protocol.</p>
+<p>This module provides CLI commands for:
+- version: Display the package version
+- validate: Validate exchange protocol data</p>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="civic_exchange_protocol.cli.cli.validate" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">validate</span>
+
+
+<a href="#civic_exchange_protocol.cli.cli.validate" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">validate</span><span class="p">()</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Validate exchange protocol data.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/python/src/civic_exchange_protocol/cli/cli.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate exchange protocol data.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Validator coming soon.&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="civic_exchange_protocol.cli.cli.version" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">version</span>
+
+
+<a href="#civic_exchange_protocol.cli.cli.version" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">version</span><span class="p">()</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Show package version.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/python/src/civic_exchange_protocol/cli/cli.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">version</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Show package version.&quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">civic_exchange_protocol</span><span class="w"> </span><span class="kn">import</span> <span class="n">__version__</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">__version__</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
 
 
   </div>
