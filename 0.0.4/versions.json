@@ -1,0 +1,8 @@
+[
+  {
+    "version": "latest",
+    "title": "latest",
+    "aliases": ["latest"],
+    "default": true
+  }
+]
