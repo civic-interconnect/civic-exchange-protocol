@@ -1201,33 +1201,38 @@
 
 
 <h1 id="reference-projects-github-data-standards">Reference Projects: GitHub Data Standards<a class="headerlink" href="#reference-projects-github-data-standards" title="Permanent link">&para;</a></h1>
-<p>Here are three categories of open-source projects on GitHub that offer excellent parallels to a comprehensive standard like the Unified Entity Identifier and Provenance (UEI-P) Standard, particularly concerning common data schemas, multi-language support, and provenance tracking.</p>
+<p>There are categories of open-source projects on GitHub that offer great examples, particularly concerning common data schemas, multi-language support, and provenance tracking.</p>
 <h2 id="1-interoperability-event-specifications-cross-platform">1. Interoperability &amp; Event Specifications (Cross-Platform)<a class="headerlink" href="#1-interoperability-event-specifications-cross-platform" title="Permanent link">&para;</a></h2>
-<p>These standards focus on defining a common data format to ensure different systems and languages can communicate seamlessly. They often define schemas (like UEI-P's Identifier component) and transport rules.</p>
+<p>These standards focus on defining a common data format to ensure different systems and languages can communicate seamlessly.
+They typically define schemas and transport rules.</p>
 <h3 id="cloudevents-specification">CloudEvents Specification<a class="headerlink" href="#cloudevents-specification" title="Permanent link">&para;</a></h3>
-<p>What it is: A specification for describing event data in a common way. It is designed to dramatically simplify event declaration and delivery across services, platforms, and languages (Go, Java, Python, C#, etc.).</p>
-<p>Parallel: Excellent example of a cross-platform specification managed openly on GitHub. It defines a mandatory set of attributes (like a base entity identifier) that must be present in every data payload.</p>
-<p>Link: https://github.com/cloudevents/spec</p>
+<p>This specification describes event data in a common way.
+It is designed to simplify event declaration and delivery across services, platforms, and languages (e.g., Go, Java, Python, C#).</p>
+<p>It's a good example of a cross-platform specification managed openly on GitHub.
+It defines a mandatory set of attributes (like a base entity identifier) that must be present in every data payload.</p>
+<p>Link: <a href="https://github.com/cloudevents/spec">https://github.com/cloudevents/spec</a></p>
 <h3 id="cdevents-specification">CDEvents Specification<a class="headerlink" href="#cdevents-specification" title="Permanent link">&para;</a></h3>
-<p>What it is: A common specification for Continuous Delivery events, extending CloudEvents by introducing purpose and semantics to the event data.</p>
-<p>Parallel: Shows how a standard is built on top of another standard (CloudEvents), specializing the common metadata for a specific domain (CI/CD provenance and flow).</p>
-<p>Link: https://github.com/cdevents/spec</p>
+<p>This is a popular specification for Continuous Delivery events, extending CloudEvents by introducing purpose and semantics to the event data.</p>
+<p>It shows how a standard is built on top of another standard (CloudEvents), specializing the common metadata for a specific domain (CI/CD provenance and flow).</p>
+<p>Link: <a href="https://github.com/cdevents/spec">https://github.com/cdevents/spec</a></p>
 <h2 id="2-provenance-and-data-tracking-standards">2. Provenance and Data Tracking Standards<a class="headerlink" href="#2-provenance-and-data-tracking-standards" title="Permanent link">&para;</a></h2>
-<p>These projects directly relate to the Provenance part of the UEI-P, focusing on tracking the history, inputs, and derivation of data.</p>
+<p>These projects relate to provenance aspects, focusing on tracking the history, inputs, and derivation of data.</p>
 <h3 id="prov-cpl-core-provenance-library">PROV-CPL (Core Provenance Library)<a class="headerlink" href="#prov-cpl-core-provenance-library" title="Permanent link">&para;</a></h3>
-<p>What it is: A Core Provenance Library for collecting data provenance with multiple language bindings (C/C++, Java, Python, R). It uses the W3C PROV standard as its foundation.</p>
-<p>Parallel: Demonstrates a multi-language implementation of a provenance standard, providing APIs to record who/what/when/where data was created, which is central to provenance.</p>
-<p>Link: https://github.com/ProvTools/prov-cpl</p>
+<p>This is the Core Provenance Library for collecting data provenance with multiple language bindings (C/C++, Java, Python, R).
+It uses the <a href="https://www.w3.org/TR/prov-overview/">W3C PROV</a> standard as its foundation.</p>
+<p>It demonstrates a multi-language implementation of a provenance standard, providing APIs to record who/what/when/where data was created, which is central to provenance.</p>
+<p>Link: <a href="https://github.com/ProvTools/prov-cpl">https://github.com/ProvTools/prov-cpl</a></p>
 <h2 id="3-general-data-schemas-and-monorepo-structure">3. General Data Schemas and Monorepo Structure<a class="headerlink" href="#3-general-data-schemas-and-monorepo-structure" title="Permanent link">&para;</a></h2>
 <p>These focus on using JSON Schema to define strict data structures and managing them in a versioned repository.</p>
 <h3 id="json-schema-specification">JSON Schema Specification<a class="headerlink" href="#json-schema-specification" title="Permanent link">&para;</a></h3>
-<p>What it is: The official specification for JSON Schema, which is a declarative language used to annotate and validate JSON documents.</p>
-<p>Parallel: This is the foundational tool used by many standards (including CloudEvents) to define the specific fields and types (like a UEI-P structure). Looking through this repo shows how a core schema standard is defined and versioned.</p>
-<p>Link: https://github.com/json-schema-org/json-schema-spec</p>
+<p>This is the official specification for JSON Schema, a declarative language used to annotate and validate JSON documents.</p>
+<p>This foundational tool is by many standards (including CloudEvents) to define specific fields and types.
+This repo illustrates how a core schema standard is defined and versioned.</p>
+<p>Link: <a href="https://github.com/json-schema-org/json-schema-spec">https://github.com/json-schema-org/json-schema-spec</a></p>
 <h3 id="consumer-data-standards-australian-dsb-schemas">Consumer Data Standards (Australian DSB Schemas)<a class="headerlink" href="#consumer-data-standards-australian-dsb-schemas" title="Permanent link">&para;</a></h3>
-<p>What it is: A repository holding a collection of JSON schema files derived from the Australian Consumer Data Standards, used for robust schema validation in banking and energy sectors.</p>
-<p>Parallel: A great practical example of a large-scale data standard implementation in a monorepo (single repository), organized by release version, providing strict, enforceable JSON schemas for real-world data exchange.</p>
-<p>Link: https://github.com/ConsumerDataStandardsAustralia/dsb-schema-tools</p>
+<p>This repository holds a collection of JSON schema files derived from the Australian Consumer Data Standards, used for robust schema validation in banking and energy sectors.</p>
+<p>This offers a practical example of a large-scale data standard implementation in a monorepo (single repository), organized by release version, providing strict, enforceable JSON schemas for real-world data exchange.</p>
+<p>Link: <a href="https://github.com/ConsumerDataStandardsAustralia/dsb-schema-tools">https://github.com/ConsumerDataStandardsAustralia/dsb-schema-tools</a></p>
 
 
 
