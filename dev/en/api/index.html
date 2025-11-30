@@ -1868,8 +1868,9 @@ To run: uvicorn cep_entity_service:app --reload</p>
 
         <p>Command-line interface for the Civic Exchange Protocol.</p>
 <p>This module provides CLI commands for:
+- snfei: Generate an SNFEI for an entity name and country
 - version: Display the package version
-- validate: Validate exchange protocol data</p>
+- validate-json: Validate JSON files against CEP schemas</p>
 
 
 
@@ -1904,7 +1905,10 @@ To run: uvicorn cep_entity_service:app --reload</p>
         <span class="o">...</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Raw legal name&#39;</span>
     <span class="p">),</span>
     <span class="n">country_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span>
-        <span class="s1">&#39;US&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;ISO country code&#39;</span>
+        <span class="s1">&#39;US&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--country-code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;-c&#39;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;ISO country code&#39;</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
@@ -1916,21 +1920,21 @@ To run: uvicorn cep_entity_service:app --reload</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/python/src/civic_exchange_protocol/cli/cli.py</code></summary>
-              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
-<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">snfei</span><span class="p">(</span>
     <span class="n">legal_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Argument</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Raw legal name&quot;</span><span class="p">),</span>
-    <span class="n">country_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span><span class="s2">&quot;US&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;ISO country code&quot;</span><span class="p">),</span>
+    <span class="n">country_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span><span class="s2">&quot;US&quot;</span><span class="p">,</span> <span class="s2">&quot;--country-code&quot;</span><span class="p">,</span> <span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;ISO country code&quot;</span><span class="p">),</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate an SNFEI for an entity name and country.&quot;&quot;&quot;</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">generate_snfei_with_confidence</span><span class="p">(</span>
@@ -1948,28 +1952,146 @@ To run: uvicorn cep_entity_service:app --reload</p>
 <div class="doc doc-object doc-function">
 
 
-<h5 id="civic_exchange_protocol.cli.cli.validate" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">validate</span>
+<h5 id="civic_exchange_protocol.cli.cli.validate_json" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">validate_json</span>
 
 
-<a href="#civic_exchange_protocol.cli.cli.validate" class="headerlink" title="Permanent link">&para;</a></h5>
-<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">validate</span><span class="p">()</span>
+<a href="#civic_exchange_protocol.cli.cli.validate_json" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">validate_json</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">schema</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="s1">&#39;--schema&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;-s&#39;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Schema name (for example: entity, exchange, relationship, snfei).&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">recursive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span>
+        <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;--recursive&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;-r&#39;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Recurse into subdirectories when validating a directory.&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
-        <p>Validate exchange protocol data (placeholder).</p>
+        <p>Validate JSON file(s) against a CEP JSON Schema.</p>
+<p>Behavior:
+- If PATH is a file, validates that single JSON file.
+- If PATH is a directory, validates all *.json files within it.
+  Use --recursive to walk subdirectories.</p>
 
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/python/src/civic_exchange_protocol/cli/cli.py</code></summary>
-              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">validate</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate exchange protocol data (placeholder).&quot;&quot;&quot;</span>
-    <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Validator coming soon.&quot;</span><span class="p">)</span>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_json</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">schema</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="s2">&quot;--schema&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-s&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Schema name (for example: entity, exchange, relationship, snfei).&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">recursive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span>
+        <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;--recursive&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-r&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Recurse into subdirectories when validating a directory.&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate JSON file(s) against a CEP JSON Schema.</span>
+
+<span class="sd">    Behavior:</span>
+<span class="sd">    - If PATH is a file, validates that single JSON file.</span>
+<span class="sd">    - If PATH is a directory, validates all *.json files within it.</span>
+<span class="sd">      Use --recursive to walk subdirectories.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Error: Path argument is required.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">typer</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">summary</span><span class="p">:</span> <span class="n">ValidationSummary</span> <span class="o">=</span> <span class="n">validate_json_path</span><span class="p">(</span>
+        <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
+        <span class="n">schema_name</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span>
+        <span class="n">recursive</span><span class="o">=</span><span class="n">recursive</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">summary</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+        <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;No JSON files found to validate.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">typer</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">errors_found</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">summary</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+            <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[OK] </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">errors_found</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[ERROR] </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">errors</span><span class="p">:</span>
+                <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">errors_found</span><span class="p">:</span>
+        <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Validation completed with errors.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">typer</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;All files validated successfully.&quot;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="n">typer</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1984,7 +2106,7 @@ To run: uvicorn cep_entity_service:app --reload</p>
 
 
 <a href="#civic_exchange_protocol.cli.cli.version" class="headerlink" title="Permanent link">&para;</a></h5>
-<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">version</span><span class="p">()</span>
+<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">version</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1994,13 +2116,13 @@ To run: uvicorn cep_entity_service:app --reload</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/python/src/civic_exchange_protocol/cli/cli.py</code></summary>
-              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">version</span><span class="p">():</span>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">version</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Show package version.&quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">civic_exchange_protocol</span><span class="w"> </span><span class="kn">import</span> <span class="n">__version__</span>
 
@@ -9417,8 +9539,8 @@ If aware, will be converted to UTC.</p>
 
         <p>CEP Entity - Entity records for the Civic Exchange Protocol.</p>
 <p>This package defines the EntityRecord type, which represents a verified
-civic entity. Entities are the foundational primitive in CEP—all relationships
-and exchanges reference attested entities.</p>
+civic entity. Entities are the foundational primitive in CEP data models, as
+all relationships and exchanges reference attested entities.</p>
 
 
 
@@ -12397,6 +12519,317 @@ and exchanges reference attested entities.</p>
 </div>
 
 
+
+<div class="doc doc-object doc-module">
+
+
+
+<h4 id="civic_exchange_protocol.entity.builder" class="doc doc-heading">
+            <span class="doc doc-object-name doc-module-name">builder</span>
+
+
+<a href="#civic_exchange_protocol.entity.builder" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+        <p>Builder for creating civic exchange entity records.</p>
+<p>This module provides a builder function for constructing
+CEP-compliant Entity JSON objects from minimal raw input.</p>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="civic_exchange_protocol.entity.builder.build_entity_from_raw" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">build_entity_from_raw</span>
+
+
+<a href="#civic_exchange_protocol.entity.builder.build_entity_from_raw" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature codehilite"><pre><span></span><code><span class="nf">build_entity_from_raw</span><span class="p">(</span>
+    <span class="n">raw</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">attestor_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;cep-entity:demo:attestor-1&#39;</span><span class="p">,</span>
+    <span class="n">attestation_timestamp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;2025-11-28T15:00:00.000000Z&#39;</span><span class="p">,</span>
+    <span class="n">status_effective_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Build a CEP-compliant Entity JSON object from a raw entity record.</p>
+<p>raw is your minimal input, e.g.:</p>
+<p>{
+    "entityId": "US-IL-MUNI-0012",
+    "legalName": "City of Springfield",
+    "entityType": "MUNICIPALITY",
+    "jurisdiction": "US-IL",
+    "countryCode": "US",
+    "address": "200 Main Street",
+    "registrationDate": null
+}</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/python/src/civic_exchange_protocol/entity/builder.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">build_entity_from_raw</span><span class="p">(</span>
+    <span class="n">raw</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">attestor_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cep-entity:demo:attestor-1&quot;</span><span class="p">,</span>
+    <span class="n">attestation_timestamp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;2025-11-28T15:00:00.000000Z&quot;</span><span class="p">,</span>
+    <span class="n">status_effective_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;2024-01-01&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build a CEP-compliant Entity JSON object from a raw entity record.</span>
+
+<span class="sd">    raw is your minimal input, e.g.:</span>
+
+<span class="sd">    {</span>
+<span class="sd">        &quot;entityId&quot;: &quot;US-IL-MUNI-0012&quot;,</span>
+<span class="sd">        &quot;legalName&quot;: &quot;City of Springfield&quot;,</span>
+<span class="sd">        &quot;entityType&quot;: &quot;MUNICIPALITY&quot;,</span>
+<span class="sd">        &quot;jurisdiction&quot;: &quot;US-IL&quot;,</span>
+<span class="sd">        &quot;countryCode&quot;: &quot;US&quot;,</span>
+<span class="sd">        &quot;address&quot;: &quot;200 Main Street&quot;,</span>
+<span class="sd">        &quot;registrationDate&quot;: null</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">legal_name</span> <span class="o">=</span> <span class="n">raw</span><span class="p">[</span><span class="s2">&quot;legalName&quot;</span><span class="p">]</span>
+    <span class="n">country_code</span> <span class="o">=</span> <span class="n">raw</span><span class="p">[</span><span class="s2">&quot;countryCode&quot;</span><span class="p">]</span>
+    <span class="n">address</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;address&quot;</span><span class="p">)</span>
+    <span class="n">registration_date</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;registrationDate&quot;</span><span class="p">)</span>
+
+    <span class="c1"># If you have LEI / SAM UEI in raw, pass them through here.</span>
+    <span class="n">lei</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lei&quot;</span><span class="p">)</span>
+    <span class="n">sam_uei</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;samUei&quot;</span><span class="p">)</span>
+
+    <span class="n">snfei_result</span> <span class="o">=</span> <span class="n">generate_snfei_with_confidence</span><span class="p">(</span>
+        <span class="n">legal_name</span><span class="o">=</span><span class="n">legal_name</span><span class="p">,</span>
+        <span class="n">country_code</span><span class="o">=</span><span class="n">country_code</span><span class="p">,</span>
+        <span class="n">address</span><span class="o">=</span><span class="n">address</span><span class="p">,</span>
+        <span class="n">registration_date</span><span class="o">=</span><span class="n">registration_date</span><span class="p">,</span>
+        <span class="n">lei</span><span class="o">=</span><span class="n">lei</span><span class="p">,</span>
+        <span class="n">sam_uei</span><span class="o">=</span><span class="n">sam_uei</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">snfei_value</span> <span class="o">=</span> <span class="n">snfei_result</span><span class="o">.</span><span class="n">snfei</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">canonical</span> <span class="o">=</span> <span class="n">snfei_result</span><span class="o">.</span><span class="n">canonical</span>
+
+    <span class="n">legal_name_normalized</span> <span class="o">=</span> <span class="n">canonical</span><span class="o">.</span><span class="n">legal_name_normalized</span>
+    <span class="n">entity_type</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;entityType&quot;</span><span class="p">)</span>
+    <span class="n">entity_type_uri</span> <span class="o">=</span> <span class="n">_lookup_entity_type_uri</span><span class="p">(</span><span class="n">entity_type</span><span class="p">)</span>
+
+    <span class="n">entity</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;schemaVersion&quot;</span><span class="p">:</span> <span class="n">SCHEMA_VERSION</span><span class="p">,</span>
+        <span class="s2">&quot;verifiableId&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;cep-entity:snfei:</span><span class="si">{</span><span class="n">snfei_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;identifiers&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;snfei&quot;</span><span class="p">:</span> <span class="n">snfei_value</span><span class="p">,</span>
+            <span class="s2">&quot;additionalSchemes&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;legalName&quot;</span><span class="p">:</span> <span class="n">legal_name</span><span class="p">,</span>
+        <span class="s2">&quot;legalNameNormalized&quot;</span><span class="p">:</span> <span class="n">legal_name_normalized</span><span class="p">,</span>
+        <span class="s2">&quot;entityTypeUri&quot;</span><span class="p">:</span> <span class="n">entity_type_uri</span><span class="p">,</span>
+        <span class="s2">&quot;jurisdictionIso&quot;</span><span class="p">:</span> <span class="n">raw</span><span class="p">[</span><span class="s2">&quot;jurisdiction&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;statusCode&quot;</span><span class="p">:</span> <span class="s2">&quot;ACTIVE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;statusEffectiveDate&quot;</span><span class="p">:</span> <span class="n">status_effective_date</span><span class="p">,</span>
+            <span class="s2">&quot;statusTerminationDate&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;successorEntityId&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;naicsCode&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;resolutionConfidence&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">snfei_result</span><span class="o">.</span><span class="n">confidence_score</span><span class="p">,</span>
+            <span class="s2">&quot;methodUri&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">&quot;https://raw.githubusercontent.com/&quot;</span>
+                <span class="s2">&quot;civic-interconnect/civic-exchange-protocol/main/&quot;</span>
+                <span class="s2">&quot;vocabulary/resolution-method.json#snfei-v1&quot;</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;sourceRecordCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;attestation&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attestorId&quot;</span><span class="p">:</span> <span class="n">attestor_id</span><span class="p">,</span>
+            <span class="s2">&quot;attestationTimestamp&quot;</span><span class="p">:</span> <span class="n">attestation_timestamp</span><span class="p">,</span>
+            <span class="s2">&quot;proofType&quot;</span><span class="p">:</span> <span class="s2">&quot;Ed25519Signature2020&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;proofValue&quot;</span><span class="p">:</span> <span class="s2">&quot;BASE64_SIGNATURE_EXAMPLE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;verificationMethodUri&quot;</span><span class="p">:</span> <span class="s2">&quot;https://example.org/keys/attestor-1#primary&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;proofPurpose&quot;</span><span class="p">:</span> <span class="s2">&quot;assertionMethod&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;anchorUri&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;previousRecordHash&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;revisionNumber&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># identifier extras</span>
+    <span class="n">additional_schemes</span> <span class="o">=</span> <span class="n">entity</span><span class="p">[</span><span class="s2">&quot;identifiers&quot;</span><span class="p">][</span><span class="s2">&quot;additionalSchemes&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">&quot;entityId&quot;</span> <span class="ow">in</span> <span class="n">raw</span><span class="p">:</span>
+        <span class="n">additional_schemes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;schemeUri&quot;</span><span class="p">:</span> <span class="s2">&quot;https://specs.civic-interconnect.org/schemes/local-entity-id&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">raw</span><span class="p">[</span><span class="s2">&quot;entityId&quot;</span><span class="p">]),</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">lei</span><span class="p">:</span>
+        <span class="n">additional_schemes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;schemeUri&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.gleif.org/en/lei-solutions&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">lei</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">sam_uei</span><span class="p">:</span>
+        <span class="n">additional_schemes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;schemeUri&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sam.gov/content/entity-registration&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">sam_uei</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Keep raw fields for pedagogy / debuggability</span>
+    <span class="n">entity</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">entity</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
 
 <div class="doc doc-object doc-module">
 
@@ -18498,6 +18931,33 @@ an established relationship. This is the atomic unit of civic transparency.</p>
 </div>
 
 
+
+<div class="doc doc-object doc-module">
+
+
+
+<h4 id="civic_exchange_protocol.exchange.builder" class="doc doc-heading">
+            <span class="doc doc-object-name doc-module-name">builder</span>
+
+
+<a href="#civic_exchange_protocol.exchange.builder" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+        <p>Builder for creating civic exchange protocol messages.</p>
+<p>This module provides builder classes and utilities for constructing
+exchange protocol messages in a fluent, type-safe manner.</p>
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
 
 <div class="doc doc-object doc-module">
 
@@ -25020,6 +25480,33 @@ hash stability regardless of insertion order.</p>
 
 
 
+<h4 id="civic_exchange_protocol.relationship.builder" class="doc doc-heading">
+            <span class="doc doc-object-name doc-module-name">builder</span>
+
+
+<a href="#civic_exchange_protocol.relationship.builder" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+        <p>Builder module for creating and managing civic exchange relationships.</p>
+<p>This module provides utilities for constructing relationship objects
+in the civic exchange protocol.</p>
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-module">
+
+
+
 <h4 id="civic_exchange_protocol.relationship.multilateral" class="doc doc-heading">
             <span class="doc doc-object-name doc-module-name">multilateral</span>
 
@@ -31150,6 +31637,32 @@ springfield unified school district incorporated</p>
 
 </div>
 
+
+<div class="doc doc-object doc-module">
+
+
+
+<h4 id="civic_exchange_protocol.snfei.builder" class="doc doc-heading">
+            <span class="doc doc-object-name doc-module-name">builder</span>
+
+
+<a href="#civic_exchange_protocol.snfei.builder" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+        <p>Builder module for SNFEI (Structured Networked Format for Exchange and Integration).</p>
+<p>This module provides builder utilities and classes for constructing SNFEI data structures.</p>
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
 
 <div class="doc doc-object doc-module">
 
