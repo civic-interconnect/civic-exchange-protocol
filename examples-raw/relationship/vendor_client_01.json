@@ -1,0 +1,9 @@
+{
+  "relationshipId": "REL-IL-017",
+  "relationshipType": "VENDOR",
+  "buyerEntityId": "US-IL-MUNI-0012",
+  "vendorEntityId": "US-IL-BIZ-4499",
+  "startDate": "2024-01-01",
+  "status": "ACTIVE",
+  "notes": "Approved municipal vendor for landscaping services"
+}

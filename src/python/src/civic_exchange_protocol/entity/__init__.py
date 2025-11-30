@@ -1,8 +1,8 @@
 """CEP Entity - Entity records for the Civic Exchange Protocol.
 
 This package defines the EntityRecord type, which represents a verified
-civic entity. Entities are the foundational primitive in CEP—all relationships
-and exchanges reference attested entities.
+civic entity. Entities are the foundational primitive in CEP data models, as
+all relationships and exchanges reference attested entities.
 """
 
 from .entity import (

@@ -24,9 +24,8 @@ jobs:
             - name: Check links in markdown files
               uses: lycheeverse/lychee-action@v2
               with:
-                  args: >
-                      --config lychee.toml
-                      **/*.md
+                  args: --config lychee.toml "**/*.md"
+                  lycheeVersion: latest
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

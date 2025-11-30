@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.vocabulary.schema.json",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schemas/cep.vocabulary.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "CEP Controlled Vocabulary Definition",
   "description": "Meta-schema for defining controlled vocabularies used by CEP. Vocabularies are versioned independently of the core schemas, enabling faster evolution of domain-specific terms. Each vocabulary can advertise SKOS-style mappings to external standards such as Popolo, Open Civic Data (OCD), Open Contracting Data Standard (OCDS), Schema.org, Open Referral HSDS, XBRL taxonomies, FIBO, W3C PROV, and national regulatory glossaries.",

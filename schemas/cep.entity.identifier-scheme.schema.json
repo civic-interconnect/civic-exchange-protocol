@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.entity.identifier-scheme.schema.json",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schemas/cep.entity.identifier-scheme.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "CEP Identifier Scheme URI",
   "description": "Allowed identifier scheme URIs for CEP Entity.identifiers.additionalSchemes[].schemeUri. This is the schema-level view of the Identifier Scheme Vocabulary.",

@@ -1,0 +1,10 @@
+{
+  "entityId": "US-FED-PAC-9821",
+  "legalName": "Committee to Elect Jane Doe",
+  "entityType": "PAC",
+  "jurisdiction": "US-FED",
+  "countryCode": "US",
+  "address": "PO Box 55214",
+  "fecCommitteeId": "C12345678",
+  "registrationDate": "2020-02-01"
+}

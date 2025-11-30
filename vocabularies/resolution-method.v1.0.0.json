@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.vocabulary.schema.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schemas/cep.vocabulary.schema.json",
   "vocabularyUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/resolution-method.json",
   "version": "1.0.0",
   "title": "CEP Entity Resolution Method Vocabulary",

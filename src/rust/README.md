@@ -4,7 +4,7 @@ civic-exchange-protocol/
 ├── Cargo.toml                          # Workspace manifest
 ├── docs/
 │   └── category-theory-foundation.md   # Formal categorical semantics
-├── schema/
+├── schemas/
 │   ├── cep.entity.schema.json
 │   ├── cep.exchange.schema.json
 │   ├── cep.relationship.schema.json

@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.exchange.schema.json",
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schemas/cep.exchange.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Canonical CEP Exchange Record",
   "description": "Defines a verifiable value exchange (financial, in-kind, or informational) between entities within an established relationship. This is the atomic unit of civic transparency. CEP Exchanges are designed to interoperate with Open Contracting Data Standard (OCDS) transactions, Schema.org MonetaryGrant/Payment, XBRL financial taxonomies, and campaign finance / education finance datasets via exchangeTypeUri, value, categorization, and sourceReferences.",
@@ -230,7 +230,7 @@
     },
 
     "attestation": {
-      "$ref": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.entity.schema.json#/$defs/attestationBlock"
+      "$ref": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schemas/cep.entity.schema.json#/$defs/attestationBlock"
     },
 
     "previousRecordHash": {

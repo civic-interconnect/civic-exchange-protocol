@@ -1,6 +1,27 @@
 {
-  "entityId": "US-FED-PAC-9821",
+  "schemaVersion": "1.0.0",
+  "verifiableId": "cep-entity:demo:pac-01",
+  "identifiers": {
+    "snfei": "77c43e5f0bd2c15f9d5518eaf03731b179687e60a0546c2a8a2f95acb8fc1cfe"
+  },
   "legalName": "Committee to Elect Jane Doe",
+  "jurisdictionIso": "US-FED",
+  "status": {
+    "statusCode": "ACTIVE",
+    "statusEffectiveDate": "2020-02-01"
+  },
+  "attestation": {
+    "attestorId": "cep-entity:demo:attestor-1",
+    "attestationTimestamp": "2025-11-28T14:30:00.000000Z",
+    "proofType": "Ed25519Signature2020",
+    "proofValue": "BASE64_SIGNATURE_EXAMPLE",
+    "verificationMethodUri": "https://example.org/keys/attestor-1#primary",
+    "proofPurpose": "assertionMethod",
+    "anchorUri": null
+  },
+  "previousRecordHash": null,
+  "revisionNumber": 1,
+  "entityId": "US-FED-PAC-9821",
   "entityType": "PAC",
   "jurisdiction": "US-FED",
   "countryCode": "US",

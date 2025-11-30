@@ -1,6 +1,27 @@
 {
-  "entityId": "US-MA-NP-4578",
+  "schemaVersion": "1.0.0",
+  "verifiableId": "cep-entity:demo:nonprofit-01",
+  "identifiers": {
+    "snfei": "3a06c5b6e80fbd4fdc85ee201bbc229ac911ee770ea7dda6845b27d509bda2d4"
+  },
   "legalName": "Boston Community Foundation, Inc.",
+  "jurisdictionIso": "US-MA",
+  "status": {
+    "statusCode": "ACTIVE",
+    "statusEffectiveDate": "1998-05-20"
+  },
+  "attestation": {
+    "attestorId": "cep-entity:demo:attestor-1",
+    "attestationTimestamp": "2025-11-28T14:30:00.000000Z",
+    "proofType": "Ed25519Signature2020",
+    "proofValue": "BASE64_SIGNATURE_EXAMPLE",
+    "verificationMethodUri": "https://example.org/keys/attestor-1#primary",
+    "proofPurpose": "assertionMethod",
+    "anchorUri": null
+  },
+  "previousRecordHash": null,
+  "revisionNumber": 1,
+  "entityId": "US-MA-NP-4578",
   "entityType": "NONPROFIT_501C3",
   "jurisdiction": "US-MA",
   "countryCode": "US",

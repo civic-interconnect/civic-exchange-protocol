@@ -30,6 +30,7 @@ classifiers = [
 keywords = ["civic", "interconnect", "protocol", "government", "provenance"]
 dependencies = [
     "fastapi",
+    "jsonschema",
     # "pandas",
     "pydantic",
     "PyYAML",

@@ -33,7 +33,7 @@ Documentation: <https://civic-interconnect.github.io/civic-exchange-protocol/>
 
 ```text
 /
-├── schema/                     # Official CEP JSON Schemas
+├── schemas/                    # Official CEP JSON Schemas
 │   ├── cep.entity.schema.json
 │   ├── cep.relationship.schema.json
 │   ├── cep.exchange.schema.json
@@ -73,6 +73,9 @@ CLI entrypoint:
 
 ```bash
 cx --help
+cx validate-json examples/entity/school_district_01.json --schema entity
+cx validate-json examples/entity --schema entity
+cx validate-json examples/exchange --schema exchange --recursive
 ```
 
 Includes:
@@ -105,10 +108,10 @@ Each crate inherits version, license, and repository metadata from the workspace
 
 ## Schemas
 
-Official schemas live under **/schema** and are published with stable URLs such as:
+Official schemas live under **/schemas** and are published with stable URLs such as:
 
 ```text
-https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schema/cep.entity.schema.json
+https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/schemas/cep.entity.schema.json
 ```
 
 Documentation includes a browser-embedded validator using Ajv.

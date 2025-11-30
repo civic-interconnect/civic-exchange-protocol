@@ -1,15 +1,79 @@
 {
+  "schemaVersion": "1.0.0",
+  "verifiableId": "cep-exchange:demo:EX-2024-1011",
+  "relationshipId": "cep-relationship:demo:REL-2024-0001",
+  "exchangeTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-type.json#grant-disbursement",
+
+  "sourceEntity": {
+    "entityId": "US-FED-ED-001",
+    "roleUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#disbursing-agency",
+    "accountIdentifier": null
+  },
+
+  "recipientEntity": {
+    "entityId": "US-CA-SD-0001",
+    "roleUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/exchange-role.json#grantee",
+    "accountIdentifier": null
+  },
+
+  "value": {
+    "amount": 1250000.0,
+    "currencyCode": "USD",
+    "valueTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/value-type.json#monetary",
+    "inKindDescription": null
+  },
+
+  "occurredTimestamp": "2024-05-15T14:02:10.491823Z",
+
+  "status": {
+    "statusCode": "COMPLETED",
+    "statusEffectiveTimestamp": "2024-05-15T14:02:10.491823Z"
+  },
+
+  "provenanceChain": {
+    "fundingChainTag": "FEDERAL>STATE>LOCAL",
+    "ultimateSourceEntityId": "US-FED-ED-001",
+    "intermediaryEntities": [],
+    "parentExchangeId": null
+  },
+
+  "categorization": {
+    "cfdaNumber": "84.010",
+    "naicsCode": null,
+    "gtasAccountCode": null,
+    "localCategoryCode": "ED-TITLEI",
+    "localCategoryLabel": "Title I Grants to Local Educational Agencies"
+  },
+
+  "sourceReferences": [
+    {
+      "sourceSystemUri": "https://raw.githubusercontent.com/civic-interconnect/civic-exchange-protocol/main/vocabulary/source-system.json#demo",
+      "sourceRecordId": "EX-2024-1011",
+      "sourceUrl": null
+    }
+  ],
+
+  "attestation": {
+    "attestorId": "cep-entity:demo:attestor-1",
+    "attestationTimestamp": "2024-05-15T14:02:10.491823Z",
+    "proofType": "Ed25519Signature2020",
+    "proofValue": "BASE64_SIGNATURE_EXAMPLE",
+    "verificationMethodUri": "https://example.org/keys/attestor-1#primary",
+    "proofPurpose": "assertionMethod",
+    "anchorUri": null
+  },
+
+  "previousRecordHash": null,
+  "revisionNumber": 1,
+
   "exchangeId": "EX-2024-1011",
   "exchangeType": "GRANT",
   "grantorEntityId": "US-FED-ED-001",
   "granteeEntityId": "US-CA-SD-0001",
-  "grantAmount": 1250000.00,
+  "grantAmount": 1250000.0,
   "currency": "USD",
   "awardDate": "2024-05-15",
   "programCode": "ED-TITLEI",
-  "description": "Title I funding allocation to improve academic achievement.",
-  "attestation": {
-    "attestedBy": "Maria Lopez, Federal Grants Specialist",
-    "attestationTimestamp": "2024-05-15T14:02:10.491823Z"
-  }
+  "description": "Title I funding allocation to improve academic achievement."
 }
+

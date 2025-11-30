@@ -25,20 +25,13 @@ from civic_exchange_protocol.snfei import (
 import pytest
 
 
-def find_repo_root():
-    """Find repository root by looking for test_vectors directory."""
-    current = Path(__file__).resolve().parent
-    print(f"DEBUG: Starting search from {current}")  # Temporary debug line
-    for i in range(10):
-        print(f"DEBUG: {i} Checking {current / 'test_vectors'}")  # Temporary debug line
-        if (current / "test_vectors").is_dir():
-            print(f"DEBUG: Found at {current}")  # Temporary debug line
-            return current
-        current = current.parent
-    raise FileNotFoundError(
-        f"Could not find repository root with test_vectors/. "
-        f"Started from {Path(__file__).resolve().parent}"
-    )
+def _find_repo_root(start: Path | None = None) -> Path:
+    """Find the repository root by walking up until pyproject.toml is found."""
+    path = (start or Path(__file__)).resolve()
+    for parent in [path] + list(path.parents):
+        if (parent / "pyproject.toml").is_file():
+            return parent
+    raise RuntimeError("Could not find repository root (pyproject.toml not found).")
 
 
 # --- Helper Function to Load All Test Vectors ---
@@ -48,7 +41,7 @@ def load_snfei_vectors():
     """
     Loads all 'current' SNFEI test vectors specified in the manifest.json file.
     """
-    manifest_path = find_repo_root() / "test_vectors" / "manifest.json"
+    manifest_path = _find_repo_root() / "test_vectors" / "manifest.json"
     if not manifest_path.exists():
         raise FileNotFoundError(f"Manifest file not found at {manifest_path}")
 

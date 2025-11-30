@@ -1,6 +1,27 @@
 {
-  "entityId": "US-CA-SD-0001",
+  "schemaVersion": "1.0.0",
+  "verifiableId": "cep-entity:demo:school-district-01",
+  "identifiers": {
+    "snfei": "bd4cdf26529bbd8882815249e7bfa21a8b6ace91166fb710fd41142221f37e67"
+  },
   "legalName": "Springfield Unified School District #12",
+  "jurisdictionIso": "US-CA",
+  "status": {
+    "statusCode": "ACTIVE",
+    "statusEffectiveDate": "2020-01-01"
+  },
+  "attestation": {
+    "attestorId": "cep-entity:demo:attestor-1",
+    "attestationTimestamp": "2025-11-28T14:30:00.000000Z",
+    "proofType": "Ed25519Signature2020",
+    "proofValue": "BASE64_SIGNATURE_EXAMPLE",
+    "verificationMethodUri": "https://example.org/keys/attestor-1#primary",
+    "proofPurpose": "assertionMethod",
+    "anchorUri": null
+  },
+  "previousRecordHash": null,
+  "revisionNumber": 1,
+  "entityId": "US-CA-SD-0001",
   "entityType": "SCHOOL_DISTRICT",
   "jurisdiction": "US-CA",
   "countryCode": "US",
