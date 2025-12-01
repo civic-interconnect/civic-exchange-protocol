@@ -11,6 +11,7 @@
 
 use lazy_static::lazy_static;
 use regex::Regex;
+use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
 use unicode_normalization::UnicodeNormalization;
 
@@ -480,7 +481,7 @@ pub fn normalize_registration_date(date_str: &str) -> Option<String> {
 // =============================================================================
 
 /// Normalized input for SNFEI hashing.
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, Serialize, Deserialize)] 
 pub struct CanonicalInput {
     pub legal_name_normalized: String,
     pub address_normalized: Option<String>,

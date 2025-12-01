@@ -10,6 +10,7 @@ from dataclasses import dataclass
 import json
 from pathlib import Path
 
+from civic_exchange_protocol.core import get_registry, get_schema
 from jsonschema import Draft202012Validator
 from jsonschema import ValidationError as JsonSchemaError
 
@@ -121,8 +122,9 @@ def validate_json_path(
     Returns:
         ValidationSummary with per-file results.
     """
-    schema = _load_schema_from_repo_root(schema_name)
-    validator = Draft202012Validator(schema)
+    schema = get_schema(schema_name)
+    registry = get_registry()
+    validator = Draft202012Validator(schema, registry=registry)
 
     json_files = _iter_json_files(path, recursive=recursive)
     results: list[FileValidationResult] = []

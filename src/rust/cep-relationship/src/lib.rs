@@ -2,8 +2,8 @@
 //!
 //! Relationship records for the Civic Exchange Protocol (CEP).
 //!
-//! This crate defines the [`RelationshipRecord`] type (also known as CLIM - Canonical
-//! Ledger Inclusion Membership), which represents a verifiable legal or functional
+//! This crate defines the [`RelationshipRecord`] type, 
+//! which represents a verifiable legal or functional
 //! relationship between two or more attested entities.
 //!
 //! ## Bilateral Relationships
@@ -36,11 +36,17 @@
 //! ```
 
 pub mod bilateral;
+pub mod builder;
 pub mod multilateral;
 pub mod relationship;
 
 // Re-export primary types
 pub use bilateral::{BilateralParties, Party};
+pub use builder::{
+    build_relationship, AttestationInput as RelationshipAttestationInput,
+    FinancialTermsInput, RelationshipBuildResult, RelationshipBuilderInput,
+    SourceReferenceInput as RelationshipSourceReferenceInput, relationship_type_uri,
+};
 pub use multilateral::{Member, MultilateralMembers};
 pub use relationship::{
     FinancialTerms, Parties, RelationshipRecord, RelationshipStatus, RelationshipStatusCode,

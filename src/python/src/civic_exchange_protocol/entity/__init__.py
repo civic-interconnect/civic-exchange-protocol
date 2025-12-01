@@ -11,6 +11,7 @@ from .entity import (
     EntityStatusCode,
     ResolutionConfidence,
 )
+from .entity_builder import EntityBuildResult
 from .identifiers import (
     AdditionalScheme,
     CanadianBn,
@@ -21,6 +22,8 @@ from .identifiers import (
 )
 
 __all__ = [
+    # Builder
+    "EntityBuildResult",
     # Entity
     "EntityRecord",
     "EntityStatus",

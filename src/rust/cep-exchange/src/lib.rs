@@ -54,11 +54,16 @@
 //! println!("Exchange hash: {}", hash);
 //! ```
 
+pub mod builder;
 pub mod exchange;
 pub mod provenance;
 pub mod value;
 
 // Re-export primary types
+pub use builder::{
+    AttestationInput, CategorizationInput, ExchangeBuildResult, ExchangeBuilderInput,
+    SourceReferenceInput, build_exchange, exchange_type_uri, parse_timestamp,
+};
 pub use exchange::{ExchangeRecord, ExchangeStatus, ExchangeStatusCode, SourceReference};
 pub use provenance::{ExchangeCategorization, IntermediaryEntity, ProvenanceChain};
 pub use value::{ExchangeParty, ExchangeValue, ValueType};

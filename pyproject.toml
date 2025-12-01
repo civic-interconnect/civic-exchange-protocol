@@ -34,6 +34,7 @@ dependencies = [
     # "pandas",
     "pydantic",
     "PyYAML",
+    "referencing",
     # "splink",
     "typer",
 ]

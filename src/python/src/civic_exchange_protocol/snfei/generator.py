@@ -53,88 +53,6 @@ class Snfei:
         return self.value[:length]
 
 
-def compute_snfei(canonical: CanonicalInput) -> Snfei:
-    """Compute SNFEI from canonical input.
-
-    Args:
-        canonical: Normalized input structure.
-
-    Returns:
-        Computed SNFEI.
-    """
-    hash_input = canonical.to_hash_string()
-    hash_bytes = hashlib.sha256(hash_input.encode("utf-8")).hexdigest().lower()
-    return Snfei(hash_bytes)
-
-
-def generate_snfei(
-    legal_name: str,
-    country_code: str,
-    address: str | None = None,
-    registration_date: str | None = None,
-) -> tuple[Snfei, CanonicalInput]:
-    """Generate an SNFEI from raw entity attributes.
-
-    This is the main entry point for SNFEI generation. It applies the
-    Normalizing Functor to all inputs before hashing.
-
-    Args:
-        legal_name: Raw legal name from source system.
-        country_code: ISO 3166-1 alpha-2 country code (e.g., "US", "CA").
-        address: Optional primary street address.
-        registration_date: Optional formation/registration date.
-
-    Returns:
-        Tuple of (SNFEI, CanonicalInput) for verification.
-
-    Example:
-        >>> snfei, inputs = generate_snfei(
-        ...     legal_name="Springfield Unified Sch. Dist., Inc.",
-        ...     country_code="US",
-        ...     address="123 Main St., Suite 100",
-        ...     registration_date="01/15/1985",
-        ... )
-        >>> print(snfei)
-        a1b2c3d4...
-        >>> print(inputs.legal_name_normalized)
-        springfield unified school district incorporated
-    """
-    canonical = build_canonical_input(
-        legal_name=legal_name,
-        country_code=country_code,
-        address=address,
-        registration_date=registration_date,
-    )
-    snfei = compute_snfei(canonical)
-    return snfei, canonical
-
-
-def generate_snfei_simple(
-    legal_name: str,
-    country_code: str,
-    address: str | None = None,
-) -> str:
-    """Generate SNFEI as a simple hex string.
-
-    Convenience function that returns just the hash value.
-
-    Args:
-        legal_name: Raw legal name.
-        country_code: ISO 3166-1 alpha-2 country code.
-        address: Optional primary street address.
-
-    Returns:
-        64-character lowercase hex SNFEI string.
-    """
-    snfei, _ = generate_snfei(legal_name, country_code, address)
-    return snfei.value
-
-
-# =============================================================================
-# TIER-BASED SNFEI (WITH CONFIDENCE SCORING)
-# =============================================================================
-
-
 @dataclass
 class SnfeiResult:
     """Result of SNFEI generation with confidence metadata."""
@@ -159,6 +77,113 @@ class SnfeiResult:
                 "registration_date": self.canonical.registration_date,
             },
         }
+
+
+def compute_snfei(canonical: CanonicalInput) -> Snfei:
+    """Compute SNFEI from canonical input.
+
+    Args:
+        canonical: Normalized input structure.
+
+    Returns:
+        Computed SNFEI.
+    """
+    hash_input = canonical.to_hash_string()
+    hash_bytes = hashlib.sha256(hash_input.encode("utf-8")).hexdigest().lower()
+    return Snfei(hash_bytes)
+
+
+def generate_snfei(
+    legal_name: str,
+    country_code: str,
+    address: str | None = None,
+    registration_date: str | None = None,
+) -> SnfeiResult:
+    """Generate an SNFEI from raw entity attributes.
+
+    This is the main entry point for SNFEI generation. It applies the
+    Normalizing Functor to all inputs before hashing.
+
+    Args:
+        legal_name: Raw legal name from source system.
+        country_code: ISO 3166-1 alpha-2 country code (e.g., "US", "CA").
+        address: Optional primary street address.
+        registration_date: Optional formation/registration date.
+
+    Returns:
+        SnfeiResult for verification.
+
+    Example:
+        >>> snfei, inputs = generate_snfei(
+        ...     legal_name="Springfield Unified Sch. Dist., Inc.",
+        ...     country_code="US",
+        ...     address="123 Main St., Suite 100",
+        ...     registration_date="01/15/1985",
+        ... )
+        >>> print(snfei)
+        a1b2c3d4...
+        >>> print(inputs.legal_name_normalized)
+        springfield unified school district incorporated
+    """
+    canonical = build_canonical_input(
+        legal_name=legal_name,
+        country_code=country_code,
+        address=address,
+        registration_date=registration_date,
+    )
+    snfei = compute_snfei(canonical)
+
+    # Determine fields used from what's present in canonical
+    fields_used = ["legal_name", "country_code"]
+    if canonical.address_normalized:
+        fields_used.append("address")
+    if canonical.registration_date:
+        fields_used.append("registration_date")
+
+    # Basic confidence: Tier 3, score based on fields
+    confidence = 0.5
+    if canonical.address_normalized:
+        confidence += 0.2
+    if canonical.registration_date:
+        confidence += 0.2
+    word_count = len(canonical.legal_name_normalized.split())
+    if word_count > 3:
+        confidence += 0.1
+    confidence = min(confidence, 0.9)
+
+    return SnfeiResult(
+        snfei=snfei,
+        canonical=canonical,
+        confidence_score=round(confidence, 2),
+        tier=3,
+        fields_used=fields_used,
+    )
+
+
+def generate_snfei_simple(
+    legal_name: str,
+    country_code: str,
+    address: str | None = None,
+) -> str:
+    """Generate SNFEI as a simple hex string.
+
+    Convenience function that returns just the hash value.
+
+    Args:
+        legal_name: Raw legal name.
+        country_code: ISO 3166-1 alpha-2 country code.
+        address: Optional primary street address.
+
+    Returns:
+        64-character lowercase hex SNFEI string.
+    """
+    result = generate_snfei(legal_name, country_code, address)
+    return result.snfei.value
+
+
+# =============================================================================
+# TIER-BASED SNFEI (WITH CONFIDENCE SCORING)
+# =============================================================================
 
 
 def generate_snfei_with_confidence(

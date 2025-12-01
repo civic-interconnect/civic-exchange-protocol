@@ -59,8 +59,20 @@ Test rust logic until there are no errors and all tests pass.
 
 ```shell
 rustc --version
-cargo test -- --nocapture
-cargo fix --lib -p cep-relationship # fix crates as needed
+
+# fix crates as needed
+cargo fix --lib -p cep-core         
+cargo fix --lib -p cep-entity
+cargo fix --lib -p cep-exchange
+cargo fix --lib -p cep-relationship
+cargo fix --lib -p cep-snfei
+
+# test individually or altogether
+cargo test -p cep-core
+cargo test -p cep-entity
+cargo test -p cep-exchange
+cargo test -p cep-relationship
+cargo test -p cep-snfei
 cargo test -- --nocapture
 ```
 

@@ -29,11 +29,11 @@ __all__ = [
     "ExchangeStatusCode",
     "SourceReference",
     # Provenance
-    "ProvenanceChain",
-    "IntermediaryEntity",
     "ExchangeCategorization",
+    "IntermediaryEntity",
+    "ProvenanceChain",
     # Value
-    "ExchangeValue",
     "ExchangeParty",
+    "ExchangeValue",
     "ValueType",
 ]

@@ -49,9 +49,13 @@
 //! println!("Entity hash: {}", hash);
 //! ```
 
+pub mod builder;
 pub mod entity;
 pub mod identifiers;
 
 // Re-export primary types
+pub use builder::{
+    AttestationInput, EntityBuildResult, EntityBuilderInput, EntityTypeCode, build_entity,
+};
 pub use entity::{EntityRecord, EntityStatus, EntityStatusCode, ResolutionConfidence};
-pub use identifiers::{EntityIdentifiers, SamUei, Lei, Snfei, CanadianBn, AdditionalScheme};
+pub use identifiers::{AdditionalScheme, CanadianBn, EntityIdentifiers, Lei, SamUei, Snfei};

@@ -6,6 +6,7 @@ This package provides the foundational types used by all CEP record types:
 - CanonicalHash: SHA-256 hash values
 - Canonicalize: Base class for deterministic serialization
 - Attestation: Cryptographic proof of record integrity
+- Schema Registry: Central schema loading and validation support
 """
 
 from .attestation import Attestation, ProofPurpose
@@ -26,15 +27,14 @@ from .error import (
     UnsupportedVersionError,
 )
 from .hash import CanonicalHash
+from .schema_registry import get_registry, get_schema, list_schemas
 from .timestamp import CanonicalTimestamp
-
-__version__ = "0.1.0"
-
-SCHEMA_VERSION = "1.0.0"
+from .version import SCHEMA_VERSION, __version__
 
 __all__ = [
     # Version
     "SCHEMA_VERSION",
+    "__version__",
     # Timestamp
     "CanonicalTimestamp",
     # Hash
@@ -47,6 +47,10 @@ __all__ = [
     # Attestation
     "Attestation",
     "ProofPurpose",
+    # Schema Registry
+    "get_schema",
+    "get_registry",
+    "list_schemas",
     # Errors
     "CepError",
     "InvalidTimestampError",

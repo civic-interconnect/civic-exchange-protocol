@@ -112,12 +112,12 @@ class TestSnfeiGeneration:
     """Tests for SNFEI hash generation (Python API unit tests)."""
 
     def test_basic_generation(self):
-        snfei, inputs = generate_snfei(
+        result = generate_snfei(
             legal_name="Springfield School District",
             country_code="US",
         )
-        assert len(snfei.value) == 64
-        assert all(c in "0123456789abcdef" for c in snfei.value)
+        assert len(result.snfei.value) == 64
+        assert all(c in "0123456789abcdef" for c in result.snfei.value)
 
     def test_determinism(self):
         """Same inputs must always produce same SNFEI."""
@@ -148,12 +148,12 @@ class TestSnfeiGeneration:
 
     def test_canonical_input_format(self):
         """Verify canonical input string format."""
-        _, inputs = generate_snfei(
+        result = generate_snfei(
             legal_name="Springfield School District",
             country_code="US",
             address="123 Main St",
         )
-        hash_string = inputs.to_hash_string()
+        hash_string = result.canonical.to_hash_string()
         parts = hash_string.split("|")
         assert len(parts) == 4
         assert parts[0] == "springfield school district"
@@ -162,12 +162,12 @@ class TestSnfeiGeneration:
         assert parts[3] == ""  # No registration date
 
     def test_with_registration_date(self):
-        _, inputs = generate_snfei(
+        result = generate_snfei(
             legal_name="Springfield School District",
             country_code="US",
             registration_date="01/15/1985",
         )
-        hash_string = inputs.to_hash_string()
+        hash_string = result.canonical.to_hash_string()
         assert "1985-01-15" in hash_string
 
 
@@ -289,7 +289,7 @@ class TestSnfeiVectorParity:
         if jurisdiction:
             legal_name = apply_localization(legal_name, jurisdiction)
 
-        snfei_obj, inputs_obj = generate_snfei(
+        snfei_result = generate_snfei(
             legal_name=legal_name,
             country_code=input_data["country_code"],
             address=input_data.get("address"),
@@ -297,25 +297,25 @@ class TestSnfeiVectorParity:
         )
 
         # 1. Verify Final SNFEI Hash
-        actual_snfei = snfei_obj.value
+        actual_snfei = snfei_result.snfei.value
         expected_snfei = expected["snfei"]
         assert actual_snfei == expected_snfei, "Final SNFEI hash mismatch"
 
         # 2. Verify Intermediate Canonical String
         intermediate = vector["intermediate"]
-        actual_canonical = inputs_obj.to_hash_string()
+        actual_canonical = snfei_result.canonical.to_hash_string()
         expected_canonical = intermediate["canonical_string"]
         assert actual_canonical == expected_canonical, "Canonical string mismatch"
 
         # 3. Verify Other Intermediates (handle None vs "")
-        assert inputs_obj.legal_name_normalized == intermediate["legal_name_normalized"]
-        assert (inputs_obj.address_normalized or "") == intermediate["address_normalized"]
-        assert (inputs_obj.registration_date or "") == intermediate["registration_date"]
+        canonical = snfei_result.canonical
+        assert canonical.legal_name_normalized == intermediate["legal_name_normalized"]
+        assert (canonical.address_normalized or "") == intermediate["address_normalized"]
+        assert (canonical.registration_date or "") == intermediate["registration_date"]
 
         # 4. Verify Equivalent Inputs (if provided)
         if "equivalentInputs" in vector:
             for equiv_name in vector["equivalentInputs"]:
-                # Use generate_snfei_simple for this check
                 snfei_equiv = generate_snfei_simple(equiv_name, input_data["country_code"])
                 assert snfei_equiv == expected_snfei, (
                     f"EquivalentInput '{equiv_name}' failed to match expected SNFEI"

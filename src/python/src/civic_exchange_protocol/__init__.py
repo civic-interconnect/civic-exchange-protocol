@@ -14,7 +14,7 @@ from importlib.metadata import PackageNotFoundError
 from importlib.metadata import version as _version
 
 # Make submodules importable
-from . import core, entity, exchange, relationship, snfei
+from . import core, entity, exchange, relationship, snfei, validation, vocabulary
 
 try:
     # Distribution name from pyproject.toml
@@ -28,4 +28,6 @@ __all__ = [
     "exchange",
     "relationship",
     "snfei",
+    "validation",
+    "vocabulary",
 ]
