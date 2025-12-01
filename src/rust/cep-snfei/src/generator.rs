@@ -135,7 +135,7 @@ pub fn generate_snfei(
     }
 
     // Calculate confidence score (Tier 3 logic)
-    let mut confidence = 0.5; // Base score
+    let mut confidence: f64 = 0.5; // Base score
     if !canonical.address_normalized.is_empty() {
         confidence += 0.2;
     }
@@ -149,6 +149,13 @@ pub fn generate_snfei(
     }
     // Cap at 0.9 for Tier 3
     confidence = confidence.min(0.9);
+
+    // ensure confidence is between 0.0 and 1.0
+    if confidence < 0.0 {
+        confidence = 0.0;
+    } else if confidence > 1.0 {
+        confidence = 1.0;
+    }
 
     SnfeiResult {
         snfei,
