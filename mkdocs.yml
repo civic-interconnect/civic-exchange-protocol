@@ -106,6 +106,7 @@ nav:
       - Category Theory Foundation: en/concepts/category-theory-foundation.md
       - Related Domains: en/concepts/related-domains.md
       - Interoperability: en/concepts/interoperability.md
+      - Positioning Paper (CEP + P3Tags): en/concepts/positioning-paper.md
 
   - Governance:
       - Evolution Policy and Versioning: en/governance/evolution-policy-and-versioning.md
@@ -115,6 +116,8 @@ nav:
   - Implementation:
       - Guide: en/implementation/implementation-guide.md
       - Validator: en/implementation/validator.md
+      - CEP–P3Tags Binding: en/implementation/cep-p3tags-binding.md
+      - Compatibility Matrix: en/reference/compatibility-matrix.md
 
   - Reference:
       - Reference Standards: en/reference/reference-standards.md
