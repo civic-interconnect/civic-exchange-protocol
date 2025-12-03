@@ -1,12 +1,12 @@
-//! Multilateral member definitions for n-ary relationships.
-//!
-//! Multilateral relationships involve more than two parties, such as:
-//! - Consortia
-//! - Joint ventures
-//! - Board memberships
-//!
-//! Members are stored in a `BTreeSet` to guarantee deterministic ordering
-//! for hash stability across all implementations.
+/// Multilateral member definitions for n-ary relationships.
+///
+/// Multilateral relationships involve more than two parties, such as:
+/// - Consortia
+/// - Joint ventures
+/// - Board memberships
+///
+/// Members are stored in a `BTreeSet` to guarantee deterministic ordering
+/// for hash stability across all implementations.
 
 use cep_core::canonical::{insert_required, Canonicalize};
 use serde::{Deserialize, Serialize};

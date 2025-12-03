@@ -1,6 +1,6 @@
-//! Value types for CEP exchanges.
-//!
-//! Supports monetary values (with currency) and in-kind contributions.
+/// Value types for CEP exchanges.
+///
+/// Supports monetary values (with currency) and in-kind contributions.
 
 use cep_core::canonical::{format_amount, insert_if_present, insert_required, Canonicalize};
 use serde::{Deserialize, Serialize};

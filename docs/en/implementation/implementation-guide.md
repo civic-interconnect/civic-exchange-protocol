@@ -1,47 +1,51 @@
 # Implementation Guide
 
-This guide provides a practical overview for developers building Civic Exchange Protocol (CEP) implementations in any language.
+This guide provides a practical overview for developers building Civic Exchange Protocol (CEP) implementations in any language.  
 It complements the formal schemas and the categorical foundations by describing how to validate, construct, serialize, and verify CEP records in a deterministic and interoperable way.
+
+---
 
 ## Technical Assurance
 
-The core technical sanity of the standard is managed through two mandatory components that ensure every implementing system generates an identical cryptographic hash for the same payload:
+CEP ensures technical correctness through two mandatory components:
 
 ### A. The Canonical String (The Debug Tool)
 
-Every implementation must expose a function (e.g., getCanonicalString or generate_canonical_string) that returns the raw, unhashed, deterministic string representation of the data payload.
+Every implementation must expose a function (e.g., `getCanonicalString`, `to_canonical_string`, or `generate_canonical_string`) that returns the **raw, unhashed, deterministic** string representation of a CEP record.
 
-- This function strictly enforces field ordering, date/time precision (microseconds, UTC), and monetary formatting (fixed two decimals, invariant culture).
-- By comparing this raw string across Python, Java, Rust, and C#, implementers can instantly identify byte-for-byte serialization errors that would otherwise result in a cryptic hash mismatch.
+- Strict field ordering  
+- UTC timestamps with microsecond precision  
+- Deterministic numeric formatting  
+- No locale or OS artifacts  
+
+This is the ground truth for resolving cross-language hash mismatches.
 
 ### B. The Certification Test Suite (The Compliance Gate)
 
-This repo includes shared test vectors that all language implementations must pass.
+All implementations must pass the cross-language hash-parity suite in `/test_vectors`.
 
-- Any vendor or government agency implementing a CEP Node must execute their system's generateValidationHash function against the payloads provided in the /test_data directory.
-- The resulting SHA-256 hash must exactly match the expected output hash provided in the test vector files. This automated process hopes to help reduce costly manual audits.
+Any system that computes a different SHA-256 hash for a canonical test vector is non-conforming.
 
+---
 
 ## Getting Certified
 
-To achieve Node Certification, follow the process below:
+1. Read `/specifications`.  
+2. Select the implementation folder for your platform (Rust, Python, etc.).  
+3. Integrate `TransactionRecord` and `generateValidationHash`.  
+4. Run tests with `/test_vectors`.  
+5. Use canonical debugging strings to correct mismatch sources.  
 
-1. Read the /specifications directory.
-2. Select the folder corresponding to your primary platform (e.g., src/rust, src/python, src/java).
-3. Integrate the TransactionRecord model and the generateValidationHash function into your system.
-4. Execute the unit tests using the shared payloads from /test_vectors.
-5. Use the getCanonicalString() debugging function to resolve any hash mismatches until all tests pass.
+---
 
 ## Logic Organization
 
-The core logic is divided into four main packages:
-
-| Package Name | Domain Focus | Dependencies | Artifacts |
-|---|---|---|---|
-| core | Shared Utilities & Types | None | Common cryptographic helpers (SHA-256 utils), base types (UEI), and error handling definitions. |
-| entity | Civic Entity (CE) | core | Defines Entity records (UEI attestation, status). |
-| relationship | Civic Relationship (CR) | core, entity | Defines legal relationships between attested entities. |
-| exchange | Civic Exchange (CX) | core, entity, relationship | Defines the flow between entities bound by a relationship. |
+| Package | Focus | Depends On | Artifacts |
+|--------|--------|------------|-----------|
+| core | Shared utilities | none | hashing, canonicalization, timestamps, errors |
+| entity | Entity records | core | `EntityRecord` |
+| relationship | Bilateral links | core, entity | `RelationshipRecord` |
+| exchange | Flows between entities | core, entity, relationship | `ExchangeRecord` |
 
 ---
 
@@ -49,183 +53,212 @@ The core logic is divided into four main packages:
 
 A correct CEP implementation MUST:
 
-1. Produce **canonical JSON** matching the CEP schemas.
-2. Achieve **hash parity** with all certified implementations.
-3. Perform **attestation verification** using public keys.
-4. Maintain a correct **immutable revision chain**.
-5. Support **identifier interoperability** (UEI, LEI, OCD IDs, etc.).
-6. Correctly handle **provenance composition** using relationships and exchanges.
+1. Produce canonical JSON matching the schemas  
+2. Achieve full hash parity across languages  
+3. Verify attestations  
+4. Maintain immutable hash-linked revision chains  
+5. Support multi-scheme identifiers  
+6. Compose provenance deterministically  
 
 ---
 
 ## 2. Canonical Serialization
 
-CEP relies on canonical JSON for:
-- hash computation
-- signature generation
-- signature verification
-- deterministic comparison across nodes
+CEP uses canonical JSON for:
+
+- hash computation  
+- digital signatures  
+- verification  
+- cross-node equality  
 
 ### 2.1 Requirements
 
-An implementation MUST:
+Canonical JSON MUST:
 
-- Sort all object keys lexicographically.
-- Sort key-value pairs in `termsAttributes` and `additionalSchemes`.
-- Emit no trailing commas.
-- Emit deterministic formatting:
-  - UTF-8
-  - No extra whitespace outside JSON rules
-- Serialize timestamps in:
-  - UTC
-  - Always microsecond precision
-  - Always `Z` suffix
+- Sort all object keys lexicographically  
+- Use UTF-8  
+- Serialize timestamps as UTC with microsecond precision and trailing `Z`  
+- Avoid superfluous whitespace  
+- Use stable ordering inside arrays where applicable  
 
 Example: `2025-09-15T14:03:22.500000Z`
 
-
 ### 2.2 Canonical Field Order
 
-Each schema clearly defines required fields and object structure.  
-Field order MUST NOT vary once serialized.
-
-This is enforced via CI **hash-parity tests** across all languages.
+Field order is enforced via CI and cross-language tests.  
+Any deviation produces a hash mismatch.
 
 ---
 
-## 3. Attestation and Verification
+## 3. Record Model and Encapsulation Philosophy
 
-### 3.1 Attestation Block
+CEP defines **record-shaped data**, not object-oriented domain objects.  
+The goal is **interoperable, predictable, schema-driven** structures that behave identically in:
 
-Every CEP Entity, Relationship, and Exchange contains an `attestation` block:
+- Rust  
+- Python  
+- TypeScript  
+- Java / C#  
+- SQL and NoSQL databases  
+
+### 3.1 Why CEP Records Use Public Fields
+
+CEP records are transparent because:
+
+- Auditors must inspect them directly  
+- Schemas define their shape exactly  
+- Canonicalization requires predictable visibility  
+- Multi-language parity demands structural simplicity  
+- Hidden or computed fields would break determinism  
+
+Thus CEP avoids private state and getters/setters.
+
+### 3.2 Where Logic Belongs: Builders and Validators
+
+CEP enforces correctness *outside* the record struct:
+
+- **Builders** (e.g., `EntityBuilder`, `RelationshipBuilder`)  
+  - enforce invariants  
+  - normalize input  
+  - generate identifiers (SNFEI)  
+  - ensure field completeness  
+
+- **Validators**  
+  - validate schema compliance  
+  - enforce vocabulary correctness  
+  - verify signatures  
+  - enforce revision chain rules  
+
+- **Canonicalization**  
+  - enforces deterministic ordering  
+  - produces canonical strings for hashing  
+
+### 3.3 When Methods Are Appropriate
+
+Methods are acceptable when they:
+
+- produce **derived** values (e.g., `canonical_string()`)  
+- do not mutate underlying data  
+- increase clarity without altering canonical shape  
+
+### 3.4 Takeaway
+
+> **CEP records are stable public data structures.  
+> Builders and validators enforce correctness.  
+> Canonicalization enforces determinism.  
+> This ensures interoperability, auditability, and future-proof evolution.**
+
+---
+
+## 4. Attestation and Verification
+
+### 4.1 Attestation Block
+
+Each CEP record includes:
+
 - `attestorId`  
 - `attestationTimestamp`  
 - `proofType`  
 - `proofValue`  
 - `verificationMethodUri`  
 - `proofPurpose`  
-- `anchorUri` (optional)
+- `anchorUri` (optional)  
 
-### 3.2 Verification Workflow
+### 4.2 Verification Workflow
 
-A verifier MUST:
+1. Resolve public key from `verificationMethodUri`  
+2. Recompute canonical JSON excluding attestation block  
+3. Verify signature using `proofType`  
+4. Check signature matches the canonical hash  
 
-1. Resolve the public key from `verificationMethodUri`.
-2. Recompute canonical JSON excluding the `attestation` block.
-3. Validate the signature using the declared `proofType`.
-4. Confirm that the signature matches the hash of the canonical record.
-
-If verification fails:
-- the record MUST be rejected
-- the node MUST NOT include it in its dataset
+Failures MUST cause rejection.
 
 ---
 
-## 4. Revision and Hash Chain
+## 5. Revision and Hash Chain
 
-### 4.1 Record Lifecycle
-
-For each entity or relationship:
+### 5.1 Lifecycle
 
 ```
 revision 1: previousRecordHash = null
-revision 2+: hash of previous canonical record
+revision 2+: previousRecordHash = SHA256(canonical previous)
 ```
 
-
-### 4.2 Requirements
+### 5.2 Requirements
 
 Implementations MUST:
 
-- Enforce monotonic revision numbers.
-- Reject any record with an incorrect previousRecordHash.
-- Treat each change as a new revision (even minor corrections).
+- Enforce monotonic revision numbers  
+- Reject incorrect previousRecordHash values  
+- Treat any modification as a new revision  
 
-### 4.3 Why This Matters
-
-This chain forms:
-- a tamper-evident audit log
-- the categorical “amendment” morphism chain
-- a verified provenance trail
+This forms a tamper-evident chain.
 
 ---
 
-## 5. Identifier Interoperability
+## 6. Identifier Interoperability
 
-CEP Entity identifiers include:
+CEP supports:
 
-- `samUei`
-- `lei`
-- `snfei`
-- `canadianBn`
-- **`additionalSchemes`**: the main interop surface
+- UEI  
+- LEI  
+- SNFEI  
+- Canadian BN  
+- Additional scheme-based identifiers  
 
-### 5.1 Best Practice
+### 6.1 Best Practices
+
+- Validate URIs using the identifier-scheme vocabulary  
+- Validate known schemes strictly  
+- Allow unknown schemes if structurally valid  
+
+---
+
+## 7. Provenance Composition
+
+Relationships and exchanges form a directed provenance graph.
+
+Implementations MUST:
+
+- Validate relationship links  
+- Build provenance chains deterministically  
+- Support parent relationships/exchanges  
+
+### 7.1 Funding Chain Convention
+
+`FEDERAL>STATE>LOCAL`
+
+Segments must be uppercase, separated by `>`.
+
+---
+
+## 8. Vocabulary Integration
+
+Vocabulary URIs MUST resolve to known terms:
+
+- relationship-type  
+- exchange-type  
+- party-role  
+- exchange-role  
+- identifier-scheme  
+
+Implementations SHOULD cache vocabularies locally.
+
+---
+
+## 9. Source References
+
+Source references link CEP to external datasets.
 
 Implementations SHOULD:
 
-- Enforce scheme URIs contained in the `identifier-scheme` vocabulary.
-- Perform validation on well-known schemes (UEI, LEI, OCD IDs).
-- Allow permissive acceptance of unknown schemes if format is valid.
+- validate URI syntax  
+- enforce nonempty IDs  
+- optionally verify URL resolvability  
 
 ---
 
-## 6. Provenance Composition
-
-Relationships and exchanges form directed edges.
-
-Implementations MUST:
-
-- Validate `relationshipId` links when constructing exchanges.
-- Build `provenanceChain` deterministically.
-- Support `parentRelationshipId` and `parentExchangeId`.
-
-### 6.1 Funding Chain
-
-Funding chain tags MUST:
-- use uppercase segments
-- be separated by `>`
-- match the derived provenance graph
-
-Example: `FEDERAL>STATE>LOCAL`
-
-
----
-
-## 7. Vocabulary Integration
-
-Each URI reference MUST map to a term in the appropriate vocabulary:
-
-- `relationshipTypeUri` → `relationship-type` vocabulary  
-- `exchangeTypeUri` → `exchange-type` vocabulary  
-- `party-role` and `exchange-role` vocabularies  
-- `identifier-scheme` for external IDs
-
-Implementations SHOULD cache vocabularies locally to avoid network dependencies.
-
----
-
-## 8. Source References
-
-A record's `sourceReferences` connects CEP data to external systems:
-
-- Open Civic Data (bills, votes, events)
-- USAspending
-- state procurement portals
-- HSDS registries
-- campaign finance systems
-- XBRL financial filings
-
-Implementation SHOULD:
-- validate URI format
-- ensure IDs are nonempty
-- verify URLs resolve when possible
-
----
-
-## 9. Example Implementation Pattern
-
-### 9.1 Pseudocode Workflow
+## 10. Example Implementation Pattern
 
 ```
 load_schemas()
@@ -233,60 +266,58 @@ load_vocabularies()
 
 record = parse_input_json()
 validate_schema(record)
-validate_vocabulary_uris(record)
+validate_vocabularies(record)
 
 canonical = canonicalize_json(record without attestation)
-validate_previous_record_hash()
+check_revision_chain(canonical, record)
 verify_attestation(canonical, record.attestation)
 
-store_record(record)
+store(record)
 ```
 
-
 ---
 
-## 10. Language-Specific Notes
+## 11. Language-Specific Notes
 
 ### Python
-- Use `json.dumps(..., separators=(',', ':'), ensure_ascii=False)`
-- Ensure key ordering via `sort_keys=True`
+`json.dumps(..., separators=(',', ':'), sort_keys=True)`
 
 ### TypeScript
-- Avoid `JSON.stringify` without a stable stringify library
+Use deterministic-stringify libraries.
 
 ### Rust
-- Use `serde_json::to_writer` with sorted maps
+Use `serde_json::to_writer` with sorted maps.
 
 ### Java / C#
-- Use custom serializers enforcing sorted keys
+Use custom deterministic serializers.
 
-All languages MUST produce identical byte output for canonical JSON.
+All languages MUST yield identical canonical bytes.
 
 ---
 
-## 11. Conformance Levels
+## 12. Conformance Levels
 
 | Level | Meaning |
 |-------|---------|
 | **Basic** | Validates schemas + vocabularies |
-| **Full** | Also validates attestations + hash chains |
-| **Verifying Node** | Maintains complete verified subcategory |
-| **Authoritative Node** | Can generate new attestations |
+| **Full** | Validates attestations + revision chains |
+| **Verifying Node** | Maintains verified subcategory |
+| **Authoritative Node** | Issues new attestations |
 
 ---
 
-## 12. Summary
+## 13. Summary
 
 A complete CEP implementation MUST:
 
 ✔ Validate schemas  
-✔ Canonicalize JSON deterministically  
-✔ Verify all cryptographic attestations  
-✔ Maintain immutable hash chains  
-✔ Interpret vocabulary URIs as semantic types  
-✔ Support provenance composition  
-✔ Preserve hash parity with all certified nodes  
+✔ Canonicalize deterministically  
+✔ Verify cryptographic attestations  
+✔ Maintain hash-linked revisions  
+✔ Interpret vocabularies correctly  
+✔ Support provenance graph construction  
+✔ Achieve hash parity across languages  
 
-Following this guide helps ensure an implementation will integrate into the global **Civic Graph** and remain interoperable, verifiable, and future-proof.
+This ensures global interoperability within the Civic Graph.
 
 ---

@@ -1,11 +1,11 @@
-//! CEP Relationship Record definition.
-//!
-//! A Relationship Record represents a verifiable legal or functional relationship
-//! between two or more attested entities.
-//!
-//! Relationships can be:
-//! - **Bilateral**: Two-party relationships with clear directionality (contracts, grants)
-//! - **Multilateral**: N-ary relationships (consortia, boards, joint ventures)
+/// CEP Relationship Record definition.
+///
+/// A Relationship Record represents a verifiable legal or functional relationship
+/// between two or more attested entities.
+///
+/// Relationships can be:
+/// - **Bilateral**: Two-party relationships with clear directionality (contracts, grants)
+/// - **Multilateral**: N-ary relationships (consortia, boards, joint ventures)
 
 use crate::bilateral::BilateralParties;
 use crate::multilateral::MultilateralMembers;

@@ -1,8 +1,8 @@
-//! CEP Exchange Record definition.
-//!
-//! An Exchange Record represents a verifiable value exchange (financial, in-kind,
-//! or informational) between entities within an established relationship.
-//! This is the atomic unit of civic transparency.
+/// CEP Exchange Record definition.
+///
+/// An Exchange Record represents a verifiable value exchange (financial, in-kind,
+/// or informational) between entities within an established relationship.
+/// This is the atomic unit of civic transparency.
 
 use crate::provenance::{ExchangeCategorization, ProvenanceChain};
 use crate::value::{ExchangeParty, ExchangeValue};

@@ -1,8 +1,8 @@
-//! CEP Entity Record definition.
-//!
-//! The Entity Record is the foundational primitive in CEP. It represents a
-//! verified civic entity (government agency, contractor, nonprofit, individual).
-//! All relationships and exchanges reference attested entities.
+/// CEP Entity Record definition.
+///
+/// The Entity Record is the foundational primitive in CEP. It represents a
+/// verified civic entity (government agency, contractor, nonprofit, individual).
+/// All relationships and exchanges reference attested entities.
 
 use crate::identifiers::EntityIdentifiers;
 use cep_core::canonical::{insert_if_present, insert_required, Canonicalize};

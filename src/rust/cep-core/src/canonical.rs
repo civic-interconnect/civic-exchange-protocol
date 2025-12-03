@@ -1,27 +1,27 @@
-//! Canonical serialization for CEP records.
-//!
-//! This module provides the core trait and utilities for generating
-//! deterministic canonical strings from CEP records. The canonical string
-//! is the input to SHA-256 hashing for record integrity verification.
-//!
-//! # Canonicalization Rules
-//!
-//! 1. **Field Order**: Fields MUST be serialized in a defined, alphabetical order.
-//!    Use `BTreeMap` for key-value pairs and `BTreeSet` for collections.
-//!
-//! 2. **Null/Empty Omission**: Fields with null, None, or empty string values
-//!    MUST be omitted entirely from the canonical string.
-//!
-//! 3. **Timestamp Format**: All timestamps MUST use `YYYY-MM-DDTHH:MM:SS.ffffffZ`
-//!    with exactly 6 decimal places for microseconds.
-//!
-//! 4. **Numeric Format**: Monetary amounts MUST use exactly 2 decimal places.
-//!    Integers MUST NOT have decimal points.
-//!
-//! 5. **String Escaping**: Strings are NOT JSON-escaped in the canonical form.
-//!    The canonical string is a simple key:value concatenation.
-//!
-//! 6. **Encoding**: The canonical string MUST be UTF-8 encoded.
+/// Canonical serialization for CEP records.
+///
+/// This module provides the core trait and utilities for generating
+/// deterministic canonical strings from CEP records. The canonical string
+/// is the input to SHA-256 hashing for record integrity verification.
+///
+/// # Canonicalization Rules
+///
+/// 1. **Field Order**: Fields MUST be serialized in a defined, alphabetical order.
+///    Use `BTreeMap` for key-value pairs and `BTreeSet` for collections.
+///
+/// 2. **Null/Empty Omission**: Fields with null, None, or empty string values
+///    MUST be omitted entirely from the canonical string.
+///
+/// 3. **Timestamp Format**: All timestamps MUST use `YYYY-MM-DDTHH:MM:SS.ffffffZ`
+///    with exactly 6 decimal places for microseconds.
+///
+/// 4. **Numeric Format**: Monetary amounts MUST use exactly 2 decimal places.
+///    Integers MUST NOT have decimal points.
+///
+/// 5. **String Escaping**: Strings are NOT JSON-escaped in the canonical form.
+///    The canonical string is a simple key:value concatenation.
+///
+/// 6. **Encoding**: The canonical string MUST be UTF-8 encoded.
 
 use crate::hash::CanonicalHash;
 use std::collections::BTreeMap;

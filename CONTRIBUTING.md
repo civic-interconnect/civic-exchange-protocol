@@ -37,6 +37,7 @@ uv venv
 
 uv sync --extra dev --extra docs --upgrade
 uv run pre-commit install
+uv tool install just
 ```
 
 ## 4. Validate Changes
@@ -60,20 +61,30 @@ Test rust logic until there are no errors and all tests pass.
 ```shell
 rustc --version
 
-# fix crates as needed
-cargo fix --lib -p cep-core         
-cargo fix --lib -p cep-entity
-cargo fix --lib -p cep-exchange
-cargo fix --lib -p cep-relationship
-cargo fix --lib -p cep-snfei
+# fix crates individually or altogether as needed
+cargo fix --lib -p cep-core --allow-dirty --allow-staged
+cargo fix --lib -p cep-snfei --allow-dirty --allow-staged
+cargo fix --lib -p cep-entity --allow-dirty --allow-staged
+cargo fix --lib -p cep-relationship --allow-dirty --allow-staged
+cargo fix --lib -p cep-exchange --allow-dirty --allow-staged
+cargo fix --lib  --allow-dirty --allow-staged -q
+
+# build crates individually or altogether as needed
+cargo build -p cep-relationship
+cargo build
 
 # test individually or altogether
-cargo test -p cep-core
+cargo test -p cep-core -q
+cargo test -p cep-snfei -q
+cargo test -p cep-entity -q
+cargo test -p cep-relationship -q
+cargo test -p cep-exchange -q
+cargo test -- --nocapture -q
+
+# generate examples 
+cargo build
 cargo test -p cep-entity
-cargo test -p cep-exchange
-cargo test -p cep-relationship
-cargo test -p cep-snfei
-cargo test -- --nocapture
+cargo run  -p cep-entity --example dump_from_raw
 ```
 
 ## 5. Building Package and/or Docs

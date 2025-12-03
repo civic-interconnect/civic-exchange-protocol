@@ -1,11 +1,11 @@
-//! Canonical timestamp handling for CEP records.
-//!
-//! All CEP timestamps MUST be:
-//! - UTC timezone (indicated by 'Z' suffix)
-//! - ISO 8601 format
-//! - Microsecond precision (exactly 6 decimal places)
-//!
-//! Example: `2025-11-28T14:30:00.000000Z`
+/// Canonical timestamp handling for CEP records.
+///
+/// All CEP timestamps MUST be:
+/// - UTC timezone (indicated by 'Z' suffix)
+/// - ISO 8601 format
+/// - Microsecond precision (exactly 6 decimal places)
+///
+/// Example: `2025-11-28T14:30:00.000000Z`
 
 use chrono::{DateTime, Utc};
 use std::fmt;

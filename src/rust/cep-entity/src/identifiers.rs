@@ -1,29 +1,29 @@
-//! Entity identifier types for CEP.
-//!
-//! CEP supports multiple identifier schemes organized into tiers:
-//!
-//! - **Tier 1 (Global)**: LEI (Legal Entity Identifier)
-//! - **Tier 2 (Federal)**: SAM.gov UEI
-//! - **Tier 3 (Sub-National)**: SNFEI (generated hash-based identifier)
-//! - **Extended**: Canadian BN, UK Companies House, etc.
-//!
-//! # SNFEI Generation
-//!
-//! For full SNFEI generation with normalization and localization, use the
-//! `cep_snfei` crate directly:
-//!
-//! ```ignore
-//! use cep_snfei::{generate_snfei, apply_localization};
-//!
-//! let (snfei, inputs) = generate_snfei(
-//!     "Springfield USD #12",
-//!     "US",
-//!     Some("123 Main St"),
-//!     None,
-//! );
-//! ```
-
-use cep_core::canonical::{insert_if_present, Canonicalize};
+/// Entity identifier types for CEP.
+///
+/// CEP supports multiple identifier schemes organized into tiers:
+///
+/// - **Tier 1 (Global)**: LEI (Legal Entity Identifier)
+/// - **Tier 2 (Federal)**: SAM.gov UEI
+/// - **Tier 3 (Sub-National)**: SNFEI (generated hash-based identifier)
+/// - **Extended**: Canadian BN, UK Companies House, etc.
+///
+/// # SNFEI Generation
+///
+/// For full SNFEI generation with normalization and localization, use the
+/// `cep_snfei` crate directly:
+///
+/// ```rust
+/// use cep_snfei::{generate_snfei, apply_localization};
+///
+/// let result = generate_snfei(
+///     "Springfield USD #12",
+///     "US",
+///     Some("123 Main St"),
+///     None,
+/// );
+/// let snfei = result.snfei;
+/// ```
+use cep_core::canonical::{Canonicalize, insert_if_present};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
@@ -38,7 +38,11 @@ pub struct SamUei(String);
 impl SamUei {
     /// Creates a new SAM UEI, validating the format.
     pub fn new(value: &str) -> Option<Self> {
-        if value.len() == 12 && value.chars().all(|c| c.is_ascii_alphanumeric() && c.is_ascii_uppercase() || c.is_ascii_digit()) {
+        if value.len() == 12
+            && value
+                .chars()
+                .all(|c| c.is_ascii_alphanumeric() && c.is_ascii_uppercase() || c.is_ascii_digit())
+        {
             Some(Self(value.to_string()))
         } else {
             None
@@ -151,7 +155,10 @@ impl EntityIdentifiers {
             || self.lei.is_some()
             || self.snfei.is_some()
             || self.canadian_bn.is_some()
-            || self.additional_schemes.as_ref().map_or(false, |v| !v.is_empty())
+            || self
+                .additional_schemes
+                .as_ref()
+                .map_or(false, |v| !v.is_empty())
     }
 
     /// Returns the "best" identifier for use as the verifiable ID.
@@ -193,9 +200,17 @@ impl Canonicalize for EntityIdentifiers {
             }
         }
 
-        insert_if_present(&mut map, "canadianBn", self.canadian_bn.as_ref().map(|x| x.as_str()));
+        insert_if_present(
+            &mut map,
+            "canadianBn",
+            self.canadian_bn.as_ref().map(|x| x.as_str()),
+        );
         insert_if_present(&mut map, "lei", self.lei.as_ref().map(|x| x.as_str()));
-        insert_if_present(&mut map, "samUei", self.sam_uei.as_ref().map(|x| x.as_str()));
+        insert_if_present(
+            &mut map,
+            "samUei",
+            self.sam_uei.as_ref().map(|x| x.as_str()),
+        );
         insert_if_present(&mut map, "snfei", self.snfei.as_ref().map(|x| x.value()));
 
         map
@@ -227,24 +242,33 @@ mod tests {
 
     #[test]
     fn test_snfei_from_cep_snfei() {
-        let (snfei, _) = generate_snfei("Acme Consulting LLC", "US", None, None);
+        let result = generate_snfei("Acme Consulting LLC", "US", None, None);
+        let snfei = result.snfei;
         assert_eq!(snfei.value().len(), 64);
-        
+
         // Same input should produce same output
-        let (snfei2, _) = generate_snfei("Acme Consulting LLC", "US", None, None);
+        let result2 = generate_snfei("Acme Consulting LLC", "US", None, None);
+        let snfei2 = result2.snfei;
         assert_eq!(snfei, snfei2);
-        
+
         // Different input should produce different output
-        let (snfei3, _) = generate_snfei("Acme Consulting LLC", "CA", None, None);
+        let result3 = generate_snfei("Acme Consulting LLC", "CA", None, None);
+        let snfei3 = result3.snfei;
         assert_ne!(snfei, snfei3);
     }
 
     #[test]
     fn test_snfei_normalization_equivalence() {
         // Different surface forms should normalize to same SNFEI
-        let (snfei1, _) = generate_snfei("Springfield USD", "US", None, None);
-        let (snfei2, _) = generate_snfei("SPRINGFIELD USD", "US", None, None);
-        let (snfei3, _) = generate_snfei("springfield usd", "US", None, None);
+        let result1 = generate_snfei("Springfield USD", "US", None, None);
+        let snfei1 = result1.snfei;
+
+        let result2 = generate_snfei("SPRINGFIELD USD", "US", None, None);
+        let snfei2 = result2.snfei;
+
+        let result3 = generate_snfei("springfield usd", "US", None, None);
+        let snfei3 = result3.snfei;
+
         assert_eq!(snfei1, snfei2);
         assert_eq!(snfei2, snfei3);
     }
@@ -256,7 +280,9 @@ mod tests {
 
     #[test]
     fn test_primary_identifier_priority() {
-        let (snfei, _) = generate_snfei("test", "US", None, None);
+        let result = generate_snfei("test", "US", None, None);
+        let snfei = result.snfei;
+
         let ids = EntityIdentifiers::new()
             .with_sam_uei(SamUei::new("J6H4FB3N5YK7").unwrap())
             .with_snfei(snfei);
@@ -274,7 +300,7 @@ mod tests {
 
         let fields = ids.canonical_fields();
         let keys: Vec<&String> = fields.keys().collect();
-        
+
         // Should be alphabetical
         assert_eq!(keys, vec!["lei", "samUei"]);
     }

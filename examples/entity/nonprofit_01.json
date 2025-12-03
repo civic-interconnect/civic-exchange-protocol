@@ -1,32 +1,24 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiableId": "cep-entity:demo:nonprofit-01",
+  "verifiableId": "cep-entity:snfei:3ceb3f8c7e64586a385c8ddb0ff0cda8180e92759216b63986354f40ec968dde",
   "identifiers": {
-    "snfei": "3a06c5b6e80fbd4fdc85ee201bbc229ac911ee770ea7dda6845b27d509bda2d4"
+    "snfei": {
+      "value": "3ceb3f8c7e64586a385c8ddb0ff0cda8180e92759216b63986354f40ec968dde"
+    }
   },
-  "legalName": "Boston Community Foundation, Inc.",
+  "legalName": "boston community foundation, inc.",
   "jurisdictionIso": "US-MA",
   "status": {
     "statusCode": "ACTIVE",
     "statusEffectiveDate": "1998-05-20"
   },
   "attestation": {
-    "attestorId": "cep-entity:demo:attestor-1",
-    "attestationTimestamp": "2025-11-28T14:30:00.000000Z",
-    "proofType": "Ed25519Signature2020",
-    "proofValue": "BASE64_SIGNATURE_EXAMPLE",
-    "verificationMethodUri": "https://example.org/keys/attestor-1#primary",
-    "proofPurpose": "assertionMethod",
-    "anchorUri": null
+    "attestorId": "cep-entity:example:ingest",
+    "attestationTimestamp": "2025-12-03T00:00:00.000000Z",
+    "proofType": "ManualAttestation",
+    "proofValue": "",
+    "verificationMethodUri": "urn:cep:attestor:cep-entity:example:ingest",
+    "proofPurpose": "assertionMethod"
   },
-  "previousRecordHash": null,
-  "revisionNumber": 1,
-  "entityId": "US-MA-NP-4578",
-  "entityType": "NONPROFIT_501C3",
-  "jurisdiction": "US-MA",
-  "countryCode": "US",
-  "address": "50 Beacon St, Suite 300",
-  "ein": "123456789",
-  "registrationDate": "1998-05-20",
-  "snfei": "3a06c5b6e80fbd4fdc85ee201bbc229ac911ee770ea7dda6845b27d509bda2d4"
+  "revisionNumber": 1
 }

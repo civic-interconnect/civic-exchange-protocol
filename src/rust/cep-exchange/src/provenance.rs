@@ -1,7 +1,7 @@
-//! Provenance chain tracking for CEP exchanges.
-//!
-//! Traces the compositional flow of funds through the civic graph.
-//! This is the Category Theory morphism path implementation.
+/// Provenance chain tracking for CEP exchanges.
+///
+/// Traces the compositional flow of funds through the civic graph.
+/// This is the Category Theory morphism path implementation.
 
 use cep_core::canonical::{insert_if_present, insert_required, Canonicalize};
 use serde::{Deserialize, Serialize};

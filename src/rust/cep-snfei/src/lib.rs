@@ -1,45 +1,53 @@
-//! CEP SNFEI: Entity Resolution and SNFEI Generation.
-//!
-//! This crate implements the Normalizing Functor architecture for generating
-//! deterministic entity identifiers (SNFEIs) from heterogeneous source data.
-//!
-//! # Architecture
-//!
-//! ```text
-//!     ┌──────────────┐     ┌────────────────┐     ┌─────────────┐
-//!     │  Raw Entity  │     │  Intermediate  │     │  Canonical  │
-//!     │    Data      │────>│    Canonical   │────>│   Entity    │
-//!     │              │  L  │                │  N  │             │
-//!     └──────────────┘     └────────────────┘     └─────────────┘
-//!                                                         │
-//!                                                         │ SHA-256
-//!                                                         V
-//!                                                 ┌──────────────┐
-//!                                                 │    SNFEI     │
-//!                                                 │  (64-char)   │
-//!                                                 └──────────────┘
-//!
-//!     L = Localization Functor (jurisdiction-specific transforms)
-//!     N = Normalizing Functor (universal normalization)
-//! ```
-//!
-//! # Usage
-//!
-//! ```rust
-//! use cep_snfei::{generate_snfei, normalize_legal_name, apply_localization};
-//!
-//! // Simple SNFEI generation
-//! let (snfei, inputs) = generate_snfei(
-//!     "Springfield USD #12",
-//!     "US",
-//!     Some("123 Main St"),
-//!     None,
-//! );
-//!
-//! // With jurisdiction-specific localization
-//! let localized = apply_localization("MTA", "us/ny");
-//! assert_eq!(localized, "metropolitan transportation authority");
-//! ```
+/// CEP SNFEI: Entity Resolution and SNFEI Generation.
+///
+/// This crate implements the Normalizing Functor architecture for generating
+/// deterministic entity identifiers (SNFEIs) from heterogeneous source data.
+///
+/// # Architecture
+///
+/// ```text
+///     ┌──────────────┐     ┌────────────────┐     ┌─────────────┐
+///     │  Raw Entity  │     │  Intermediate  │     │  Canonical  │
+///     │    Data      │────>│    Canonical   │────>│   Entity    │
+///     │              │  L  │                │  N  │             │
+///     └──────────────┘     └────────────────┘     └─────────────┘
+///                                                         │
+///                                                         │ SHA-256
+///                                                         V
+///                                                 ┌──────────────┐
+///                                                 │    SNFEI     │
+///                                                 │  (64-char)   │
+///                                                 └──────────────┘
+///
+///     L = Localization Functor (jurisdiction-specific transforms)
+///     N = Normalizing Functor (universal normalization)
+/// ```
+///
+/// # Usage
+///
+/// ```rust
+/// use cep_snfei::{generate_snfei, normalize_legal_name, apply_localization};
+///
+/// // Simple SNFEI generation
+/// let result = generate_snfei(
+///     "Springfield USD #12",
+///     "US",
+///     Some("123 Main St"),
+///     None,
+/// );
+///
+/// // Access the SNFEI value and canonical inputs
+/// let snfei = result.snfei.value();
+/// let inputs = &result.canonical;
+///
+/// assert_eq!(inputs.country_code, "US");
+/// assert!(!snfei.is_empty());
+///
+/// // With jurisdiction-specific localization
+/// let localized = apply_localization("MTA", "us/ny");
+/// assert_eq!(localized, "metropolitan transportation authority");
+/// ```
+
 
 mod generator;
 mod localization;

@@ -1,31 +1,24 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiableId": "cep-entity:demo:municipality-01",
+  "verifiableId": "cep-entity:snfei:34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3",
   "identifiers": {
-    "snfei": "c7e8fcf040a133ef8b245f72994fc7d5ccd90c28f0a280a34bfde920cb9da98f"
+    "snfei": {
+      "value": "34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3"
+    }
   },
-  "legalName": "City of Springfield",
+  "legalName": "city of springfield",
   "jurisdictionIso": "US-IL",
   "status": {
     "statusCode": "ACTIVE",
-    "statusEffectiveDate": "2020-01-01"
+    "statusEffectiveDate": "1900-01-01"
   },
   "attestation": {
-    "attestorId": "cep-entity:demo:attestor-1",
-    "attestationTimestamp": "2025-11-28T14:30:00.000000Z",
-    "proofType": "Ed25519Signature2020",
-    "proofValue": "BASE64_SIGNATURE_EXAMPLE",
-    "verificationMethodUri": "https://example.org/keys/attestor-1#primary",
-    "proofPurpose": "assertionMethod",
-    "anchorUri": null
+    "attestorId": "cep-entity:example:ingest",
+    "attestationTimestamp": "2025-12-03T00:00:00.000000Z",
+    "proofType": "ManualAttestation",
+    "proofValue": "",
+    "verificationMethodUri": "urn:cep:attestor:cep-entity:example:ingest",
+    "proofPurpose": "assertionMethod"
   },
-  "previousRecordHash": null,
-  "revisionNumber": 1,
-  "entityId": "US-IL-MUNI-0012",
-  "entityType": "MUNICIPALITY",
-  "jurisdiction": "US-IL",
-  "countryCode": "US",
-  "address": "200 Main Street",
-  "registrationDate": null,
-  "snfei": "c7e8fcf040a133ef8b245f72994fc7d5ccd90c28f0a280a34bfde920cb9da98f"
+  "revisionNumber": 1
 }

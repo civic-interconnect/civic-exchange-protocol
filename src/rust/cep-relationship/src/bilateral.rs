@@ -1,8 +1,8 @@
-//! Bilateral party definitions for two-party relationships.
-//!
-//! Bilateral relationships have clear directionality:
-//! - **Party A**: The initiating, granting, or contracting party
-//! - **Party B**: The receiving, performing, or beneficiary party
+/// Bilateral party definitions for two-party relationships.
+///
+/// Bilateral relationships have clear directionality:
+/// - **Party A**: The initiating, granting, or contracting party
+/// - **Party B**: The receiving, performing, or beneficiary party
 
 use cep_core::canonical::{insert_required, Canonicalize};
 use serde::{Deserialize, Serialize};

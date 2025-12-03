@@ -1,17 +1,17 @@
-//! SNFEI Hash Generation.
-//!
-//! This module computes the final SNFEI (Sub-National Federated Entity Identifier)
-//! from normalized entity attributes.
-//!
-//! The SNFEI formula:
-//!     SNFEI = SHA256(Concatenate[
-//!         legal_name_normalized,
-//!         address_normalized,
-//!         country_code,
-//!         registration_date
-//!     ])
-//!
-//! All inputs must pass through the Normalizing Functor before hashing.
+/// SNFEI Hash Generation.
+///
+/// This module computes the final SNFEI (Sub-National Federated Entity Identifier)
+/// from normalized entity attributes.
+///
+/// The SNFEI formula:
+///     SNFEI = SHA256(Concatenate[
+///         legal_name_normalized,
+///         address_normalized,
+///         country_code,
+///         registration_date
+///     ])
+///
+/// All inputs must pass through the Normalizing Functor before hashing.
 
 use sha2::{Digest, Sha256};
 
@@ -120,26 +120,32 @@ pub fn generate_snfei(
     let canonical = build_canonical_input(legal_name, country_code, address, registration_date);
     let snfei = compute_snfei(&canonical);
 
-    // Determine fields used
-    let mut fields_used = vec!["legal_name".to_string(), "country_code".to_string()];
-    if !canonical
+    // Pre-compute presence of optional fields in a safe, Option-aware way.
+    let has_address = canonical
         .address_normalized
         .as_deref()
-        .unwrap_or("")
-        .is_empty()
-    {
+        .map_or(false, |s| !s.is_empty());
+
+    let has_registration_date = canonical
+        .registration_date
+        .as_deref()
+        .map_or(false, |s| !s.is_empty());
+
+    // Determine fields used
+    let mut fields_used = vec!["legal_name".to_string(), "country_code".to_string()];
+    if has_address {
         fields_used.push("address".to_string());
     }
-    if !canonical.registration_date.as_deref().unwrap_or("").is_empty() {
+    if has_registration_date {
         fields_used.push("registration_date".to_string());
     }
 
     // Calculate confidence score (Tier 3 logic)
     let mut confidence: f64 = 0.5; // Base score
-    if !canonical.address_normalized.is_empty() {
+    if has_address {
         confidence += 0.2;
     }
-    if !canonical.registration_date.is_empty() {
+    if has_registration_date {
         confidence += 0.2;
     }
     // Bonus for longer, more specific names
@@ -165,6 +171,7 @@ pub fn generate_snfei(
         fields_used,
     }
 }
+
 
 /// Generate SNFEI as a simple hex string.
 ///

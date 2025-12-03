@@ -1,9 +1,9 @@
-//! Attestation and cryptographic proof types for CEP records.
-//!
-//! Every CEP record includes an attestation block that proves:
-//! - Who attested to the record (attestorId)
-//! - When it was attested (attestationTimestamp)
-//! - Cryptographic proof of integrity (proofType, proofValue, verificationMethodUri)
+/// Attestation and cryptographic proof types for CEP records.
+///
+/// Every CEP record includes an attestation block that proves:
+/// - Who attested to the record (attestorId)
+/// - When it was attested (attestationTimestamp)
+/// - Cryptographic proof of integrity (proofType, proofValue, verificationMethodUri)
 
 use crate::canonical::{insert_if_present, insert_required, Canonicalize};
 use crate::timestamp::CanonicalTimestamp;

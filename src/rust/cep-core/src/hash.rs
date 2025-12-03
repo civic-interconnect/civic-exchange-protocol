@@ -1,6 +1,6 @@
-//! Cryptographic hashing utilities for CEP records.
-//!
-//! All CEP hashes are SHA-256, represented as lowercase hexadecimal strings.
+/// Cryptographic hashing utilities for CEP records.
+///
+/// All CEP hashes are SHA-256, represented as lowercase hexadecimal strings.
 
 use sha2::{Digest, Sha256};
 use std::fmt;

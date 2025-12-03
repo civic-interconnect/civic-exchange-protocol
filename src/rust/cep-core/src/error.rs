@@ -1,4 +1,4 @@
-//! Error types for CEP operations.
+/// Error types for CEP operations.
 
 use thiserror::Error;
 
@@ -36,6 +36,14 @@ pub enum CepError {
     /// Revision chain error.
     #[error("revision chain error: {0}")]
     RevisionChain(String),
+
+    /// Schema not found or version mismatch.
+    #[error("Unknown schema: {0}")]
+    UnknownSchema(String),
+
+    /// Configuration or environment error.
+    #[error("Configuration error: {0}")]
+    Configuration(String),
 }
 
 /// Result type for CEP operations.

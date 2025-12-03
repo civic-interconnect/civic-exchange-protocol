@@ -1,11 +1,11 @@
-//! Relationship builder: raw data -> canonical CEP RelationshipRecord.
-//!
-//! Transforms heterogeneous input data into fully-formed RelationshipRecord.
+/// Relationship builder: raw data -> canonical CEP RelationshipRecord.
+///
+/// Transforms heterogeneous input data into fully-formed RelationshipRecord.
 
 use cep_core::{Attestation, CanonicalTimestamp, CepError, CepResult};
 
 use crate::{
-    BilateralParties, FinancialTerms, Parties, Party, RelationshipRecord, RelationshipStatus,
+    BilateralParties, FinancialTerms, Party, RelationshipRecord, RelationshipStatus,
     RelationshipStatusCode, SourceReference,
 };
 
@@ -28,6 +28,8 @@ pub struct RelationshipBuilderInput {
     pub effective_date: String,
     /// Optional termination date
     pub termination_date: Option<String>,
+    /// Jurisdiction ISO code (e.g., "US-CA", "GB-ENG")
+    pub jurisdiction_iso: String,
     /// Attestation information
     pub attestation: AttestationInput,
     /// Optional financial terms
@@ -142,6 +144,7 @@ pub fn parse_timestamp(date_str: &str) -> CepResult<CanonicalTimestamp> {
 ///     recipient_role: Some("grantee".to_string()),
 ///     effective_date: "2024-01-01".to_string(),
 ///     termination_date: Some("2024-12-31".to_string()),
+///     jurisdiction_iso: "US-CA".to_string(),
 ///     attestation: AttestationInput {
 ///         attested_by: "Federal Grants Office".to_string(),
 ///         attestation_timestamp: "2024-01-15T09:00:00.000000Z".to_string(),
@@ -155,8 +158,8 @@ pub fn parse_timestamp(date_str: &str) -> CepResult<CanonicalTimestamp> {
 ///     description: Some("Title I Education Grant FY2024".to_string()),
 /// };
 ///
-/// let result = build_relationship(input)?;
-/// println!("Relationship ID: {}", result.relationship.verifiable_id());
+/// let result = build_relationship(input).unwrap();
+/// println!("Relationship ID: {}", result.relationship.verifiable_id);
 /// ```
 pub fn build_relationship(input: RelationshipBuilderInput) -> CepResult<RelationshipBuildResult> {
     let mut warnings = Vec::new();
@@ -177,8 +180,9 @@ pub fn build_relationship(input: RelationshipBuilderInput) -> CepResult<Relation
     let source_party = Party::new(input.source_entity_id.clone(), source_role);
     let recipient_party = Party::new(input.recipient_entity_id.clone(), recipient_role);
 
-    let parties = Parties::Bilateral(BilateralParties::new(source_party, recipient_party));
+    let bilateral_parties = BilateralParties::new(source_party, recipient_party);
 
+    
     // Build status
     let status_code = if input.termination_date.is_some() {
         RelationshipStatusCode::Terminated
@@ -194,13 +198,14 @@ pub fn build_relationship(input: RelationshipBuilderInput) -> CepResult<Relation
     // Build relationship type URI
     let relationship_type_uri = relationship_type_uri(&input.relationship_type);
 
-    // Create base record
-    let mut relationship = RelationshipRecord::new(
+    // Create base record using the bilateral constructor.
+    let mut relationship = RelationshipRecord::new_bilateral(
         input.relationship_id,
         relationship_type_uri,
-        parties,
+        bilateral_parties,
         effective_timestamp,
         status,
+        input.jurisdiction_iso,
         attestation,
     );
 
@@ -251,6 +256,9 @@ fn validate_required(input: &RelationshipBuilderInput) -> CepResult<()> {
     if input.effective_date.trim().is_empty() {
         return Err(CepError::MissingField("effective_date".to_string()));
     }
+    if input.jurisdiction_iso.trim().is_empty() {
+        return Err(CepError::MissingField("jurisdiction_iso".to_string()));
+    }
     if input.attestation.attested_by.trim().is_empty() {
         return Err(CepError::MissingField(
             "attestation.attested_by".to_string(),
@@ -298,6 +306,7 @@ mod tests {
             recipient_role: Some("grantee".to_string()),
             effective_date: "2024-01-01".to_string(),
             termination_date: None,
+            jurisdiction_iso: "US-CA".to_string(),
             attestation: AttestationInput {
                 attested_by: "Federal Grants Office".to_string(),
                 attestation_timestamp: "2024-01-15T09:00:00.000000Z".to_string(),
@@ -313,7 +322,7 @@ mod tests {
         let input = sample_input();
         let result = build_relationship(input).unwrap();
 
-        assert_eq!(result.relationship.verifiable_id(), "REL-2024-001");
+        assert_eq!(result.relationship.verifiable_id, "REL-2024-001");
         assert!(result.warnings.is_empty());
     }
 
@@ -327,7 +336,7 @@ mod tests {
         });
 
         let result = build_relationship(input).unwrap();
-        assert!(result.relationship.financial_terms().is_some());
+        assert!(result.relationship.financial_terms.is_some());
     }
 
     #[test]
@@ -366,7 +375,7 @@ mod tests {
 
         let result = build_relationship(input).unwrap();
         assert_eq!(
-            result.relationship.status().status_code,
+            result.relationship.status.status_code,
             RelationshipStatusCode::Terminated
         );
     }

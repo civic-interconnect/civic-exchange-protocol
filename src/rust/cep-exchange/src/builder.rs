@@ -1,6 +1,6 @@
-//! Exchange builder: raw data -> canonical CEP ExchangeRecord.
-//!
-//! Transforms heterogeneous input data into fully-formed ExchangeRecord.
+/// Exchange builder: raw data -> canonical CEP ExchangeRecord.
+///
+/// Transforms heterogeneous input data into fully-formed ExchangeRecord.
 
 use cep_core::{Attestation, CanonicalTimestamp, CepError, CepResult};
 
@@ -124,37 +124,6 @@ pub fn parse_timestamp(date_str: &str) -> CepResult<CanonicalTimestamp> {
 ///
 /// Returns `CepError` if required fields are missing or invalid.
 ///
-/// # Example
-///
-/// ```rust
-/// use cep_exchange::builder::{
-///     build_exchange, ExchangeBuilderInput, AttestationInput, CategorizationInput,
-/// };
-///
-/// let input = ExchangeBuilderInput {
-///     exchange_id: "EX-2024-1011".to_string(),
-///     exchange_type: "GRANT".to_string(),
-///     source_entity_id: "US-FED-ED-001".to_string(),
-///     recipient_entity_id: "US-CA-SD-0001".to_string(),
-///     amount: 1250000.00,
-///     currency: "USD".to_string(),
-///     occurred_date: "2024-05-15".to_string(),
-///     attestation: AttestationInput {
-///         attested_by: "Maria Lopez".to_string(),
-///         attestation_timestamp: "2024-05-15T14:02:10.491823Z".to_string(),
-///     },
-///     categorization: Some(CategorizationInput {
-///         local_category_code: Some("ED-TITLEI".to_string()),
-///         local_category_label: Some("Title I funding".to_string()),
-///         ..Default::default()
-///     }),
-///     source_reference: None,
-///     description: Some("Title I funding allocation".to_string()),
-/// };
-///
-/// let result = build_exchange(input)?;
-/// println!("Exchange ID: {}", result.exchange.verifiable_id());
-/// ```
 pub fn build_exchange(input: ExchangeBuilderInput) -> CepResult<ExchangeBuildResult> {
     let warnings = Vec::new();
 
@@ -335,7 +304,7 @@ mod tests {
         let input = sample_input();
         let result = build_exchange(input).unwrap();
 
-        assert_eq!(result.exchange.verifiable_id(), "EX-2024-1011");
+        assert_eq!(result.exchange.verifiable_id, "EX-2024-1011");
         assert!(result.warnings.is_empty());
     }
 
@@ -349,7 +318,7 @@ mod tests {
         });
 
         let result = build_exchange(input).unwrap();
-        assert!(result.exchange.categorization().is_some());
+        assert!(result.exchange.categorization.is_some());
     }
 
     #[test]
@@ -406,7 +375,7 @@ mod tests {
 
         let attestation = build_attestation(&input).unwrap();
         assert!(attestation
-            .verification_method_uri()
+            .verification_method_uri
             .contains("maria-lopez"));
     }
 }
