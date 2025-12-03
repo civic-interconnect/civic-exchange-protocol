@@ -37,6 +37,12 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-exchange-protocol/latest/en/concepts/interoperability/"/>
     </url>
     <url>
+        <loc>https://civic-interconnect.github.io/civic-exchange-protocol/latest/en/concepts/positioning-paper/</loc>
+        <lastmod>2025-12-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-exchange-protocol/latest/en/concepts/positioning-paper/"/>
+    </url>
+    <url>
         <loc>https://civic-interconnect.github.io/civic-exchange-protocol/latest/en/concepts/related-domains/</loc>
         <lastmod>2025-12-03</lastmod>
         <changefreq>daily</changefreq>
@@ -61,6 +67,12 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-exchange-protocol/latest/en/governance/vocabulary-process/"/>
     </url>
     <url>
+        <loc>https://civic-interconnect.github.io/civic-exchange-protocol/latest/en/implementation/cep-p3tags-binding/</loc>
+        <lastmod>2025-12-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-exchange-protocol/latest/en/implementation/cep-p3tags-binding/"/>
+    </url>
+    <url>
         <loc>https://civic-interconnect.github.io/civic-exchange-protocol/latest/en/implementation/implementation-guide/</loc>
         <lastmod>2025-12-03</lastmod>
         <changefreq>daily</changefreq>
@@ -71,6 +83,12 @@
         <lastmod>2025-12-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-exchange-protocol/latest/en/implementation/validator/"/>
+    </url>
+    <url>
+        <loc>https://civic-interconnect.github.io/civic-exchange-protocol/latest/en/reference/compatibility-matrix/</loc>
+        <lastmod>2025-12-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-exchange-protocol/latest/en/reference/compatibility-matrix/"/>
     </url>
     <url>
         <loc>https://civic-interconnect.github.io/civic-exchange-protocol/latest/en/reference/reference-projects/</loc>
