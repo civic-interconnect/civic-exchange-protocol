@@ -105,7 +105,7 @@ jobs:
 
       - name: C2) Upload coverage HTML
         if: always() && hashFiles('htmlcov/index.html') != ''
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: htmlcov-${{ matrix.python-version }}
           path: htmlcov
